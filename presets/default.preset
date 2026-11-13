@@ -1,3 +1,4 @@
-# Description: Default project workflow (workflow + auto-detected git/cvs)
+# Description: Default project rules (workflow + auto-detected OS and VCS)
 preset workflow
+rule os/auto
 rule vcs/auto

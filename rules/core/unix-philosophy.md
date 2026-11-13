@@ -1,2 +1,0 @@
-# Description: Unix philosophy: single responsibility, clean stdout/stderr streams, and pipe composition
-- **Unix philosophy & composability:** Each tool or module must do one thing well with a clear boundary. Write primary output strictly to `stdout` and diagnostics, warnings, or hints to `stderr` so tools compose cleanly via pipes (`|`). Fail explicitly with a helpful message and non-zero exit code when required inputs/configs are missing rather than guessing hidden defaults.

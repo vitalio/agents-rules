@@ -1,0 +1,2 @@
+# Description: CLI tool hygiene (-h/--help exits 0 doing nothing, stdout vs stderr separation)
+- **CLI interface rules:** Every CLI command/flag must be documented in `-h`/`--help`, which prints usage to `stdout` and exits `0` without side effects. Write primary results to `stdout` and errors/warnings to `stderr`.

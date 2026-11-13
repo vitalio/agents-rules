@@ -1,0 +1,2 @@
+# Description: Linux & POSIX shell conventions (set -euo pipefail, shellcheck, XDG paths, Unix pipes)
+- **Linux & POSIX shell rules:** Enable `set -euo pipefail` at the top of guarded scripts and never enable `set -x` around credentials. Lint shell scripts with `bash -n` and `shellcheck -S warning`. Follow XDG base directory conventions (`~/.config`, `~/.cache`, `~/.local/bin`) and compose tools via `stdin`/`stdout` pipes (`|`) with diagnostics on `stderr`.

@@ -1,0 +1,2 @@
+# Description: macOS & BSD userland compatibility (set -euo pipefail, shellcheck, BSD vs GNU flags)
+- **macOS & BSD userland rules:** Enable `set -euo pipefail` in guarded scripts, never enable `set -x` around credentials, and lint shell scripts with `bash -n` and `shellcheck -S warning`. Account for macOS BSD userland differences (avoid GNU-only flags such as `sed -i` without an extension argument, `readlink -f`, or `grep -P`) and ensure compatibility with macOS system Python 3.9+.

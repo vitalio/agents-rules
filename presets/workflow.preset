@@ -1,3 +1,4 @@
-# Description: Core workflow and language policy (core + lang)
+# Description: Core workflow, language policy, and clean external collaboration
 preset core
 rule core/lang lang=English
+rule collab/external

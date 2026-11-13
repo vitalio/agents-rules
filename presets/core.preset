@@ -1,9 +1,8 @@
-# Description: Core VCS-agnostic engineering workflow (start -> plan -> edit -> diff-review -> end)
+# Description: Pure OS-, VCS-, and language-agnostic engineering workflow
 rule core/start
 rule core/secrets
 rule core/plan
 rule core/edit
 rule core/diff-review
-rule core/external
 rule core/end
-rule core/unix-philosophy
+rule core/composability
