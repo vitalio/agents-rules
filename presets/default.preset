@@ -1,12 +1,5 @@
 # Description: Default project rules (core workflow, external collaboration, and auto-detected OS and VCS)
-rule core/start
-rule core/secrets
-rule core/plan
-rule core/edit
-rule core/diff-review
-rule core/end
-rule core/composability
-rule core/lang lang=English
+preset core
 rule collab/external
 [if os=linux] rule os/linux
 [if os=macos] rule os/macos
