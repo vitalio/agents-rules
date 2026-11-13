@@ -1,3 +1,3 @@
 # Description: Core workflow and language policy (core + lang)
-include = core, core/lang
-lang = English
+preset core
+rule core/lang lang=English

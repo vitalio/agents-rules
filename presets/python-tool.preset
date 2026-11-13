@@ -1,4 +1,5 @@
 # Description: Zero-dependency Python CLI utility stack (workflow + git + semver + python-cli)
-include = workflow, vcs/git, release/semver, stack/python-cli
-py_min = 3.9
-lang = English
+preset workflow lang=English
+rule vcs/git
+rule release/semver
+rule stack/python-cli py_min=3.9

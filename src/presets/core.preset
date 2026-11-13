@@ -1,2 +1,0 @@
-# Description: Core VCS-agnostic engineering workflow (start -> plan -> edit -> diff-review -> end)
-include = core/start, core/secrets, core/plan, core/edit, core/diff-review, core/external, core/end, core/unix-philosophy

@@ -1,20 +1,24 @@
 # agents_rules
 
-**Composable AI agent engineering rules and presets with namespace & GitHub package support.**
+**Standard catalog of composable AI agent engineering rules (`rules/`) and presets (`presets/`) for [`agents_bundle`](https://github.com/vitalio/agents_bundle).**
 
-`agents_rules` is a zero-dependency Python 3 CLI following the Unix philosophy: it renders
-namespaced engineering rules and presets (`std:...`, `<owner>/<repo>:...`, or `./path`) to `stdout`
-with `{var:default}` variable overrides and `-<rule>` exclusions.
+## Usage in `.agents_bundle`
 
-## Usage
-
-```bash
-agents_rules std:python-tool
-agents_rules std:workflow -core/external lang=Russian
-agents_rules std:release/single-file-build
-agents_rules vitalio/agents_rules:python-tool
-agents_rules --list
+```text
+preset vitalio/agents_rules:workflow
+rule vitalio/agents_rules:vcs/git
+rule vitalio/agents_rules:release/semver
+rule vitalio/agents_rules:release/single-file-build
+rule vitalio/agents_rules:stack/python-cli py_min=3.9
 ```
+
+## Structure
+
+- `presets/*.preset` — composable rule presets (`core`, `workflow`, `default`, `python-tool`) using `preset ...` and `rule ...` directives.
+- `rules/core/*.md` — VCS- and language-agnostic workflow rules (`start`, `secrets`, `plan`, `edit`, `diff-review`, `external`, `end`, `lang`, `unix-philosophy`).
+- `rules/vcs/*.md` — version control rules (`git`, `cvs`).
+- `rules/release/*.md` — release & build rules (`semver`, `single-file-build`).
+- `rules/stack/*.md` — stack-specific invariants (`python-cli`).
 
 ## License
 
