@@ -1,4 +1,7 @@
 # Description: Default project rules (workflow + auto-detected OS and VCS)
 preset workflow
-rule os/auto
-rule vcs/auto
+[if os=linux] rule os/linux
+[if os=macos] rule os/macos
+[if os=windows] rule os/windows
+[if vcs=git] rule vcs/git
+[if vcs=cvs] rule vcs/cvs

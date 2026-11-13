@@ -6,7 +6,9 @@
 
 ```text
 preset vitalio/agents_rules:workflow
-rule vitalio/agents_rules:os/auto
+[if os=linux] rule vitalio/agents_rules:os/linux
+[if os=macos] rule vitalio/agents_rules:os/macos
+[if os=windows] rule vitalio/agents_rules:os/windows
 rule vitalio/agents_rules:vcs/git
 rule vitalio/agents_rules:release/semver
 rule vitalio/agents_rules:release/single-file-build
@@ -16,10 +18,10 @@ rule vitalio/agents_rules:stack/python-cli py_min=3.9
 
 ## Structure
 
-- `presets/*.preset` — composable presets (`core`, `workflow`, `default`, `python-tool`).
+- `presets/*.preset` — composable presets (`core`, `workflow`, `default`, `python-tool`) using built-in variables (`os`, `vcs`) and `[if ...]` conditions.
 - `rules/core/*.md` — pure OS-, VCS-, and language-agnostic workflow principles (`start`, `secrets`, `plan`, `edit`, `diff-review`, `end`, `lang`, `composability`).
-- `rules/os/*.md` — platform-specific rules (`linux`, `macos`, `windows`, plus `os/auto`).
-- `rules/vcs/*.md` — version control rules (`git`, `cvs`, plus `vcs/auto`).
+- `rules/os/*.md` — platform-specific rules (`linux`, `macos`, `windows`).
+- `rules/vcs/*.md` — version control rules (`git`, `cvs`).
 - `rules/stack/*.md` — interface and language stack rules (`cli`, `python-cli`).
 - `rules/release/*.md` — versioning and packaging rules (`semver`, `single-file-build`).
 - `rules/collab/*.md` — collaboration and external communication rules (`external`).
