@@ -1,0 +1,2 @@
+# Description: Default project workflow (workflow + auto-detected git/cvs)
+include = workflow, vcs/auto
