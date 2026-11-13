@@ -5,7 +5,7 @@
 ## Usage in `.agents_bundle`
 
 ```text
-preset vitalio/agents_rules:workflow
+preset vitalio/agents_rules:default
 [if os=linux] rule vitalio/agents_rules:os/linux
 [if os=macos] rule vitalio/agents_rules:os/macos
 [if os=windows] rule vitalio/agents_rules:os/windows
@@ -18,7 +18,7 @@ rule vitalio/agents_rules:stack/python-cli py_min=3.9
 
 ## Structure
 
-- `presets/*.preset` — composable presets (`core`, `workflow`, `default`) using built-in variables (`os`, `vcs`) and `[if ...]` conditions.
+- `presets/*.preset` — composable presets (`core`, `default`) using built-in variables (`os`, `vcs`) and `[if ...]` conditions.
 - `rules/core/*.md` — pure OS-, VCS-, and language-agnostic workflow principles (`start`, `secrets`, `plan`, `edit`, `diff-review`, `end`, `lang`, `composability`).
 - `rules/os/*.md` — platform-specific rules (`linux`, `macos`, `windows`).
 - `rules/vcs/*.md` — version control rules (`git`, `cvs`).

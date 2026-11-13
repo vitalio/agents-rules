@@ -1,4 +1,4 @@
-# Description: Pure OS-, VCS-, and language-agnostic engineering workflow
+# Description: Core OS- and VCS-agnostic agent workflow
 rule core/start
 rule core/secrets
 rule core/plan

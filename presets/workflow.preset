@@ -1,3 +1,0 @@
-# Description: Core workflow, language policy, and clean external collaboration
-preset core
-rule collab/external
