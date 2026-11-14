@@ -1,9 +1,3 @@
-# 🎯 [NEXT] F3: Align core/plan and role/execute for pre-agreed backlog tasks
-
-- Update `rules/core/plan.md` so high-level plan + waiting for user agreement is required when task scope is not yet agreed, and explicitly forbid emitting a plan and file modifications (or code dumps) in the same message.
-- Update `rules/role/execute.md` so that for an already-agreed backlog task, after batched file inspection the agent proceeds directly to the edit/test/diff step without outputting a redundant implementation plan or code in chat prose (pausing only on blockers or conflicts).
-- Update `rules/core/start.md` so uncommitted changes limited to project task-backlog files do not block starting an execution session on the queued task.
-
 # ⚪ [NEW] F4: Decouple role/design from hardcoded .agents_bundle filename
 
 - Remove the hardcoded `.agents_bundle` reference from `rules/role/design.md` in favor of tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants.
