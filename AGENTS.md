@@ -10,6 +10,6 @@
 
 ## Authoring Format
 
-- Start every rule, preset, or include file with `# Description: <one-line summary>` (lines starting with `#` and `<!-- ... -->` comments are stripped during bundle assembly).
+- Start every rule, ruleset, or bundle file with `# Description: <one-line summary>` (lines starting with `#` and `<!-- ... -->` comments are stripped during bundle assembly).
 - Do not use decorative bold or italic Markdown emphasis in rule files or `AGENTS.md`; use plain `- Topic: instruction.` bullets and single backticks (`` `...` ``) around literal commands, paths, and identifiers.
 - Parameterize configurable values with `{var:default}` placeholders.

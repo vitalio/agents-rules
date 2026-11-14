@@ -1,11 +1,11 @@
 # agents-rules
 
-Open encyclopedia and taxonomic catalog of composable AI agent axioms (`rules/core/`), operational rules (`rules/`), roles (`rules/role/`), presets (`presets/`), and bundle includes (`includes/`).
+Open encyclopedia and taxonomic catalog of composable AI agent axioms (`rules/core/`), operational rules (`rules/`), roles (`rules/role/`), rulesets (`rulesets/`), and reusable bundles (`bundles/`).
 
 ## Usage in `.agents_bundle`
 
 ```text
-preset vitalio/agents-rules:default
+ruleset vitalio/agents-rules:default
 rule vitalio/agents-rules:release/semver
 rule vitalio/agents-rules:release/single-file-build
 rule vitalio/agents-rules:stack/cli
@@ -23,12 +23,12 @@ agents_bundle --list
 
 ## Taxonomic Structure
 
-- `presets/` — composable rule presets (`core`, `default`) using built-in variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
+- `rulesets/` — composable rulesets (`core`, `default`) using built-in variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
 - `rules/core/` — universal domain-, OS-, and VCS-agnostic axioms.
 - `rules/role/` — universal session operating roles activated via `role=<name>`.
 - `rules/collab/` — collaboration and external communication rules.
 - `rules/os/`, `rules/vcs/`, `rules/stack/`, `rules/release/` — platform, version control, technical stack, and release rules.
-- `includes/` — reusable `.agents_bundle` fragments.
+- `bundles/` — reusable `.agents_bundle` fragments.
 
 ## License
 

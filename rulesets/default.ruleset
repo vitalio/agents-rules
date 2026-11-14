@@ -1,5 +1,5 @@
 # Description: Default project rules (core axioms, external collaboration, optional role, and auto-detected OS and VCS)
-preset core
+ruleset core
 rule collab/external
 [if os=linux] rule os/linux
 [if os=macos] rule os/macos
