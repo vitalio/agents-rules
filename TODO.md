@@ -1,7 +1,3 @@
-# 🎯 [NEXT] F8: Scope file reads and recursive searches to target directories in core/plan
-
-- Update `rules/core/plan.md` so file reads and searches are scoped to the current working repository (or specific known project/cache paths) and recursive searches (`grep -r`, `find`, etc.) across `$HOME`, parent directories, or `/` are forbidden.
-
 # ⚪ [NEW] F4: Decouple role/design from hardcoded .agents_bundle filename
 
 - Remove the hardcoded `.agents_bundle` reference from `rules/role/design.md` in favor of tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants.

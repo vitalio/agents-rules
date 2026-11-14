@@ -4,10 +4,13 @@
   relevant files and run all related checks in a single batched step rather
   than reading one file per turn across multiple steps (use a follow-up read
   step only when the next file path is genuinely unknown until the first output
-  is seen). When task scope is not yet agreed, state a high-level plan in chat
-  (target outcome, rules, and behavior — not a line-by-line diff or code dump)
-  and wait for user agreement before making changes; never emit a plan and
-  modify files (or dump code in chat) in the same message.
+  is seen). Scope file reads and searches to the current working repository (or
+  specific target project or cache paths) — never run recursive searches
+  (`grep -r`, `find`, etc.) across `$HOME`, parent directories, or `/`. When
+  task scope is not yet agreed, state a high-level plan in chat (target
+  outcome, rules, and behavior — not a line-by-line diff or code dump) and wait
+  for user agreement before making changes; never emit a plan and modify files
+  (or dump code in chat) in the same message.
 - Scoped `AGENTS.md` hierarchy & trust boundary: Subdirectories or external
   projects worked on in the same session may contain their own `AGENTS.md`
   defining local conventions for that subtree — read a directory's or external
