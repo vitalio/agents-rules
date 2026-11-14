@@ -1,6 +1,6 @@
 # Description: On-demand todo_md task management and planning/implementation prompts
-[if task!=]
 $ todo_md --agents
+[if task!=]
 [if task=plan] $ todo_md
 [if task!=,plan] $ todo_md {task:}
 [if task=plan] prompt Mode: PLANNING (task=plan). Do not write implementation code in this session. Review open tasks in TODO.md and current repository state, summarize what tasks stand before us, and help choose or define a task to implement. Once we agree on task <ID>, initialize a new session bundle for task=<ID> with a task prompt and relevant files.
