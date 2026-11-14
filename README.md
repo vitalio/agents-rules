@@ -1,24 +1,25 @@
-# agents_rules
+# agents-rules
 
-**Standard catalog of composable AI agent engineering rules (`rules/`) and presets (`presets/`) for [`agents_bundle`](https://github.com/vitalio/agents_bundle).**
+**Standard catalog of composable AI agent engineering rules (`rules/`), presets (`presets/`), and bundle includes (`includes/`) for [`agents_bundle`](https://github.com/vitalio/agents_bundle).**
 
 ## Usage in `.agents_bundle`
 
 ```text
-preset vitalio/agents_rules:default
-[if os=linux] rule vitalio/agents_rules:os/linux
-[if os=macos] rule vitalio/agents_rules:os/macos
-[if os=windows] rule vitalio/agents_rules:os/windows
-rule vitalio/agents_rules:vcs/git
-rule vitalio/agents_rules:release/semver
-rule vitalio/agents_rules:release/single-file-build
-rule vitalio/agents_rules:stack/cli
-rule vitalio/agents_rules:stack/python-cli py_min=3.9
+preset vitalio/agents-rules:default
+[if os=linux] rule vitalio/agents-rules:os/linux
+[if os=macos] rule vitalio/agents-rules:os/macos
+[if os=windows] rule vitalio/agents-rules:os/windows
+rule vitalio/agents-rules:vcs/git
+rule vitalio/agents-rules:release/semver
+rule vitalio/agents-rules:release/single-file-build
+rule vitalio/agents-rules:stack/cli
+rule vitalio/agents-rules:stack/python-cli py_min=3.9
 ```
 
 ## Structure
 
 - `presets/*.preset` — composable presets (`core`, `default`) using built-in variables (`os`, `vcs`) and `[if ...]` conditions.
+- `includes/*.bundle` — reusable `.agents_bundle` fragments (`todo_md`) with conditional `$ <cmd>` and `prompt` directives.
 - `rules/core/*.md` — pure OS-, VCS-, and language-agnostic workflow principles (`start`, `secrets`, `plan`, `edit`, `diff-review`, `end`, `lang`, `composability`).
 - `rules/os/*.md` — platform-specific rules (`linux`, `macos`, `windows`).
 - `rules/vcs/*.md` — version control rules (`git`, `cvs`).
