@@ -1,7 +1,7 @@
 # Description: Semantic Versioning and release tagging rules (PATCH / MINOR / MAJOR) with VERSION as single source of truth
 - Versioning & releases (SemVer):
   - `PATCH` (`0.Y.Z+1`) — bugfixes, UI/wording tweaks, rule refinements, and
-    `--agents`/`--help`/docs updates.
+    `--help`/docs updates.
   - `MINOR` (`0.Y+1.0`) — new CLI commands/flags, config options, or new
     rules/rulesets/bundles.
   - `MAJOR` (`X+1.0.0`) — breaking changes or only when explicitly requested.

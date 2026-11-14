@@ -1,10 +1,15 @@
 # agents-rules
 
-Open encyclopedia and taxonomic catalog of composable AI agent axioms (`rules/core/`), operational rules (`rules/`), roles (`rules/role/`), rulesets (`rulesets/`), and reusable bundles (`bundles/`).
+Open encyclopedia and taxonomic catalog of composable AI agent axioms
+(`rules/core/`), operational rules (`rules/`), roles (`rules/role/`), and
+rulesets (`rulesets/`).
 
 ## Usage in `.agents_bundle`
 
 ```text
+bundle vitalio/run_block
+bundle vitalio/agents_bundle
+
 ruleset vitalio/agents-rules:default
 rule vitalio/agents-rules:release/semver
 rule vitalio/agents-rules:release/single-file-build
@@ -12,6 +17,7 @@ rule vitalio/agents-rules:stack/cli
 rule vitalio/agents-rules:stack/python-cli py_min=3.9
 
 $ cat AGENTS.md
+bundle vitalio/todo_md
 ```
 
 Activate any role from `rules/role/` on demand via `role=<name>`:
@@ -23,12 +29,14 @@ agents_bundle --list
 
 ## Taxonomic Structure
 
-- `rulesets/` — composable rulesets (`core`, `default`) using built-in variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
+- `rulesets/` — composable rulesets (`core`, `default`) using built-in
+  variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
 - `rules/core/` — universal domain-, OS-, and VCS-agnostic axioms.
-- `rules/role/` — universal session operating roles activated via `role=<name>`.
+- `rules/role/` — universal session operating roles (`design`, `plan`,
+  `execute`, `audit`) activated via `role=<name>`.
 - `rules/collab/` — collaboration and external communication rules.
-- `rules/os/`, `rules/vcs/`, `rules/stack/`, `rules/release/` — platform, version control, technical stack, and release rules.
-- `bundles/` — reusable `.agents_bundle` fragments.
+- `rules/os/`, `rules/vcs/`, `rules/stack/`, `rules/release/` — platform,
+  version control, technical stack, and release rules.
 
 ## License
 
