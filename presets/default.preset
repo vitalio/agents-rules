@@ -6,5 +6,4 @@ rule collab/external
 [if os=windows] rule os/windows
 [if vcs=git] rule vcs/git
 [if vcs=cvs] rule vcs/cvs
-[if role=audit] rule role/audit
-[if role=plan] rule role/plan
+[if role!=] rule role/{role:}

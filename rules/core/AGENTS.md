@@ -1,5 +1,5 @@
 # `rules/core/` — Universal Agent Axioms
 
-Rules in `rules/core/` define foundational axioms that apply across all domains (software engineering, research, documentation, operations):
-- Keep every file strictly domain-, OS-, VCS-, and tool-agnostic.
-- Express invariants as crisp axioms (Single Source of Truth, epistemic honesty, atomic verified edits, scoped `AGENTS.md` trust boundaries).
+- Scope: Foundational epistemic, structural, and operational axioms that hold across all domains (software engineering, research, documentation, operations).
+- Invariants: A rule belongs in `rules/core/` only if it is completely independent of operating system, version control system, programming language, and external tools.
+- Style: Express each axiom in 1–3 plain-text bullet points (`- Topic: instruction.`) without decorative bold/italic markup.

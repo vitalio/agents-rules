@@ -1,5 +1,5 @@
 # `rules/role/` — Universal Agent Operating Roles
 
-Rules in `rules/role/` define session-level operating postures (`audit`, `plan`) activated via `role=<name>`:
-- Never hardcode specific file names, programming languages, or external CLI tools inside a role.
-- Let the role define the agent's objective and posture, delegating domain-specific artifact checks to the active rules and `AGENTS.md` files in the workspace.
+- Scope: Session-level operating postures activated on demand via `role=<name>`.
+- Invariants: A role defines the agent's objective, stance, and boundaries for the session (for example, auditing vs planning vs executing) without hardcoding domain-specific file names, languages, or external CLI tools.
+- Composition: Roles must compose orthogonally with whatever domain rules and tool instructions are active in the workspace.
