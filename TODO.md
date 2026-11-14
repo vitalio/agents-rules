@@ -9,3 +9,7 @@
 # ⚪ [NEW] F6: Group bundle directives at the top of .agents_bundle
 
 - Move bundle vitalio/todo_md to the top of .agents_bundle alongside bundle vitalio/run_block and bundle vitalio/agents_bundle before ruleset, rule, and $ <cmd> directives.
+
+# ⚪ [NEW] F7: Verify completed task specification compliance in role/audit
+
+- Update rules/role/audit.md so that when auditing a completed task or commit, the auditor verifies that the implementation, tests, and documentation fulfill all requirements of the task specification alongside all active workspace rules.
