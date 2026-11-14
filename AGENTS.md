@@ -1,7 +1,8 @@
 # `agents-rules` — Encyclopedia Philosophy & Taxonomic Rules
 
 `agents-rules` is a tool-agnostic encyclopedia of composable axioms,
-operational rules, and roles for AI agents.
+operational rules, and roles for AI agents. Universal workflow, language, Git,
+and SemVer rules are loaded via `.agents_bundle`.
 
 ## Taxonomic Design Principles
 

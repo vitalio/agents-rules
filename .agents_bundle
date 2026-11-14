@@ -1,0 +1,13 @@
+# .agents_bundle — root context ruleset and command bundle (run: agents_bundle | run_block)
+$ run_block --agents
+bundle vitalio/agents-rules:agents_bundle
+
+ruleset vitalio/agents-rules:default
+rule vitalio/agents-rules:release/semver
+
+$ cat AGENTS.md
+bundle vitalio/agents-rules:todo_md
+$ agents_bundle --tree
+$ git status -sb
+$ git branch -vv
+$ git log --oneline -10

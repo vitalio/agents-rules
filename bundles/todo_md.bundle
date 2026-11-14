@@ -17,20 +17,20 @@ $ todo_md --agents
 [if role=execute]
     [if task=,next]
         $ todo_md
-        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and close the task via todo_md done <ID> -m "<commit_sha>".
+        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and mark the task done via todo_md done <ID> --no-commit before the final commit so task completion is included in the commit.
     [/if]
     [if task!=,next]
         $ todo_md {task:}
-        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and close the task via todo_md done {task:} -m "<commit_sha>".
+        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and mark the task done via todo_md done {task:} --no-commit before the final commit so task completion is included in the commit.
     [/if]
 [/if]
 [if role=]
     [if task=next]
         $ todo_md
-        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and close the task via todo_md done <ID> -m "<commit_sha>".
+        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and mark the task done via todo_md done <ID> --no-commit before the final commit so task completion is included in the commit.
     [/if]
     [if task!=,next]
         $ todo_md {task:}
-        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and close the task via todo_md done {task:} -m "<commit_sha>".
+        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and mark the task done via todo_md done {task:} --no-commit before the final commit so task completion is included in the commit.
     [/if]
 [/if]
