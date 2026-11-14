@@ -1,0 +1,3 @@
+# Description: On-demand agents_bundle CLI instructions and rule catalog for design/planning
+$ agents_bundle --agents
+[if role=design] $ agents_bundle --list

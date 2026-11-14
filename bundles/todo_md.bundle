@@ -1,12 +1,36 @@
-# Description: On-demand todo_md task management and planning/implementation prompts
+# Description: On-demand todo_md task management and role/task workflow prompts
 $ todo_md --agents
-[if role=plan]
-$ todo_md
-prompt Once we agree on task <ID> in TODO.md, initialize a new session bundle for task=<ID> with a task prompt and relevant files.
+[if role=design]
+    $ todo_md
+    [if task!=,next] $ todo_md {task:}
+    prompt Mode: DESIGN. Explore requirements and architecture; once agreed, update AGENTS.md and .agents_bundle as needed, and record the design specification in TODO.md via todo_md.
 [/if]
-[if task!=]
-[if task=next] $ todo_md
-[if task!=,next] $ todo_md {task:}
-[if task=next] prompt Mode: IMPLEMENTATION (task=next). Inspect the relevant files and propose an implementation plan for the top [WIP] or [NEXT] task in TODO.md.
-[if task!=,next] prompt Mode: IMPLEMENTATION (task={task:}). Inspect the relevant files and propose an implementation plan for task {task:}.
+[if role=plan]
+    $ todo_md
+    [if task!=,next] $ todo_md {task:}
+    prompt Mode: PLANNING. Decompose and prioritize flat, self-contained tasks in TODO.md via todo_md; once task <ID> is agreed, initialize a new session bundle with role=execute task=<ID>.
+[/if]
+[if role=audit]
+    $ todo_md
+    prompt Mode: AUDIT. Audit the requested scope against active rules (checking TODO.md to avoid duplicates), report findings in chat, and after user agreement record remediation tasks in TODO.md via todo_md add.
+[/if]
+[if role=execute]
+    [if task=,next]
+        $ todo_md
+        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and close the task via todo_md done <ID> -m "<commit_sha>".
+    [/if]
+    [if task!=,next]
+        $ todo_md {task:}
+        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and close the task via todo_md done {task:} -m "<commit_sha>".
+    [/if]
+[/if]
+[if role=]
+    [if task=next]
+        $ todo_md
+        prompt Mode: EXECUTION (next). Inspect the relevant files, state a brief implementation plan for the top [WIP] or [NEXT] task in TODO.md, deliver verified code and commits, and close the task via todo_md done <ID> -m "<commit_sha>".
+    [/if]
+    [if task!=,next]
+        $ todo_md {task:}
+        prompt Mode: EXECUTION (task={task:}). Inspect the relevant files, state a brief implementation plan for task {task:}, deliver verified code and commits, and close the task via todo_md done {task:} -m "<commit_sha>".
+    [/if]
 [/if]
