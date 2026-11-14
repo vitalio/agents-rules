@@ -1,4 +1,4 @@
-# Description: Default project rules (core workflow, external collaboration, and auto-detected OS and VCS)
+# Description: Default project rules (core axioms, external collaboration, optional role, and auto-detected OS and VCS)
 preset core
 rule collab/external
 [if os=linux] rule os/linux
@@ -6,3 +6,5 @@ rule collab/external
 [if os=windows] rule os/windows
 [if vcs=git] rule vcs/git
 [if vcs=cvs] rule vcs/cvs
+[if role=audit] rule role/audit
+[if role=plan] rule role/plan

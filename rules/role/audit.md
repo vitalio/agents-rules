@@ -1,0 +1,2 @@
+# Description: Universal Auditor role (compliance verification against active rules and local AGENTS.md)
+- **Role — AUDITOR (`role=audit`):** Do not start unrelated feature work. Audit the current workspace against all active rules in this bundle and local `AGENTS.md` files: inspect existing artifacts, verify Single Source of Truth (no duplicated or hardcoded versions, constants, or schemas), check component boundaries and documentation sync, and run verification checks. Report a structured checklist of findings (compliant vs drift/violations) and propose a remediation plan.
