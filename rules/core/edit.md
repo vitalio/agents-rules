@@ -12,4 +12,7 @@
   (`AGENTS.md` and rule files), do not use decorative bold or italic Markdown
   emphasis — use plain bullet lists and single backticks (`` `...` ``) for
   literal commands, paths, and identifiers. Before committing, always run
-  syntax/linter checks and the local unit test suite.
+  syntax/linter checks and the local unit test suite: print a brief
+  start/progress indicator before running tests, emit a single concise summary
+  line when all tests pass (avoiding verbose per-test output across large
+  suites), and display full diagnostics and tracebacks only on test failure.

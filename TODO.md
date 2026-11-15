@@ -1,9 +1,3 @@
-# 🎯 [NEXT] F14: Standardize concise test runner output with start indicator and full failure details — *Promote F14 to NEXT for concise test runner output*
-
-- Update `rules/core/edit.md` and `rules/core/diff-review.md` to define balanced test-execution output rules: print a brief start/progress indicator before running the test suite, emit a single concise summary line when all tests pass (avoiding verbose per-test output across large suites), and display full diagnostics and tracebacks only on test failure.
-- Update `rules/stack/python-cli.md` with an idiomatic offline `unittest` invocation pattern matching the concise-on-pass / verbose-on-failure rule without altering test assertions or hiding unexpected stdout inside tests.
-- Wrap all updated rule prose at ~80 columns and follow `AGENTS.md` plain-bullet formatting rules.
-
 # 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
 
 - Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to execution.
