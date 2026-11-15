@@ -1,3 +1,7 @@
+# 🎯 [NEXT] F9: Rename role/execute to role/work
+
+- Rename `rules/role/execute.md` to `rules/role/work.md` with `Universal Worker role` description and `- Role (Worker):` heading, update `rules/role/AGENTS.md`, `rules/role/plan.md`, and `README.md` to replace `execute`/`executing` role references with `work`/`working`, and release a new MINOR version.
+
 # ⚪ [NEW] F4: Decouple role/design from hardcoded .agents_bundle filename
 
 - Remove the hardcoded `.agents_bundle` reference from `rules/role/design.md` in favor of tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants.
