@@ -5,10 +5,11 @@
   cover every CLI flag and behavior with offline unit tests
   (`tests/test_*.py`).
 - Concise `unittest` execution: Print a brief start indicator (such as
-  `Running unit tests...`) and run `python3 -m unittest discover -s tests -q`
-  (quiet verbosity `0`, without `-b`/`--buffer` so unexpected test stdout is
-  never hidden); `unittest` emits a single concise summary when all tests pass
-  and prints full failure details and tracebacks whenever any test fails.
+  `Running unit tests...`) and run `python3 -m unittest discover -s tests`
+  (default verbosity `1`, without `-q`, `-v`, or `-b`/`--buffer` so unexpected
+  test stdout is never hidden); `unittest` emits compact `.` progress
+  indicators per test on a single line followed by the summary when all tests
+  pass, and prints full failure details and tracebacks whenever any test fails.
 - Unit test output and resource hygiene: In `tests/test_*.py`, capture
   expected CLI `stdout`/`stderr` (`contextlib.redirect_stdout`,
   `redirect_stderr`, or `subprocess.run(..., capture_output=True)`), manage

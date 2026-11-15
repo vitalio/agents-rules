@@ -1,4 +1,4 @@
-# 🎯 [NEXT] F16: Rename role/audit to role/review with two-stage quality gate
+# 🔵 [WIP] F16: Rename role/audit to role/review with two-stage quality gate
 
 - Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.
 - Structure `rules/role/review.md` as a two-stage review: first verify objective compliance (passing tests and linters, task specification fulfillment, active workspace rules, SSOT, and documentation sync), stopping early on blockers; once the objective gate passes, evaluate architecture, module boundaries, readability, security, performance, and user-facing polish.
