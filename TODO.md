@@ -40,3 +40,9 @@
 # ⚪ [NEW] F12: Define pre-release versioning convention in release/semver
 
 - Add an optional `PRE-RELEASE` clause (`X.Y.Z-alpha.N`, `X.Y.Z-beta.N`, `X.Y.Z-rc.N` starting at `N=1`) to `rules/release/semver.md` for experimental or staged builds when explicitly requested, specifying that pre-release identifiers attach to the upcoming target version `X.Y.Z` and are stripped without re-bumping `X.Y.Z` upon final release.
+
+# ⚪ [NEW] F18: Define responsibility split between README.md and AGENTS.md in core/docs
+
+- Add `rules/core/docs.md` defining the separation of concerns between `README.md` (external public contract: purpose, installation, CLI flags, environment variables, input/output protocols, and integration examples) and `AGENTS.md` (concise internal engineering guide: module boundaries, cross-file invariants, negative constraints, and build/test verification steps).
+- Forbid duplicating `README.md` tutorials, marketing descriptions, or full reference tables inside `AGENTS.md`, keeping `AGENTS.md` focused on repository-specific delta knowledge an agent cannot infer from the file tree.
+- Include `rule core/docs` in `rulesets/core.ruleset`, follow `AGENTS.md` formatting conventions (plain bullets, ~80-char line wrapping, no decorative bold/italic emphasis), and release a new MINOR version.
