@@ -9,3 +9,17 @@
   (quiet verbosity `0`, without `-b`/`--buffer` so unexpected test stdout is
   never hidden); `unittest` emits a single concise summary when all tests pass
   and prints full failure details and tracebacks whenever any test fails.
+- Unit test output and resource hygiene: In `tests/test_*.py`, capture
+  expected CLI `stdout`/`stderr` (`contextlib.redirect_stdout`,
+  `redirect_stderr`, or `subprocess.run(..., capture_output=True)`), manage
+  files and subprocesses with `with` context managers to prevent
+  `ResourceWarning`, and strip temporary debug `print()` calls before
+  committing.
+- Unit test failure diagnostics: Include diagnostic context (`msg=proc.stderr`
+  or captured output) when asserting subprocess exit codes or side effects and
+  use `with self.subTest(...):` for parameterized cases, without requiring
+  redundant `msg=` on plain value assertions where `unittest` diffs already
+  suffice.
+- Unit test filesystem isolation: Isolate filesystem operations inside
+  `tempfile.TemporaryDirectory` without mutating the repository working tree
+  or user environment.
