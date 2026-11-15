@@ -16,8 +16,14 @@
 
 # ⚪ [NEW] F6: Group bundle directives at the top of .agents_bundle
 
+- Depends on: agents_bundle:F5
 - Move bundle vitalio/todo_md to the top of .agents_bundle alongside bundle vitalio/run_block and bundle vitalio/agents_bundle before ruleset, rule, and $ <cmd> directives.
+- Keep the .agents_bundle usage example in README.md in sync.
 
 # ⚪ [NEW] F7: Verify completed task specification compliance in role/audit
 
 - Update rules/role/audit.md so that when auditing a completed task or commit, the auditor verifies that the implementation, tests, and documentation fulfill all requirements of the task specification alongside all active workspace rules.
+
+# ⚪ [NEW] F11: Remove leftover .bundle authoring references from AGENTS.md
+
+- Remove '.bundle' references from AGENTS.md lines 22 and 30 since agents-rules only hosts rules/ and rulesets/ after moving tool bundles to their own repositories in v0.10.0.
