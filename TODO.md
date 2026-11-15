@@ -1,8 +1,14 @@
+# 🎯 [NEXT] F16: Rename role/audit to role/review with two-stage quality gate
+
+- Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.
+- Structure `rules/role/review.md` as a two-stage review: first verify objective compliance (passing tests and linters, task specification fulfillment, active workspace rules, SSOT, and documentation sync), stopping early on blockers; once the objective gate passes, evaluate architecture, module boundaries, readability, security, performance, and user-facing polish.
+- Update `rules/role/AGENTS.md` and `README.md` to replace `audit`/`auditing` role references with `review`/`reviewing`, and release a new MINOR version.
+
 # 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
 
-- Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to execution.
-- Update `rules/role/execute.md` (and `rules/role/work.md` per F9) so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
-- Update `rules/role/design.md` and `rules/role/audit.md` so Designer records module-boundary and file-coupling invariants in `AGENTS.md` for downstream planning/execution, and Auditor verifies those project-specific `AGENTS.md` invariants alongside task specifications.
+- Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to working.
+- Update `rules/role/work.md` (renamed from `rules/role/execute.md` per F9) so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
+- Update `rules/role/design.md` and `rules/role/review.md` (renamed from `rules/role/audit.md` per F16) so Designer records module-boundary and file-coupling invariants in `AGENTS.md` for downstream planning/working, and Reviewer verifies those project-specific `AGENTS.md` invariants alongside task specifications.
 
 # 🎯 [NEXT] F4: Support greenfield project bootstrap and tool-agnostic wording in role/design
 
@@ -26,10 +32,6 @@
 - Depends on: agents_bundle:F5
 - Move bundle vitalio/todo_md to the top of .agents_bundle alongside bundle vitalio/run_block and bundle vitalio/agents_bundle before ruleset, rule, and $ <cmd> directives.
 - Keep the .agents_bundle usage example in README.md in sync.
-
-# ⚪ [NEW] F7: Verify completed task specification compliance in role/audit
-
-- Update rules/role/audit.md so that when auditing a completed task or commit, the auditor verifies that the implementation, tests, and documentation fulfill all requirements of the task specification alongside all active workspace rules.
 
 # ⚪ [NEW] F11: Remove leftover .bundle authoring references from AGENTS.md
 
