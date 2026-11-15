@@ -46,3 +46,5 @@
 - Add `rules/core/docs.md` defining the separation of concerns between `README.md` (external public contract: purpose, installation, CLI flags, environment variables, input/output protocols, and integration examples) and `AGENTS.md` (concise internal engineering guide: module boundaries, cross-file invariants, negative constraints, and build/test verification steps).
 - Forbid duplicating `README.md` tutorials, marketing descriptions, or full reference tables inside `AGENTS.md`, keeping `AGENTS.md` focused on repository-specific delta knowledge an agent cannot infer from the file tree.
 - Include `rule core/docs` in `rulesets/core.ruleset`, follow `AGENTS.md` formatting conventions (plain bullets, ~80-char line wrapping, no decorative bold/italic emphasis), and release a new MINOR version.
+
+- Move the documentation synchronization and `AGENTS.md` plain-text formatting clauses out of `rules/core/edit.md` into `rules/core/docs.md` so documentation rules live in one canonical place without duplication.
