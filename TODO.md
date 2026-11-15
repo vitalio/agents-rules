@@ -1,3 +1,9 @@
+# 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
+
+- Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to execution.
+- Update `rules/role/execute.md` (and `rules/role/work.md` per F9) so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
+- Update `rules/role/design.md` and `rules/role/audit.md` so Designer records module-boundary and file-coupling invariants in `AGENTS.md` for downstream planning/execution, and Auditor verifies those project-specific `AGENTS.md` invariants alongside task specifications.
+
 # 🎯 [NEXT] F4: Support greenfield project bootstrap and tool-agnostic wording in role/design
 
 - Update `rules/role/design.md` so that when designing a new project from scratch, once the design is agreed with the user, the agent creates the target project directory, initializes version control, and scaffolds `AGENTS.md`, project context configuration, and the initial project task backlog before committing the initial scaffold.
