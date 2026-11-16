@@ -15,10 +15,6 @@
 - Update `rules/role/design.md` so that when designing a new project from scratch, once the design is agreed with the user, the agent creates the target project directory, initializes version control, and scaffolds `AGENTS.md`, project context configuration, and the initial project task backlog before committing the initial scaffold.
 - Replace the hardcoded `.agents_bundle` filename in `rules/role/design.md` with tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants.
 
-# 🎯 [NEXT] F10: Specify structured --help layout and complete option listings in stack/cli
-
-- Update `rules/stack/cli.md` to require structured `Usage:`/`Commands:` and `Options:` sections in `-h`/`--help` output (showing short/long flag forms, argument placeholders, defaults, and side effects such as Git commits or network calls) rather than burying flags in prose or listing partial option sets.
-
 # 🎯 [NEXT] F9: Rename role/execute to role/work
 
 - Rename `rules/role/execute.md` to `rules/role/work.md` with `Universal Worker role` description and `- Role (Worker):` heading, update `rules/role/AGENTS.md`, `rules/role/plan.md`, and `README.md` to replace `execute`/`executing` role references with `work`/`working`, and release a new MINOR version.

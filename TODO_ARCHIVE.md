@@ -1,3 +1,7 @@
+# ✅ [DONE] F10: Specify structured --help layout and complete option listings in stack/cli — *2026-11-16*
+
+- Update `rules/stack/cli.md` to require structured `Usage:`/`Commands:` and `Options:` sections in `-h`/`--help` output (showing short/long flag forms, argument placeholders, defaults, and side effects such as Git commits or network calls) rather than burying flags in prose or listing partial option sets.
+
 # ✅ [DONE] F21: Remove redundant test start-indicator requirement from core and stack rules — *2026-11-16*
 
 - Remove the requirement to print a start/progress indicator (such as `Running unit tests...`) before running tests from `rules/core/edit.md`, `rules/core/diff-review.md`, and `rules/stack/python-cli.md`, while preserving concise pass summaries and full diagnostics/tracebacks on failure.
