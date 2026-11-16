@@ -48,3 +48,14 @@
 - Include `rule core/docs` in `rulesets/core.ruleset`, follow `AGENTS.md` formatting conventions (plain bullets, ~80-char line wrapping, no decorative bold/italic emphasis), and release a new MINOR version.
 
 - Move the documentation synchronization and `AGENTS.md` plain-text formatting clauses out of `rules/core/edit.md` into `rules/core/docs.md` so documentation rules live in one canonical place without duplication.
+
+# ⚪ [NEW] F19: Extract internal task ID restriction from collab/external into a separate opt-in rule
+
+- Remove the internal task ID restriction from `rules/collab/external.md` and move it into a separate opt-in rule (e.g. `rules/collab/no-task-ids.md`) so projects can include it only when they want to hide task IDs in commits and external updates.
+- Keep `rulesets/default.ruleset` and `README.md` in sync.
+
+# ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
+
+- Depends on: vitalio/agents_bundle#F15
+- Migrate `rulesets/core.ruleset` and `rulesets/default.ruleset` to `.bundle` files and reorganize `rules/` and `rulesets/` into a logical domain-based directory structure.
+- Update `AGENTS.md` and `README.md` to reflect the unified rule/bundle layout.
