@@ -65,15 +65,15 @@ printf '%s\n' '__RB_STEP__:23'
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
 - Depends on: agents_bundle:F15, D1
-printf '%s\n' '__RB_STEP__:14'
-- Migrate `rulesets/core.ruleset` and `rulesets/default.ruleset` to `.bundle` files and reorganize `rules/` and `rulesets/` into a logical domain-based directory structure (incorporating composable domain role overlays designed in `D1`).
-printf '%s\n' '__RB_STEP__:15'
-- Update `AGENTS.md` and `README.md` to reflect the unified rule/bundle layout, and release a new MINOR version.
+printf '%s\n' '__RB_STEP__:5'
+- Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`).
+printf '%s\n' '__RB_STEP__:6'
+- Update `AGENTS.md` and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
 
 # ⚪ [NEW] D1: Design composable role extensions and domain overlays
 
 - Depends on: F16, F9
-printf '%s\n' '__RB_STEP__:4'
-- Explore separating universal domain-agnostic role postures in `role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `coding/design.md`, `coding/plan.md`, `coding/work.md`, and `coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
-printf '%s\n' '__RB_STEP__:5'
+printf '%s\n' '__RB_STEP__:2'
+- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
+printf '%s\n' '__RB_STEP__:3'
 - Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
