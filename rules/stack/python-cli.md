@@ -4,8 +4,7 @@
   {py_min:3.9}+ compatibility). Verify Python syntax with `ast.parse` and
   cover every CLI flag and behavior with offline unit tests
   (`tests/test_*.py`).
-- Concise `unittest` execution: Print a brief start indicator (such as
-  `Running unit tests...`) and run `python3 -m unittest discover -s tests`
+- Concise `unittest` execution: Run `python3 -m unittest discover -s tests`
   (default verbosity `1`, without `-q`, `-v`, or `-b`/`--buffer` so unexpected
   test stdout is never hidden); `unittest` emits compact `.` progress
   indicators per test on a single line followed by the summary when all tests

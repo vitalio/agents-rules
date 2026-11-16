@@ -1,3 +1,8 @@
+# ✅ [DONE] F21: Remove redundant test start-indicator requirement from core and stack rules — *2026-11-16*
+
+- Remove the requirement to print a start/progress indicator (such as `Running unit tests...`) before running tests from `rules/core/edit.md`, `rules/core/diff-review.md`, and `rules/stack/python-cli.md`, while preserving concise pass summaries and full diagnostics/tracebacks on failure.
+- Bump `VERSION` (`PATCH`) and release the updated rule set.
+
 # ✅ [DONE] F17: Use default unittest verbosity 1 for dot progress instead of -q — *2026-11-16, Updated Concise unittest execution in rules/stack/python-cli.md*
 
 - Update `Concise unittest execution` in `rules/stack/python-cli.md` to run `python3 -m unittest discover -s tests` (default verbosity `1`, without `-q`, `-v`, or `-b`/`--buffer`) instead of `-q` (`verbosity=0`), so `unittest` emits compact `.` progress indicators per test on a single line followed by the summary while still keeping unexpected test stdout unbuffered and visible.

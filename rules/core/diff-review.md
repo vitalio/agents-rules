@@ -1,9 +1,8 @@
 # Description: Two-step self-reviewed diff before commit and fail-fast guarded commit steps
 - Self-reviewed diff before commit: An edit step does not commit immediately
-  — it runs syntax/linter checks and local tests (printing a brief start
-  indicator, a single concise summary line when all tests pass, and full
-  diagnostics and tracebacks only on failure), then prints the working status
-  and full diff.
+  — it runs syntax/linter checks and local tests (emitting a single concise
+  summary line when all tests pass, and full diagnostics and tracebacks only
+  on failure), then prints the working status and full diff.
   - When the user provides the output, the model itself must audit the full
     diff against all project rules (no dead code or leftover names, clean
     module boundaries, updated documentation and help text). If any issue is
