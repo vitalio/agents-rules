@@ -1,3 +1,7 @@
+# ❌ [CANCELED] F11: Remove leftover .bundle authoring references from AGENTS.md — *Superseded by F20: rulesets are being replaced by .bundle files*
+
+- Remove '.bundle' references from AGENTS.md lines 22 and 30 since agents-rules only hosts rules/ and rulesets/ after moving tool bundles to their own repositories in v0.10.0.
+
 # ✅ [DONE] F10: Specify structured --help layout and complete option listings in stack/cli — *2026-11-16*
 
 - Update `rules/stack/cli.md` to require structured `Usage:`/`Commands:` and `Options:` sections in `-h`/`--help` output (showing short/long flag forms, argument placeholders, defaults, and side effects such as Git commits or network calls) rather than burying flags in prose or listing partial option sets.
