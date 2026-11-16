@@ -15,6 +15,8 @@ printf '%s\n' '__RB_STEP__:6'
 # 🎯 [NEXT] F4: Support greenfield project bootstrap and tool-agnostic wording in role/design
 
 - Update `rules/role/design.md` so that when designing a new project from scratch, once the design is agreed with the user, the agent creates the target project directory, initializes version control, and scaffolds `AGENTS.md`, project context configuration, and the initial project task backlog before committing the initial scaffold.
+printf '%s\n' '__RB_STEP__:7'
+- Clarify in `rules/role/design.md` that raw ideas and architectural explorations enter the backlog as design tasks for `role=design`, and once agreed are closed after recording architectural invariants in `AGENTS.md` and creating actionable implementation tasks.
 printf '%s\n' '__RB_STEP__:8'
 - Replace the hardcoded `.agents_bundle` filename in `rules/role/design.md` with tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants, and release a PATCH version.
 
@@ -22,7 +24,7 @@ printf '%s\n' '__RB_STEP__:8'
 
 - Depends on: F9, F16
 printf '%s\n' '__RB_STEP__:10'
-- Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to working.
+- Update `rules/role/plan.md` so the Planner distinguishes raw ideas/design tasks (routing them to `role=design`) from ready work items, determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to working.
 printf '%s\n' '__RB_STEP__:11'
 - Update `rules/role/work.md` so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
 printf '%s\n' '__RB_STEP__:12'
@@ -62,8 +64,16 @@ printf '%s\n' '__RB_STEP__:23'
 
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
-- Depends on: agents_bundle:F15
-printf '%s\n' '__RB_STEP__:25'
-- Migrate `rulesets/core.ruleset` and `rulesets/default.ruleset` to `.bundle` files and reorganize `rules/` and `rulesets/` into a logical domain-based directory structure.
-printf '%s\n' '__RB_STEP__:26'
+- Depends on: agents_bundle:F15, D1
+printf '%s\n' '__RB_STEP__:14'
+- Migrate `rulesets/core.ruleset` and `rulesets/default.ruleset` to `.bundle` files and reorganize `rules/` and `rulesets/` into a logical domain-based directory structure (incorporating composable domain role overlays designed in `D1`).
+printf '%s\n' '__RB_STEP__:15'
 - Update `AGENTS.md` and `README.md` to reflect the unified rule/bundle layout, and release a new MINOR version.
+
+# ⚪ [NEW] D1: Design composable role extensions and domain overlays
+
+- Depends on: F16, F9
+printf '%s\n' '__RB_STEP__:4'
+- Explore separating universal domain-agnostic role postures in `role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `coding/design.md`, `coding/plan.md`, `coding/work.md`, and `coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
+printf '%s\n' '__RB_STEP__:5'
+- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
