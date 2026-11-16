@@ -4,6 +4,11 @@
 - Structure `rules/role/review.md` as a two-stage review: first verify objective compliance (passing tests and linters, task specification fulfillment, active workspace rules, SSOT, and documentation sync), stopping early on blockers; once the objective gate passes, evaluate architecture, module boundaries, readability, security, performance, and user-facing polish.
 - Update `rules/role/AGENTS.md` and `README.md` to replace `audit`/`auditing` role references with `review`/`reviewing`, and release a new MINOR version.
 
+# 🎯 [NEXT] F21: Remove redundant test start-indicator requirement from core and stack rules
+
+- Remove the requirement to print a start/progress indicator (such as `Running unit tests...`) before running tests from `rules/core/edit.md`, `rules/core/diff-review.md`, and `rules/stack/python-cli.md`, while preserving concise pass summaries and full diagnostics/tracebacks on failure.
+- Bump `VERSION` (`PATCH`) and release the updated rule set.
+
 # 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
 
 - Update `rules/role/plan.md` so the Planner determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to working.
