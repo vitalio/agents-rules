@@ -10,6 +10,22 @@ Target files: `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md` (new),
 - Update `README.md` (usage example with `py_min=3.9`) so consumers add the new `rule` lines when they need the removed invariants, and release a MINOR version.
 - Do the move atomically in one commit so the rules never contradict each other. Related: `F5` wraps these files.
 
+Clarifications agreed during planning:
+- `rules/stack/python-annotations.md`: with `release/single-file-build`, the
+  `from __future__ import annotations` import stays once in the header of the
+  assembled file (`src/header.py`) and covers all modules; modules under `src/`
+  do not carry their own import. Document that annotations evaluated at
+  runtime (dataclasses, `get_type_hints`) are not fixed by this import.
+- `README.md`: drop `py_min=3.9` from the `stack/python-cli` line and show the
+  `stack/python-stdlib` and `stack/python-annotations py_min=3.9` lines.
+- `rules/stack/python-stdlib.md` also covers `build.py` and tests.
+- Base `rules/stack/python-cli.md`: say that third-party clients are replaced
+  by stubs in tests (`unittest.mock.patch.dict` on `sys.modules`) and that
+  tests never touch the network.
+- Check: `agents_bundle rule` renders `python-cli` without `py_min`, and
+  `python-annotations py_min=3.9` substitutes the parameter. Release `0.11.0`.
+  Consumers refresh the package cache once per machine afterwards.
+
 # 🎯 [NEXT] F16: Rename role/audit to role/review with two-stage quality gate
 
 - Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.
@@ -66,6 +82,11 @@ Target files: `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md` (new),
 - Depends on: agents_bundle:F15, D1
 - Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`).
 - Update `AGENTS.md` and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
+
+- Decide whether a stack bundle `python` should group `stack/python-cli` with
+  the opt-in `python-stdlib` and `python-annotations` rules, and whether
+  `python-cli` should split out a separate `python-unittest` rule (all current
+  consumers use `unittest`, so no conflict exists today).
 
 # ⚪ [NEW] D1: Design composable role extensions and domain overlays
 
