@@ -1,3 +1,7 @@
+# 🎯 [NEXT] F24: Remove bundle vitalio/run_block from .agents_bundle and README.md
+
+- Remove `bundle vitalio/run_block` from `.agents_bundle` and the `.agents_bundle` usage example in `README.md` once `run_block` embeds its own block execution rules.
+
 # 🎯 [NEXT] F23: Add portable multi-repository coordination rule and orchestrator bundle preset
 
 - Add a universal, tool-agnostic rule (for example `rules/collab/multi-repo.md` or `rules/role/multi-repo-plan.md`) defining cross-repository task decomposition and dependency boundaries: detailed implementation tasks belong in each owning repository's backlog, while the coordinating repository records a parent task linking all child tasks via dependencies and keeps cross-repository dependency edges out of standalone child repositories.
@@ -37,7 +41,7 @@
 
 # ⚪ [NEW] F6: Group bundle directives at the top of .agents_bundle
 
-- Move `bundle vitalio/todo_md` to the top of `.agents_bundle` alongside `bundle vitalio/run_block` and `bundle vitalio/agents_bundle` before `ruleset`, `rule`, and `$ <cmd>` directives (already supported since `agents_bundle` v0.12.2).
+- Move `bundle vitalio/todo_md` to the top of `.agents_bundle` alongside `bundle vitalio/agents_bundle` before `ruleset`, `rule`, and `$ <cmd>` directives (already supported since `agents_bundle` v0.12.2).
 - Keep the `.agents_bundle` usage example in `README.md` in sync.
 
 # ⚪ [NEW] F12: Define pre-release versioning convention in release/semver
