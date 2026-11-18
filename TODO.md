@@ -1,3 +1,9 @@
+# 🎯 [NEXT] F23: Add portable multi-repository coordination rule and orchestrator bundle preset
+
+- Add a universal, tool-agnostic rule (for example `rules/collab/multi-repo.md` or `rules/role/multi-repo-plan.md`) defining cross-repository task decomposition and dependency boundaries: detailed implementation tasks belong in each owning repository's backlog, while the coordinating repository records a parent task linking all child tasks via dependencies and keeps cross-repository dependency edges out of standalone child repositories.
+- Add `rulesets/orchestrator.ruleset` (migrating to `agents/orchestrator.bundle` under `F20`) exporting the multi-repository coordination rule so orchestrator repositories can compose it directly without duplicating prose in local `AGENTS.md` files.
+- Follow `AGENTS.md` formatting conventions (`# Description:` header, plain `- Topic: instruction.` bullets, ~80-char line wrapping, no tool-specific names), update `README.md` if needed, and bump `VERSION` for a MINOR release.
+
 # 🎯 [NEXT] F16: Rename role/audit to role/review with two-stage quality gate
 
 - Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.
@@ -53,6 +59,12 @@
 - Remove the internal task ID restriction from `rules/collab/external.md` and move it into a separate opt-in rule (`rules/collab/no-task-ids.md`) so projects can include it only when they want to hide task IDs in commits and external updates.
 - Keep `rulesets/default.ruleset` (or the corresponding default bundle if executed after F20) and `README.md` in sync, and release a new MINOR version.
 
+# ⚪ [NEW] D1: Design composable role extensions and domain overlays
+
+- Depends on: F16, F9
+- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
+- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
+
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
 - Depends on: agents_bundle:F15, D1
@@ -63,9 +75,3 @@
   the opt-in `python-stdlib` and `python-annotations` rules, and whether
   `python-cli` should split out a separate `python-unittest` rule (all current
   consumers use `unittest`, so no conflict exists today).
-
-# ⚪ [NEW] D1: Design composable role extensions and domain overlays
-
-- Depends on: F16, F9
-- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
-- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
