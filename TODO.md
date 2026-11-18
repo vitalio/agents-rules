@@ -67,11 +67,6 @@
 
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
-- Depends on: agents_bundle:F15, D1
-- Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`).
+- Depends on: D1
+- Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`, after `agents_bundle` supports the `agents/` layout).
 - Update `AGENTS.md` and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
-
-- Decide whether a stack bundle `python` should group `stack/python-cli` with
-  the opt-in `python-stdlib` and `python-annotations` rules, and whether
-  `python-cli` should split out a separate `python-unittest` rule (all current
-  consumers use `unittest`, so no conflict exists today).
