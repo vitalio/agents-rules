@@ -37,7 +37,6 @@
 # ⚪ [NEW] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Wrap long lines (>80 chars) in `rules/collab/external.md`, `rules/core/AGENTS.md`, `rules/core/composability.md`, `rules/core/diff-review.md`, `rules/core/end.md`, `rules/core/lang.md`, `rules/core/plan.md`, `rules/core/secrets.md`, `rules/core/ssot.md`, `rules/os/*.md`, `rules/release/single-file-build.md`, `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, `rules/stack/python-annotations.md`, and `rules/vcs/*.md` to ~80 characters per line.
-- The two `rules/stack/python-*.md` files appear only after `F22` is done; do `F22` first.
 
 # ⚪ [NEW] F6: Group bundle directives at the top of .agents_bundle
 
