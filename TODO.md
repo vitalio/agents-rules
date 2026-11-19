@@ -38,11 +38,6 @@
 
 - Wrap long lines (>80 chars) in `rules/collab/external.md`, `rules/core/AGENTS.md`, `rules/core/composability.md`, `rules/core/diff-review.md`, `rules/core/end.md`, `rules/core/lang.md`, `rules/core/plan.md`, `rules/core/secrets.md`, `rules/core/ssot.md`, `rules/os/*.md`, `rules/release/single-file-build.md`, `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, `rules/stack/python-annotations.md`, and `rules/vcs/*.md` to ~80 characters per line.
 
-# ⚪ [NEW] F6: Group bundle directives at the top of .agents_bundle
-
-- Move `bundle vitalio/todo_md` to the top of `.agents_bundle` alongside `bundle vitalio/agents_bundle` before `ruleset`, `rule`, and `$ <cmd>` directives (already supported since `agents_bundle` v0.12.2).
-- Keep the `.agents_bundle` usage example in `README.md` in sync.
-
 # ⚪ [NEW] F18: Define responsibility split between README.md and AGENTS.md in core/docs
 
 - Add `rules/core/docs.md` defining the separation of concerns between `README.md` (external public contract: purpose, installation, CLI flags, environment variables, input/output protocols, and integration examples) and `AGENTS.md` (concise internal engineering guide: module boundaries, cross-file invariants, negative constraints, and build/test verification steps).

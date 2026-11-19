@@ -9,6 +9,7 @@ rulesets (`rulesets/`).
 ```text
 bundle vitalio/run_block
 bundle vitalio/agents_bundle
+bundle vitalio/todo_md
 
 ruleset vitalio/agents-rules:default
 rule vitalio/agents-rules:release/semver
@@ -19,7 +20,6 @@ rule vitalio/agents-rules:stack/python-stdlib
 rule vitalio/agents-rules:stack/python-annotations py_min=3.9
 
 $ cat AGENTS.md
-bundle vitalio/todo_md
 ```
 
 Activate any role from `rules/role/` on demand via `role=<name>`:

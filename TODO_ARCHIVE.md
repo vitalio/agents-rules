@@ -1,3 +1,8 @@
+# ✅ [DONE] F6: Group bundle directives at the top of .agents_bundle — *2026-11-19*
+
+- Move `bundle vitalio/todo_md` to the top of `.agents_bundle` alongside `bundle vitalio/agents_bundle` before `ruleset`, `rule`, and `$ <cmd>` directives (already supported since `agents_bundle` v0.12.2).
+- Keep the `.agents_bundle` usage example in `README.md` in sync.
+
 # ✅ [DONE] F12: Define pre-release versioning convention in release/semver — *2026-11-19, Added PRE-RELEASE clause to rules/release/semver.md and bumped VERSION to 0.11.1*
 
 - Add an optional `PRE-RELEASE` clause (`X.Y.Z-alpha.N`, `X.Y.Z-beta.N`, `X.Y.Z-rc.N` starting at `N=1`) to `rules/release/semver.md` for experimental or staged builds when explicitly requested, specifying that pre-release identifiers attach to the upcoming target version `X.Y.Z` and are stripped without re-bumping `X.Y.Z` upon final release.
