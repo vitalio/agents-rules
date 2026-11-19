@@ -1,3 +1,10 @@
+# ✅ [DONE] F29: Sync with origin before starting work and push release tags atomically — *2026-11-20, Updated rules/vcs/git.md and rules/release/semver.md to require upstream git sync before work/backlog mutations and atomic release tag pushes*
+
+- Role: work
+- Update `rules/vcs/git.md` to require syncing with the upstream remote (`git pull --ff-only`, or `git fetch` + `git status -sb` when local edits exist) before starting a task or modifying the backlog, pausing on branch divergence before making commits or bumping `VERSION`, and wrap prose at ~80 characters per line.
+- Update `rules/vcs/git.md` and `rules/release/semver.md` to push release branches and tags atomically (`git push --atomic origin {main_branch:main} "v$ver"`) so a rejected branch push never leaves an orphaned release tag on the remote.
+- Release a PATCH version in `VERSION`.
+
 # ✅ [DONE] F28: Preserve live dot-progress test output and forbid piping test runners through tail/head/grep — *2026-11-19, Updated rules/core/edit.md, rules/core/diff-review.md, and rules/stack/python-cli.md to preserve live dot-progress test output and forbid piping test runners through tail, head, or grep*
 
 - Role: work

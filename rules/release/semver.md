@@ -19,4 +19,4 @@
     guarded commit step immediately before final build, tests, commit, and
     tag (this dynamic `VERSION` bump does not require an extra diff-review
     round-trip) so the annotated release tag points to `HEAD`
-    (`ver=$(tr -d '[:space:]' < VERSION) && git tag -a "v$ver" -m "Release v$ver" && git push origin {main_branch:main} "v$ver"`).
+    (`ver=$(tr -d '[:space:]' < VERSION) && git tag -a "v$ver" -m "Release v$ver" && git push --atomic origin {main_branch:main} "v$ver"`).
