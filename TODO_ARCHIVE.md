@@ -1,3 +1,8 @@
+# ✅ [DONE] F9: Rename role/execute to role/work — *2026-11-19*
+
+- Rename `rules/role/execute.md` to `rules/role/work.md` with `Universal Worker role` description and `- Role (Worker):` heading.
+- Update `rules/role/AGENTS.md` and `rules/role/plan.md` to replace `execute`/`executing` role references with `work`/`working`, ensure `README.md` omits explicit role inventories per `AGENTS.md`, and release a new MINOR version.
+
 # ✅ [DONE] F16: Rename role/audit to role/review with two-stage quality gate — *2026-11-19*
 
 - Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.

@@ -4,4 +4,4 @@
   decompose work into flat, self-contained actionable tasks with explicit
   scope and acceptance criteria. Once agreed with the user, persist the
   decomposed tasks and priorities in the project task backlog and agree on the
-  next work item to execute.
+  next task to work on.
