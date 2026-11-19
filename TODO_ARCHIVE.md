@@ -1,3 +1,10 @@
+# ✅ [DONE] F27: Clarify SemVer planning rules and version notation in rules/release/semver.md — *2026-11-19*
+
+- Update `rules/release/semver.md` to explicitly forbid hardcoding concrete version numbers in tasks, plans, or backlog items ahead of implementation (specify only the bump level `PATCH`, `MINOR`, or `MAJOR` and compute the next version dynamically from `VERSION` at release time).
+- Unify the `PATCH` and `MINOR` pattern examples in `rules/release/semver.md` from `0.Y.Z+1` and `0.Y+1.0` to `X.Y.Z+1` and `X.Y+1.0` for consistency with `MAJOR` (`X+1.0.0`) and `PRE-RELEASE` (`X.Y.Z-...`).
+- Clarify that bumping `VERSION` dynamically inside the guarded commit step before final build, tests, commit, and tag does not require an extra diff-review round-trip.
+- Keep wording strictly tool-agnostic, wrap prose at ~80 characters per line, avoid decorative bold/italic emphasis per `AGENTS.md`, and release a PATCH version per `rules/release/semver.md`.
+
 # ✅ [DONE] F26: Add bounded edit-stage rule to avoid oversized output blocks — *2026-11-19, Added bounded edit-stage rule to core/edit and multi-stage diff clarification to core/diff-review*
 
 - Update `rules/core/edit.md` to require bounding the size of any single edit step or emitted patch/literal so a response never risks exceeding chat output limits; when a change spans many files or requires large edits, split the work into sequential, self-consistent stages (for example module by module, or implementation then tests and docs), running syntax checks and compact tests between stages as needed.
