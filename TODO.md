@@ -1,3 +1,9 @@
+# 🎯 [NEXT] F26: Add bounded edit-stage rule to avoid oversized output blocks
+
+- Update `rules/core/edit.md` to require bounding the size of any single edit step or emitted patch/literal so a response never risks exceeding chat output limits; when a change spans many files or requires large edits, split the work into sequential, self-consistent stages (for example module by module, or implementation then tests and docs), running syntax checks and compact tests between stages as needed.
+- Update `rules/core/diff-review.md` to clarify that when a task is implemented across multiple edit stages, full `git status --porcelain` and `git diff HEAD` output for pre-commit self-review is emitted once all planned edit stages are complete (while intermediate stages may still run syntax checks and compact test suites).
+- Keep wording strictly tool-agnostic (no references to sibling tools), wrap prose at ~80 characters per line, avoid decorative bold/italic emphasis per `AGENTS.md`, and release a PATCH version per `rules/release/semver.md`.
+
 # 🎯 [NEXT] F24: Remove bundle vitalio/run_block from .agents_bundle and README.md
 
 - Remove `bundle vitalio/run_block` from `.agents_bundle` and the `.agents_bundle` usage example in `README.md` once `run_block` embeds its own block execution rules.
