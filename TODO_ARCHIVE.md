@@ -1,3 +1,8 @@
+# ✅ [DONE] F12: Define pre-release versioning convention in release/semver — *2026-11-19, Added PRE-RELEASE clause to rules/release/semver.md and bumped VERSION to 0.11.1*
+
+- Add an optional `PRE-RELEASE` clause (`X.Y.Z-alpha.N`, `X.Y.Z-beta.N`, `X.Y.Z-rc.N` starting at `N=1`) to `rules/release/semver.md` for experimental or staged builds when explicitly requested, specifying that pre-release identifiers attach to the upcoming target version `X.Y.Z` and are stripped without re-bumping `X.Y.Z` upon final release.
+- Bump `VERSION` for a PATCH release.
+
 # ✅ [DONE] F22: Split python-cli into a base rule and opt-in Python extension rules — *2026-11-16*
 
 Found while evaluating `stack/python-cli` for canary; it cannot be connected as is. Keep only the universal base in `stack/python-cli` and move specifics into opt-in extension rules.
