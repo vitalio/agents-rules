@@ -1,6 +1,11 @@
-# Description: Unique anchor verification, atomic in-memory validation, line wrapping, and pre-commit checks
-- Edit & pre-commit verification: When editing files programmatically, verify
-  that each search anchor occurs uniquely (`count == 1`), prefer targeted
+# Description: Bounded edit stages, unique anchor verification, atomic validation, line wrapping, and pre-commit checks
+- Edit & pre-commit verification: Keep each edit step and any emitted patch or
+  literal bounded in size so a single response never risks exceeding chat output
+  limits; when a change spans many files or requires large edits, split the work
+  into sequential, self-consistent stages (such as module by module, or
+  implementation followed by tests and documentation), running syntax checks and
+  compact tests between stages as needed. When editing files programmatically,
+  verify that each search anchor occurs uniquely (`count == 1`), prefer targeted
   `text.replace(old, new, 1)` patches over rewriting entire files as a single
   literal, validate all search anchors and syntax in memory before writing any
   file to disk (so a failed check leaves the working tree untouched), and avoid

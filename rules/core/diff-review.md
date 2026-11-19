@@ -3,6 +3,10 @@
   — it runs syntax/linter checks and local tests (emitting a single concise
   summary line when all tests pass, and full diagnostics and tracebacks only
   on failure), then prints the working status and full diff.
+  - When a task is implemented across multiple bounded edit stages, intermediate
+    stages may run syntax checks and compact test suites without printing the
+    accumulated diff; emit full `git status --porcelain` and `git diff HEAD`
+    output for self-review once all planned edit stages are complete.
   - When the user provides the output, the model itself must audit the full
     diff against all project rules (no dead code or leftover names, clean
     module boundaries, updated documentation and help text). If any issue is
