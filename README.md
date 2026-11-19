@@ -7,7 +7,6 @@ rulesets (`rulesets/`).
 ## Usage in `.agents_bundle`
 
 ```text
-bundle vitalio/run_block
 bundle vitalio/agents_bundle
 bundle vitalio/todo_md
 

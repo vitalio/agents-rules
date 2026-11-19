@@ -1,7 +1,3 @@
-# 🎯 [NEXT] F24: Remove bundle vitalio/run_block from .agents_bundle and README.md
-
-- Remove `bundle vitalio/run_block` from `.agents_bundle` and the `.agents_bundle` usage example in `README.md` once `run_block` embeds its own block execution rules.
-
 # 🎯 [NEXT] F23: Add portable multi-repository coordination rule and orchestrator bundle preset
 
 - Add a universal, tool-agnostic rule (for example `rules/collab/multi-repo.md` or `rules/role/multi-repo-plan.md`) defining cross-repository task decomposition and dependency boundaries: detailed implementation tasks belong in each owning repository's backlog, while the coordinating repository records a parent task linking all child tasks via dependencies and keeps cross-repository dependency edges out of standalone child repositories.

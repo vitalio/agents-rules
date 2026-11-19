@@ -1,3 +1,7 @@
+# ✅ [DONE] F24: Remove bundle vitalio/run_block from .agents_bundle and README.md — *2026-11-19*
+
+- Remove `bundle vitalio/run_block` from `.agents_bundle` and the `.agents_bundle` usage example in `README.md` once `run_block` embeds its own block execution rules.
+
 # ✅ [DONE] F9: Rename role/execute to role/work — *2026-11-19*
 
 - Rename `rules/role/execute.md` to `rules/role/work.md` with `Universal Worker role` description and `- Role (Worker):` heading.
