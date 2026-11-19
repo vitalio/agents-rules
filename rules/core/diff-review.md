@@ -1,8 +1,10 @@
 # Description: Two-step self-reviewed diff before commit and fail-fast guarded commit steps
 - Self-reviewed diff before commit: An edit step does not commit immediately
-  — it runs syntax/linter checks and local tests (emitting a single concise
-  summary line when all tests pass, and full diagnostics and tracebacks only
-  on failure), then prints the working status and full diff.
+  — it runs syntax/linter checks and local tests (emitting compact live
+  progress indicators such as per-test `.` dots followed by the summary line
+  when all tests pass, and full diagnostics and tracebacks on failure, without
+  piping test output through `tail`, `head`, or `grep` or suppressing it via
+  redirection), then prints the working status and full diff.
   - When a task is implemented across multiple bounded edit stages, intermediate
     stages may run syntax checks and compact test suites without printing the
     accumulated diff; emit full `git status --porcelain` and `git diff HEAD`
@@ -19,6 +21,7 @@
     the diff, and commit in one step.
 - Guarded commit steps: Because files on disk may change between turns, every
   step that commits or publishes changes must enable fail-fast mode and re-run
-  fast syntax/linter checks and local unit tests (with concise pass summary
-  and full output on failure) immediately before the commit command, so any
-  failure aborts execution before committing.
+  fast syntax/linter checks and local unit tests (with live `.` progress,
+  summary line, and full output on failure, never piped through `tail`,
+  `head`, or `grep`) immediately before the commit command, so any failure
+  aborts execution before committing.

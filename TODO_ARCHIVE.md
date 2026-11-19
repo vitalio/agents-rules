@@ -1,3 +1,10 @@
+# ✅ [DONE] F28: Preserve live dot-progress test output and forbid piping test runners through tail/head/grep — *2026-11-19, Updated rules/core/edit.md, rules/core/diff-review.md, and rules/stack/python-cli.md to preserve live dot-progress test output and forbid piping test runners through tail, head, or grep*
+
+- Role: work
+- Update `rules/core/edit.md` and `rules/core/diff-review.md` to replace "emit a single concise summary line" with requiring compact live progress indicators (such as per-test `.` dots followed by the summary line) and explicitly forbid piping test runner output through `tail`, `head`, or `grep` (or suppressing it via redirection), which buffers live progress and truncates failure tracebacks.
+- Update `rules/stack/python-cli.md` (`Concise unittest execution`) to require running `python3 -m unittest discover -s tests` directly without piping to `tail`/`head`/`grep` or wrapping in custom `verbosity=0` runners so `.` progress indicators stream live as tests execute.
+- Keep prose wrapped at ~80 characters per line and release a PATCH version in `VERSION`.
+
 # ✅ [DONE] F23: Add portable multi-repository coordination rule and orchestrator bundle preset — *2026-11-20*
 
 - Add a universal, tool-agnostic rule (for example `rules/collab/multi-repo.md` or `rules/role/multi-repo-plan.md`) defining cross-repository task decomposition and dependency boundaries: detailed implementation tasks belong in each owning repository's backlog, while the coordinating repository records a parent task linking all child tasks via dependencies and keeps cross-repository dependency edges out of standalone child repositories.

@@ -1,10 +1,3 @@
-# 🎯 [NEXT] F28: Preserve live dot-progress test output and forbid piping test runners through tail/head/grep
-
-- Role: work
-- Update `rules/core/edit.md` and `rules/core/diff-review.md` to replace "emit a single concise summary line" with requiring compact live progress indicators (such as per-test `.` dots followed by the summary line) and explicitly forbid piping test runner output through `tail`, `head`, or `grep` (or suppressing it via redirection), which buffers live progress and truncates failure tracebacks.
-- Update `rules/stack/python-cli.md` (`Concise unittest execution`) to require running `python3 -m unittest discover -s tests` directly without piping to `tail`/`head`/`grep` or wrapping in custom `verbosity=0` runners so `.` progress indicators stream live as tests execute.
-- Keep prose wrapped at ~80 characters per line and release a PATCH version in `VERSION`.
-
 # 🎯 [NEXT] F4: Support greenfield project bootstrap and tool-agnostic wording in role/design
 
 - Update `rules/role/design.md` so that when designing a new project from scratch, once the design is agreed with the user, the agent creates the target project directory, initializes version control, and scaffolds `AGENTS.md`, project context configuration, and the initial project task backlog before committing the initial scaffold.
