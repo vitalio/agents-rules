@@ -12,6 +12,7 @@ bundle vitalio/agents_bundle
 bundle vitalio/todo_md
 
 ruleset vitalio/agents-rules:default
+rule vitalio/agents-rules:collab/no-task-ids
 rule vitalio/agents-rules:release/semver
 rule vitalio/agents-rules:release/single-file-build
 rule vitalio/agents-rules:stack/cli

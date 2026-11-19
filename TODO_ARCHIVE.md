@@ -1,3 +1,8 @@
+# ✅ [DONE] F19: Extract internal task ID restriction from collab/external into a separate opt-in rule — *2026-11-19, Extracted internal task ID restriction to collab/no-task-ids and released v0.12.0*
+
+- Remove the internal task ID restriction from `rules/collab/external.md` and move it into a separate opt-in rule (`rules/collab/no-task-ids.md`) so projects can include it only when they want to hide task IDs in commits and external updates.
+- Keep `rulesets/default.ruleset` (or the corresponding default bundle if executed after F20) and `README.md` in sync, and release a new MINOR version.
+
 # ✅ [DONE] F6: Group bundle directives at the top of .agents_bundle — *2026-11-19*
 
 - Move `bundle vitalio/todo_md` to the top of `.agents_bundle` alongside `bundle vitalio/agents_bundle` before `ruleset`, `rule`, and `$ <cmd>` directives (already supported since `agents_bundle` v0.12.2).

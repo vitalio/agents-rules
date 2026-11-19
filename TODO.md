@@ -47,11 +47,6 @@
 
 - Define the role of `docs/adr/` (Architecture Decision Records) in `rules/core/docs.md` as the place for detailed architectural rationale and rejected alternatives, keeping `AGENTS.md` concise and actionable while referencing relevant `docs/adr/*.md` paths in task descriptions.
 
-# ⚪ [NEW] F19: Extract internal task ID restriction from collab/external into a separate opt-in rule
-
-- Remove the internal task ID restriction from `rules/collab/external.md` and move it into a separate opt-in rule (`rules/collab/no-task-ids.md`) so projects can include it only when they want to hide task IDs in commits and external updates.
-- Keep `rulesets/default.ruleset` (or the corresponding default bundle if executed after F20) and `README.md` in sync, and release a new MINOR version.
-
 # ⚪ [NEW] D1: Design composable role extensions and domain overlays
 
 - Depends on: F16, F9
