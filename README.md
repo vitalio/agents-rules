@@ -31,8 +31,8 @@ agents_bundle --list
 
 ## Taxonomic Structure
 
-- `rulesets/` — composable rulesets (`core`, `default`) using built-in
-  variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
+- `rulesets/` — composable rulesets (`core`, `default`, `orchestrator`) using
+  built-in variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
 - `rules/core/` — universal domain-, OS-, and VCS-agnostic axioms.
 - `rules/role/` — universal session operating roles activated via
   `role=<name>`.
