@@ -4,6 +4,7 @@ rule core/secrets
 rule core/plan
 rule core/ssot
 rule core/edit
+rule core/docs
 rule core/diff-review
 rule core/end
 rule core/composability

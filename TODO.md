@@ -1,11 +1,3 @@
-# 🎯 [NEXT] F18: Define responsibility split between README.md and AGENTS.md in core/docs
-
-- Add `rules/core/docs.md` (1–3 plain-text `- Topic: instruction.` bullets per `rules/core/AGENTS.md`, keeping domain-independent framing with items such as CLI flags, environment variables, or I/O protocols as illustrative examples where applicable) defining the separation of concerns between `README.md` (external public contract: purpose, installation, interfaces/configuration, protocols, and integration examples) and `AGENTS.md` (concise internal engineering guide: module boundaries, cross-file invariants, negative constraints, and build/test verification steps).
-- Forbid duplicating `README.md` tutorials, marketing descriptions, or full reference tables inside `AGENTS.md`, keeping `AGENTS.md` focused on repository-specific delta knowledge an agent cannot infer from the file tree.
-- Define the role of `docs/adr/` (Architecture Decision Records) in `rules/core/docs.md` as the place for detailed architectural rationale and rejected alternatives, keeping `AGENTS.md` concise and actionable while referencing relevant `docs/adr/*.md` paths in task descriptions.
-- Move the documentation synchronization and `AGENTS.md` plain-text formatting clauses out of `rules/core/edit.md` into `rules/core/docs.md` (updating `# Description:` in `rules/core/edit.md` accordingly, while keeping the ~80-character prose-wrapping clause in `rules/core/edit.md`) so documentation rules live in one canonical place without duplication.
-- Include `rule core/docs` in `rulesets/core.ruleset` (or the corresponding core bundle if executed after F20), follow `AGENTS.md` formatting conventions, bump `VERSION` for a new MINOR release, and tag the release.
-
 # 🎯 [NEXT] F24: Remove bundle vitalio/run_block from .agents_bundle and README.md
 
 - Remove `bundle vitalio/run_block` from `.agents_bundle` and the `.agents_bundle` usage example in `README.md` once `run_block` embeds its own block execution rules.
