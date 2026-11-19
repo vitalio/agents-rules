@@ -35,8 +35,8 @@ agents_bundle --list
 - `rulesets/` — composable rulesets (`core`, `default`) using built-in
   variables (`os`, `vcs`), optional `role`, and `[if ...]` conditions.
 - `rules/core/` — universal domain-, OS-, and VCS-agnostic axioms.
-- `rules/role/` — universal session operating roles (`design`, `plan`,
-  `execute`, `audit`) activated via `role=<name>`.
+- `rules/role/` — universal session operating roles activated via
+  `role=<name>`.
 - `rules/collab/` — collaboration and external communication rules.
 - `rules/os/`, `rules/vcs/`, `rules/stack/`, `rules/release/` — platform,
   version control, technical stack, and release rules.

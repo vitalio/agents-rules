@@ -1,3 +1,9 @@
+# ✅ [DONE] F16: Rename role/audit to role/review with two-stage quality gate — *2026-11-19*
+
+- Rename `rules/role/audit.md` to `rules/role/review.md` with `Universal Reviewer role` description and `- Role (Reviewer):` heading.
+- Structure `rules/role/review.md` as a two-stage review: first verify objective compliance (passing tests and linters, task specification fulfillment, active workspace rules, SSOT, and documentation sync), stopping early on blockers; once the objective gate passes, evaluate architecture, module boundaries, readability, security, performance, and user-facing polish.
+- Update `rules/role/AGENTS.md` to replace `audit`/`auditing` with `review`/`reviewing`, remove the explicit role list from `README.md` per `AGENTS.md` directory-listing rules, and release a new MINOR version.
+
 # ✅ [DONE] F27: Clarify SemVer planning rules and version notation in rules/release/semver.md — *2026-11-19*
 
 - Update `rules/release/semver.md` to explicitly forbid hardcoding concrete version numbers in tasks, plans, or backlog items ahead of implementation (specify only the bump level `PATCH`, `MINOR`, or `MAJOR` and compute the next version dynamically from `VERSION` at release time).
