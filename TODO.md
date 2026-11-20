@@ -13,6 +13,8 @@
 - Update `rules/role/work.md` so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
 - Update `rules/role/design.md` and `rules/role/review.md` so Designer records module-boundary and file-coupling invariants in `AGENTS.md` for downstream planning/working, and Reviewer verifies those project-specific `AGENTS.md` invariants alongside task specifications, keeping wording strictly tool-agnostic, and release a PATCH version.
 
+- In `rules/role/plan.md`, require the Planner to prefer refining an existing open task in place over creating a new task when scope overlaps or fits a single coherent change, merge overlapping or standalone doc-only tasks into the primary implementation task (closing duplicates with a reference to the target task), and when splitting a large planned task into sequential steps, keep the original task as the terminal closing root of the dependency chain with newly extracted steps wired as its prerequisites.
+
 # ⚪ [NEW] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Wrap long lines (>80 chars) in `rules/collab/external.md`, `rules/core/AGENTS.md`, `rules/core/composability.md`, `rules/core/diff-review.md`, `rules/core/end.md`, `rules/core/lang.md`, `rules/core/plan.md`, `rules/core/secrets.md`, `rules/core/ssot.md`, `rules/os/*.md`, `rules/release/single-file-build.md`, `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, `rules/stack/python-annotations.md`, and `rules/vcs/*.md` to ~80 characters per line.
