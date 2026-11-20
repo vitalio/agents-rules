@@ -9,11 +9,13 @@
 # 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
 
 - Depends on: F9, F16
-- Update `rules/role/plan.md` so the Planner distinguishes raw ideas/design tasks (routing them to `role=design`) from ready work items, determines the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), records those file paths in the task body, and preloads them into the new session context when handing off to working.
+- Update `rules/role/plan.md` so the Planner balances task decomposition and task composition (consolidation) based on module, test, and documentation cohesion:
+  - Distinguish raw ideas/design tasks (routing them to `role=design`) from ready work items.
+  - Decompose large or multi-stage initiatives into sequential, self-contained tasks (keeping the original task as the terminal closing root of the dependency chain with newly extracted steps wired as its prerequisites).
+  - Compose (consolidate) work into an existing open task in place rather than creating separate tasks when requirements overlap or touch the same target files, tests, and documentation in a single coherent change (merging overlapping or standalone doc-only tasks into the primary implementation task and closing duplicates with a reference to the target task).
+  - Determine the full target file closure for each prioritized task (source modules, CLI help, docs, paired rules, and tests per `AGENTS.md` and active stack rules), record those file paths in the task body, and preload them into the new session context when handing off to working.
 - Update `rules/role/work.md` so that when a task's target files are already preloaded in the initial session context, the agent skips a separate read-only discovery step and proceeds directly in step 1 to edits, project build/linter/test verification, and diff output (running an initial batched read step only for files not yet in context).
 - Update `rules/role/design.md` and `rules/role/review.md` so Designer records module-boundary and file-coupling invariants in `AGENTS.md` for downstream planning/working, and Reviewer verifies those project-specific `AGENTS.md` invariants alongside task specifications, keeping wording strictly tool-agnostic, and release a PATCH version.
-
-- In `rules/role/plan.md`, require the Planner to prefer refining an existing open task in place over creating a new task when scope overlaps or fits a single coherent change, merge overlapping or standalone doc-only tasks into the primary implementation task (closing duplicates with a reference to the target task), and when splitting a large planned task into sequential steps, keep the original task as the terminal closing root of the dependency chain with newly extracted steps wired as its prerequisites.
 
 # ⚪ [NEW] F5: Wrap prose at ~80 columns across all remaining rule files
 
