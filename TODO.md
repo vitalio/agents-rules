@@ -1,11 +1,3 @@
-# 🎯 [NEXT] F4: Support greenfield project bootstrap and tool-agnostic wording in role/design
-
-- Update `rules/role/design.md` so that when designing a new project from scratch, once the design is agreed with the user, the agent creates the target project directory, initializes version control, and scaffolds `AGENTS.md`, project context configuration, and the initial project task backlog before committing the initial scaffold.
-- Clarify in `rules/role/design.md` that raw ideas and architectural explorations enter the backlog as design tasks for `role=design`, and once agreed are closed after recording architectural invariants in `AGENTS.md` and creating actionable implementation tasks.
-- Replace the hardcoded `.agents_bundle` filename in `rules/role/design.md` with tool-agnostic wording so `rules/role/` complies with `AGENTS.md` and `rules/role/AGENTS.md` taxonomic invariants, and release a PATCH version.
-
-- Specify in `rules/role/design.md` that when a design decision involves complex protocols, trade-offs, or multi-component rationale too detailed for `AGENTS.md`, the agent records a concise Architecture Decision Record in `docs/adr/NNNN-<slug>.md` (context, decision, rejected alternatives, consequences) and references it in backticks in downstream implementation tasks.
-
 # 🎯 [NEXT] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/
 
 - Depends on: F9, F16
