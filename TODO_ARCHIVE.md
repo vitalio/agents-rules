@@ -1,3 +1,10 @@
+# ✅ [DONE] F30: Require modular test files in tests/ and shared fixtures in tests/helpers.py — *2026-11-20*
+
+- Role: work
+- In `rules/stack/python-cli.md`, add a modular test organization requirement: split unit tests across domain- or module-focused `tests/test_<module>.py` files mirroring `src/` modules (rather than accumulating all tests into a single monolithic `tests/test_<project>.py`), and place shared base `unittest.TestCase` classes, in-process CLI runners, and fixtures in `tests/helpers.py` (without a `test_` prefix so `unittest discover -s tests` loads the target script once and does not execute the base class standalone).
+- Note in `rules/stack/python-cli.md` that when splitting an existing large test file into modular `tests/test_*.py` files, agents should slice test methods programmatically on disk using `ast.parse()` (`node.lineno`..`node.end_lineno`) rather than re-emitting test bodies in chat output.
+- Verify prose wrapping (~80 columns) and bump `VERSION` for a PATCH release.
+
 # ✅ [DONE] F29: Sync with origin before starting work and push release tags atomically — *2026-11-20, Updated rules/vcs/git.md and rules/release/semver.md to require upstream git sync before work/backlog mutations and atomic release tag pushes*
 
 - Role: work

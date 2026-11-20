@@ -2,6 +2,17 @@
 - Python CLI engineering invariants: Verify Python syntax with `ast.parse`
   and cover every CLI flag and behavior with offline unit tests
   (`tests/test_*.py`).
+- Modular test layout and shared helpers: Split unit tests across domain- or
+  module-focused `tests/test_<module>.py` files mirroring `src/` modules
+  (rather than accumulating all tests into a single monolithic
+  `tests/test_<project>.py`), and place shared base `unittest.TestCase`
+  classes, in-process CLI runners, and fixtures in `tests/helpers.py` (without
+  a `test_` prefix so `unittest discover -s tests` loads the target script
+  once and does not execute the base class standalone). When splitting an
+  existing large test file into modular `tests/test_*.py` files, slice test
+  methods programmatically on disk using `ast.parse()`
+  (`node.lineno`..`node.end_lineno`) rather than re-emitting test bodies in
+  chat output.
 - Offline tests: Tests never touch the network; third-party clients (such as
   `boto3`) are replaced by stubs in tests (`unittest.mock.patch.dict` on
   `sys.modules`).
