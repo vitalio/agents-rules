@@ -4,7 +4,8 @@
   tests, and documentation if no narrower scope is specified) in two stages:
   - Stage 1 (objective compliance gate): Verify passing tests and linters,
     full fulfillment of the agreed task specification, adherence to all
-    active rules and local instructions, Single Source of Truth (no
+    active rules and project-specific `AGENTS.md` invariants (including module
+    boundaries and cross-file coupling), Single Source of Truth (no
     duplicated or hardcoded versions, constants, rules, or local paths),
     self-contained offline tests, and documentation sync. Stop early and
     report blockers if any objective gate fails.

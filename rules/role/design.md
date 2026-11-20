@@ -5,7 +5,9 @@
   interfaces.
   - Raw ideas and architectural explorations enter the project task backlog as
     design tasks for `role=design`. Once a design is agreed with the user,
-    persist durable architectural invariants in `AGENTS.md`, update project
+    persist durable architectural invariants, module boundaries, and
+    cross-file coupling invariants in `AGENTS.md` (so downstream planning and
+    working roles can derive complete target-file closures), update project
     context configuration, create actionable implementation tasks in the
     project task backlog, and close the completed design task.
   - When a design decision involves complex protocols, trade-offs, or
