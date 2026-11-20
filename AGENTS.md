@@ -6,11 +6,27 @@ and SemVer rules are loaded via `.agents_bundle`.
 
 ## Taxonomic Design Principles
 
-- Place each rule at the highest level of abstraction where it holds
-  unconditionally: universal domain-agnostic axioms in `rules/core/`,
-  session-level operating postures in `rules/role/`, communication boundaries
-  in `rules/collab/`, and environment/stack specifics in `rules/os/`,
-  `rules/vcs/`, `rules/stack/`, or `rules/release/`.
+- Abstraction promotion (least-specific ancestor): Place each rule at the
+  highest level of the tree where it holds unconditionally: universal
+  domain-agnostic axioms in `rules/core/`, session-level operating postures in
+  `rules/role/`, communication boundaries in `rules/collab/`, and
+  environment/stack specifics in `rules/os/`, `rules/vcs/`, `rules/stack/`, or
+  `rules/release/`.
+- Orthogonal facets (single axis of activation): Each leaf rule file (`.md`)
+  must depend on a single activation condition. Never cross-multiply
+  independent axes into hybrid filenames (such as `<language>-<interface>.md`);
+  keep cross-language interface contracts (e.g. `cli.md`) separate from
+  language or runtime rules (`python/...`) so projects compose them freely.
+- Arbitrary-depth subtree branching: Whenever a domain, language, or subsystem
+  accumulates two or more distinct facets with different activation triggers
+  (such as language syntax, a specific test framework like `unittest`, stdlib
+  restrictions, or type annotations), branch into a subdirectory
+  (`<axis>/<domain>/.../<facet>.md`) rather than flat sibling files with
+  hyphenated prefixes (`<domain>-*.md`). Continue nesting deeper whenever a
+  child concept branches along its own axis of choice.
+- Scoped category `AGENTS.md`: Place a concise `AGENTS.md` inside any category
+  or domain directory whose inclusion boundaries or decomposition axes are not
+  self-evident from directory names alone.
 - Never list directory contents or specific file inventories inside
   `AGENTS.md` or `README.md` (directory trees and rule catalogs are inspected
   dynamically via filesystem and bundler tools).

@@ -11,9 +11,13 @@
     output for self-review once all planned edit stages are complete.
   - When the user provides the output, the model itself must audit the full
     diff against all project rules (no dead code or leftover names, clean
-    module boundaries, updated documentation and help text). If any issue is
-    found in the diff, fix it in the next step and re-verify the diff until
-    completely clean.
+    module boundaries, updated documentation and help text). When a change
+    removes, renames, or splits files or symbols, search the entire repository
+    for stale references — including CI workflows (`.github/workflows/`),
+    `README.md`, `AGENTS.md`, and active backlog tasks in `TODO.md` — and
+    clean up any orphaned artifacts before committing. If any issue is found in
+    the diff, fix it in the next step and re-verify the diff until completely
+    clean.
   - Once the model verifies that the printed diff is clean and tests pass,
     immediately provide the commit step in the same reply without asking the
     user to review or confirm the diff.
