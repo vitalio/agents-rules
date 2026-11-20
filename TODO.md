@@ -1,3 +1,9 @@
+# 🎯 [NEXT] F32: Add host-chat session isolation rule (rules/core/isolation.md) and forbid AI attribution trailers in rules/collab/external.md
+
+- Add `rules/core/isolation.md` (`# Description: Host-chat session isolation and external platform tool boundary`) and include `rule core/isolation` as the first entry in `rulesets/core.ruleset` (before `rule core/start`) so every bundle begins by scoping the active session to the bundle rules and workspace `AGENTS.md` files and instructing the agent not to apply any host-chat persona/domain context or invoke built-in host platform tools (such as external knowledge-base or web search) unless explicitly requested by the user.
+- Update `rules/collab/external.md` (`Clean external text & two-step external changes`) to forbid adding AI co-author trailers (such as `Co-Authored-By:`), agent attribution lines (such as `Generated with...`), or tool signatures to commit messages, MR/PR descriptions, comments, or files.
+- Wrap prose in `rules/core/isolation.md` and `rules/collab/external.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
+
 # 🎯 [NEXT] F31: Specify --help column alignment, {prog} placeholder accounting, and <=100-col width in rules/stack/cli.md
 
 - In `rules/stack/cli.md` (`Structured -h/--help layout`), require aligned description columns within each section (accounting for the rendered program name length when `{prog}` templates are used so continuation lines align with primary descriptions) and a maximum `--help` line width of 100 columns (~80 columns for prose paragraphs).
