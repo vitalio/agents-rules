@@ -1,3 +1,8 @@
+# 🎯 [NEXT] F41: Require explicit '- Target files:' bullet and drift-proof symbol slices in role/plan.md
+
+- Update `rules/role/plan.md` so the target-file closure bullet explicitly requires recording target repository files and slices on a dedicated `- Target files:` line (because `todo_md files` parses only `- Target files:` lines), prefers drift-proof symbol slices (`path:symbol` or `path:start_symbol..end_symbol`) alongside `path:start-end` for large files (`> 400` lines) so slices survive out-of-order task edits, and instructs planners not to include `TODO.md`, `TODO_ARCHIVE.md`, or `AGENTS.md` (unless `AGENTS.md` itself is being edited) in `- Target files:`.
+- Target files: `rules/role/plan.md`.
+
 # 🎯 [NEXT] F40: Add release/github-ci rule, interactive CI/Release questionnaire, and tag-triggered GitHub Release workflow
 
 - Create `rules/release/github-ci.md` defining the GitHub Actions CI & Release workflow standard (`.github/workflows/ci.yml`):
