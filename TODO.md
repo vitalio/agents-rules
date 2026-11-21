@@ -40,15 +40,19 @@
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
 
-# ⚪ [NEW] F36: Specify that todo_md done runs in the guarded commit step after a clean diff, not in the edit step
+# ⚪ [NEW] F36: Worker closes the task in the edit step, before the diff is verified clean
 
-- In `rules/role/work.md` (`Role (Worker)`), state that `todo_md done <ID>` is run only in the guarded commit step, after the self-reviewed diff is verified clean and immediately before the final commit, so the task closure stays atomic with the implementation commit and a diff fix never has to reopen the task.
-- State that the edit-and-diff step must leave the task in its active status; if the closure must be visible in the diff, it is previewed with `todo_md` read-only commands instead of mutating the backlog.
-- Check where the `todo_md` lifecycle rule (`done` is run before the final commit in `role=work`) is defined; if it lives outside this repository, align the wording there via a separate task in that repository.
-- Wrap prose in the touched rule file at ~80 columns without decorative bold/italic markup and bump `VERSION` for a PATCH release.
+- Problem: the rules say `todo_md done` is run before the final commit in `role=work`, but do not say in which step. In session s210 it was run in the edit-and-diff step, before the self-review of the diff was finished.
+- Impact: if the diff had turned out unclean, the task would already be archived as DONE with unfinished implementation and would need a reopen; until the commit, the working tree also shows a closed task with no matching implementation commit.
 
 # ⚪ [NEW] F37: Worker-recorded backlog items have no defined commit path when no code commit follows
 
 - Problem: in `role=work`, `todo_md` mutations are not committed with `-c` and are expected to be staged into the final code commit. When the worker records an out-of-scope finding as a new backlog item after the final code commit is already pushed (or in any session where no code commit follows), the rules do not say what happens to the resulting `TODO.md` change.
 - Observed in session s210: F36 was added after the release commit was pushed and stayed uncommitted in the working tree until the user pointed it out; the worker also asked whether to link it into a chain, which is outside the worker role (chain placement belongs to the planner).
 - Impact: backlog items can stay unpublished or be lost between sessions, and the start-of-session check ignores uncommitted task-backlog changes, so the gap is not caught later.
+
+# ⚪ [NEW] F38: Worker has no guidance on how to record a new backlog item
+
+- Problem: the rules describe `todo_md` mechanics, but not what a worker-authored backlog item should contain or where the worker responsibility ends. The planner decides the solution, chain placement, and priority together with the user.
+- Observed in session s210: the worker wrote F36 as a ready solution (target file and wording to add) instead of describing the problem, and asked the user whether to link the new task into a chain, which belongs to the planner.
+- Impact: planner discussion is pre-empted, task bodies are inconsistent between sessions, and the worker overreaches its role.
