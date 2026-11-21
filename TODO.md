@@ -1,3 +1,12 @@
+# 🎯 [NEXT] D1: Design composable role extensions and domain overlays
+
+- Depends on: F16, F9
+- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
+- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
+- Apply orthogonal facet decomposition (`AGENTS.md`): separate cross-language interface contracts (`cli.md`) from language subtrees (`python/syntax.md`, `python/unittest.md`, `python/stdlib.md`, `python/annotations.md`, plus a default `python.bundle` preset) so projects never rely on hybrid filenames like `python-cli.md`.
+
+- Promote universal modular code and test architecture rules (module cohesion, ~300-800 line module budget, layered separation between parsing/domain/rendering/CLI, single canonical domain algorithms, and mirrored `tests/test_<module>.py` organization) to `core/composability.md` (or the `coding/` domain overlay), keeping `python/unittest.md` focused strictly on Python `unittest` mechanics (`unittest discover -s tests`, `tests/helpers.py`, `ast.parse()`).
+
 # 🎯 [NEXT] F32: Add session isolation rule, forbid AI trailers, refine plan/work role protocols, and preload AGENTS.md via include globs
 
 - Add `rules/core/isolation.md` (`# Description: Host-chat session isolation and external platform tool boundary`) and include `rule core/isolation` as the first entry in `rulesets/core.ruleset` (before `rule core/start`) so every bundle begins by scoping the active session to the bundle rules and workspace `AGENTS.md` files and instructing the agent not to apply any host-chat persona/domain context or invoke built-in host platform tools (such as external knowledge-base or web search) unless explicitly requested by the user.
@@ -13,17 +22,12 @@
 - In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
 - Wrap prose in `rules/core/isolation.md`, `rules/collab/external.md`, `rules/role/plan.md`, `rules/role/work.md`, and `rules/core/AGENTS.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
 
+- Expand `rules/core/composability.md` with universal software engineering code structure principles: modular cohesion and file-size discipline (keeping source modules under `src/` focused on a single responsibility at roughly 300-800 lines and splitting modules that exceed ~1000 lines or mix architectural layers), layered separation of concerns (separating pure data/parsing and domain/graph algorithms from TTY/ANSI rendering and CLI/I/O dispatch), focused functions at a single level of abstraction, and a single canonical algorithm per domain invariant rather than parallel implementations.
+
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Depends on: F31, F32, F34
 - Wrap long lines (>80 chars) across all remaining rule files in `rules/` (`rules/collab/*.md`, `rules/core/*.md`, `rules/os/*.md`, `rules/release/*.md`, `rules/role/*.md`, `rules/stack/*.md`, `rules/vcs/*.md`) to ~80 characters per line and bump `VERSION` for a PATCH release.
-
-# ⚪ [NEW] D1: Design composable role extensions and domain overlays
-
-- Depends on: F16, F9
-- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
-- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
-- Apply orthogonal facet decomposition (`AGENTS.md`): separate cross-language interface contracts (`cli.md`) from language subtrees (`python/syntax.md`, `python/unittest.md`, `python/stdlib.md`, `python/annotations.md`, plus a default `python.bundle` preset) so projects never rely on hybrid filenames like `python-cli.md`.
 
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
@@ -31,6 +35,8 @@
 - Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`, after `agents_bundle` supports the `agents/` layout).
 - Decompose `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, and `rules/stack/python-annotations.md` into a nested `agents/stack/python/` (or `agents/python/`) subtree (`syntax.md`, `unittest.md`, `stdlib.md`, `annotations.md`, and `python.bundle`) orthogonal to `cli.md`.
 - Update `.agents_bundle` (`include agents/**/AGENTS.md`), `AGENTS.md`, and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
+
+- Ensure universal modular code and test architecture rules live in `agents/core/composability.md` (or `agents/coding/`) while `agents/stack/python/unittest.md` (or `agents/python/unittest.md`) retains only Python `unittest`-specific mechanics.
 
 # ⚪ [NEW] F25: Rename project and package references from agents-rules to ctx-taxonomy
 
