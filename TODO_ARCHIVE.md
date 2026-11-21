@@ -1,3 +1,15 @@
+# ❌ [CANCELED] F38: Worker has no guidance on how to record a new backlog item — *Consolidated into F36*
+
+- Problem: the rules describe `todo_md` mechanics, but not what a worker-authored backlog item should contain or where the worker responsibility ends. The planner decides the solution, chain placement, and priority together with the user.
+- Observed in session s210: the worker wrote F36 as a ready solution (target file and wording to add) instead of describing the problem, and asked the user whether to link the new task into a chain, which belongs to the planner.
+- Impact: planner discussion is pre-empted, task bodies are inconsistent between sessions, and the worker overreaches its role.
+
+# ❌ [CANCELED] F37: Worker-recorded backlog items have no defined commit path when no code commit follows — *Consolidated into F36*
+
+- Problem: in `role=work`, `todo_md` mutations are not committed with `-c` and are expected to be staged into the final code commit. When the worker records an out-of-scope finding as a new backlog item after the final code commit is already pushed (or in any session where no code commit follows), the rules do not say what happens to the resulting `TODO.md` change.
+- Observed in session s210: F36 was added after the release commit was pushed and stayed uncommitted in the working tree until the user pointed it out; the worker also asked whether to link it into a chain, which is outside the worker role (chain placement belongs to the planner).
+- Impact: backlog items can stay unpublished or be lost between sessions, and the start-of-session check ignores uncommitted task-backlog changes, so the gap is not caught later.
+
 # ✅ [DONE] F31: Specify --help column alignment, {prog} placeholder accounting, and <=100-col width in rules/stack/cli.md — *2026-11-21*
 
 - In `rules/stack/cli.md` (`Structured -h/--help layout`), require aligned description columns within each section (accounting for the rendered program name length when `{prog}` templates are used so continuation lines align with primary descriptions) and a maximum `--help` line width of 100 columns (~80 columns for prose paragraphs).

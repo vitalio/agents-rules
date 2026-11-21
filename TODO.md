@@ -1,3 +1,11 @@
+# 🎯 [NEXT] F36: Clarify worker task-closing step and out-of-scope backlog recording in rules/role/work.md
+
+- In `rules/role/work.md`, clarify the task completion and out-of-scope backlog recording protocol for `role=work`:
+  - Close the active backlog task only inside the final commit step (after the edit-and-diff step has completed and the printed diff has been verified clean), never inside the edit-and-diff step before diff verification.
+  - When recording an out-of-scope finding as a new backlog item, describe the observed problem, context, and impact without prescribing a design/solution, assigning chain dependencies, or asking the user about chain placement or priority (which belong to `role=plan`).
+  - Stage backlog additions recorded before the final code commit into that commit; if an out-of-scope item is recorded after the final code commit is already created/pushed (or in a session where no code commit follows), commit and push the backlog file update immediately so it is not left uncommitted in the working tree.
+- Wrap prose in `rules/role/work.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
+
 # 🎯 [NEXT] F35: Preload root AGENTS.md and scoped rules/**/AGENTS.md via include in .agents_bundle
 
 - In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
@@ -17,7 +25,7 @@
 
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
-- Depends on: F31, F32, F33, F34, F35
+- Depends on: F31, F32, F33, F34, F35, F36
 - Wrap long lines (>80 chars) across all remaining rule files in `rules/` (`rules/collab/*.md`, `rules/core/*.md`, `rules/os/*.md`, `rules/release/*.md`, `rules/role/*.md`, `rules/stack/*.md`, `rules/vcs/*.md`) to ~80 characters per line and bump `VERSION` for a PATCH release.
 
 # ⚪ [NEW] D1: Design composable role extensions and domain overlays
@@ -39,20 +47,3 @@
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
-
-# ⚪ [NEW] F36: Worker closes the task in the edit step, before the diff is verified clean
-
-- Problem: the rules say `todo_md done` is run before the final commit in `role=work`, but do not say in which step. In session s210 it was run in the edit-and-diff step, before the self-review of the diff was finished.
-- Impact: if the diff had turned out unclean, the task would already be archived as DONE with unfinished implementation and would need a reopen; until the commit, the working tree also shows a closed task with no matching implementation commit.
-
-# ⚪ [NEW] F37: Worker-recorded backlog items have no defined commit path when no code commit follows
-
-- Problem: in `role=work`, `todo_md` mutations are not committed with `-c` and are expected to be staged into the final code commit. When the worker records an out-of-scope finding as a new backlog item after the final code commit is already pushed (or in any session where no code commit follows), the rules do not say what happens to the resulting `TODO.md` change.
-- Observed in session s210: F36 was added after the release commit was pushed and stayed uncommitted in the working tree until the user pointed it out; the worker also asked whether to link it into a chain, which is outside the worker role (chain placement belongs to the planner).
-- Impact: backlog items can stay unpublished or be lost between sessions, and the start-of-session check ignores uncommitted task-backlog changes, so the gap is not caught later.
-
-# ⚪ [NEW] F38: Worker has no guidance on how to record a new backlog item
-
-- Problem: the rules describe `todo_md` mechanics, but not what a worker-authored backlog item should contain or where the worker responsibility ends. The planner decides the solution, chain placement, and priority together with the user.
-- Observed in session s210: the worker wrote F36 as a ready solution (target file and wording to add) instead of describing the problem, and asked the user whether to link the new task into a chain, which belongs to the planner.
-- Impact: planner discussion is pre-empted, task bodies are inconsistent between sessions, and the worker overreaches its role.
