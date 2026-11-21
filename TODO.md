@@ -39,3 +39,10 @@
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
+
+# ⚪ [NEW] F36: Specify that todo_md done runs in the guarded commit step after a clean diff, not in the edit step
+
+- In `rules/role/work.md` (`Role (Worker)`), state that `todo_md done <ID>` is run only in the guarded commit step, after the self-reviewed diff is verified clean and immediately before the final commit, so the task closure stays atomic with the implementation commit and a diff fix never has to reopen the task.
+- State that the edit-and-diff step must leave the task in its active status; if the closure must be visible in the diff, it is previewed with `todo_md` read-only commands instead of mutating the backlog.
+- Check where the `todo_md` lifecycle rule (`done` is run before the final commit in `role=work`) is defined; if it lives outside this repository, align the wording there via a separate task in that repository.
+- Wrap prose in the touched rule file at ~80 columns without decorative bold/italic markup and bump `VERSION` for a PATCH release.
