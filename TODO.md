@@ -15,6 +15,8 @@
 
 - Expand `rules/core/composability.md` with universal software engineering code structure principles: modular cohesion and file-size discipline (keeping source modules under `src/` focused on a single responsibility at roughly 300-800 lines and splitting modules that exceed ~1000 lines or mix architectural layers), layered separation of concerns (separating pure data/parsing and domain/graph algorithms from TTY/ANSI rendering and CLI/I/O dispatch), focused functions at a single level of abstraction, and a single canonical algorithm per domain invariant rather than parallel implementations.
 
+- Align `rules/role/{design,plan,work,review}.md` with `todo_flow:D6` (`docs/adr/0002-context-bundle-protocol-and-self-contained-producers.md`) so role definitions in `agents-rules` are completely self-sufficient once `todo_md.bundle` and its role-specific `prompt Mode: ...` lines are removed.
+
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Depends on: F31, F32, F34
