@@ -15,11 +15,6 @@
 - Update `rules/role/plan.md` (`Role (Planner)`) to require bidirectional dependency-chain integration whenever adding or refining tasks (wiring both upstream prerequisites on the new task and downstream dependents/closing roots or milestone waves that touch the same target files or build on the capability, so tasks are not left as unintended standalone items).
 - Wrap prose in `rules/core/isolation.md`, `rules/collab/external.md`, and `rules/role/plan.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
 
-# 🎯 [NEXT] F31: Specify --help column alignment, {prog} placeholder accounting, and <=100-col width in rules/stack/cli.md
-
-- In `rules/stack/cli.md` (`Structured -h/--help layout`), require aligned description columns within each section (accounting for the rendered program name length when `{prog}` templates are used so continuation lines align with primary descriptions) and a maximum `--help` line width of 100 columns (~80 columns for prose paragraphs).
-- Wrap rule prose in `rules/stack/cli.md` at ~80 characters per line and bump `VERSION` for a PATCH release.
-
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Depends on: F31, F32, F33, F34, F35

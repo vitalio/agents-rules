@@ -1,3 +1,8 @@
+# ✅ [DONE] F31: Specify --help column alignment, {prog} placeholder accounting, and <=100-col width in rules/stack/cli.md — *2026-11-21*
+
+- In `rules/stack/cli.md` (`Structured -h/--help layout`), require aligned description columns within each section (accounting for the rendered program name length when `{prog}` templates are used so continuation lines align with primary descriptions) and a maximum `--help` line width of 100 columns (~80 columns for prose paragraphs).
+- Wrap rule prose in `rules/stack/cli.md` at ~80 characters per line and bump `VERSION` for a PATCH release.
+
 # ✅ [DONE] F34: Enforce brief between-step worker prose, in-step test runs, and domain-named test methods — *2026-11-21*
 
 - In `rules/role/work.md` (`Role (Worker)`), require chat prose before each execution block across multi-step reads or staged edits to stay within 1-2 short sentences without dumping multi-point code analysis, intermediate breakdowns, or implementation plans in visible chat.
