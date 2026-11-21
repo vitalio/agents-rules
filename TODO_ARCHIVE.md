@@ -1,3 +1,23 @@
+# ❌ [CANCELED] F36: Clarify worker task-closing step and out-of-scope backlog recording in rules/role/work.md — *Consolidated into F32*
+
+- In `rules/role/work.md`, clarify the task completion and out-of-scope backlog recording protocol for `role=work`:
+  - Close the active backlog task only inside the final commit step (after the edit-and-diff step has completed and the printed diff has been verified clean), never inside the edit-and-diff step before diff verification.
+  - When recording an out-of-scope finding as a new backlog item, describe the observed problem, context, and impact without prescribing a design/solution, assigning chain dependencies, or asking the user about chain placement or priority (which belong to `role=plan`).
+  - Stage backlog additions recorded before the final code commit into that commit; if an out-of-scope item is recorded after the final code commit is already created/pushed (or in a session where no code commit follows), commit and push the backlog file update immediately so it is not left uncommitted in the working tree.
+- Wrap prose in `rules/role/work.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
+
+# ❌ [CANCELED] F35: Preload root AGENTS.md and scoped rules/**/AGENTS.md via include in .agents_bundle — *Consolidated into F32*
+
+- In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
+- Wrap long prose lines in `rules/core/AGENTS.md` at ~80 columns to match `AGENTS.md` and `rules/role/AGENTS.md`.
+
+# ❌ [CANCELED] F33: Specify planner line-range preloading (path:start-end) on NEXT promotion and atomic planning session boundary in rules/role/plan.md — *Consolidated into F32*
+
+- In `rules/role/plan.md`:
+  - Update the target-file closure bullet so that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT`, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so a subsequent `role=work` session bundle preloads those slices directly.
+  - Scope each `role=plan` session to an atomic planning goal: once the agreed task updates, dependency edges, and priorities are persisted, committed, and pushed in `TODO*.md`, end the planning session immediately without asking which task to work on next or spawning another task session (each subsequent task runs in its own new session).
+- Verify line wrapping (~80 columns) and bump `VERSION` for a PATCH release.
+
 # ❌ [CANCELED] F38: Worker has no guidance on how to record a new backlog item — *Consolidated into F36*
 
 - Problem: the rules describe `todo_md` mechanics, but not what a worker-authored backlog item should contain or where the worker responsibility ends. The planner decides the solution, chain placement, and priority together with the user.
