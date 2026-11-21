@@ -11,10 +11,12 @@
 - In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
 - Wrap long prose lines in `rules/core/AGENTS.md` at ~80 columns to match `AGENTS.md` and `rules/role/AGENTS.md`.
 
-# 🎯 [NEXT] F33: Specify planner line-range preloading (path:start-end) for large inspected files when promoting a task to NEXT in rules/role/plan.md
+# 🎯 [NEXT] F33: Specify planner line-range preloading (path:start-end) on NEXT promotion and atomic planning session boundary in rules/role/plan.md
 
-- In `rules/role/plan.md`, update the target-file closure bullet so that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT` or take it into `role=work` next, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so the initial `role=work` bundle preloads those slices directly.
-- Verify line wrapping (~80 columns) and update `README.md` or `VERSION` if needed.
+- In `rules/role/plan.md`:
+  - Update the target-file closure bullet so that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT`, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so a subsequent `role=work` session bundle preloads those slices directly.
+  - Scope each `role=plan` session to an atomic planning goal: once the agreed task updates, dependency edges, and priorities are persisted, committed, and pushed in `TODO*.md`, end the planning session immediately without asking which task to work on next or spawning another task session (each subsequent task runs in its own new session).
+- Verify line wrapping (~80 columns) and bump `VERSION` for a PATCH release.
 
 # 🎯 [NEXT] F32: Add host-chat session isolation rule (rules/core/isolation.md) and forbid AI attribution trailers in rules/collab/external.md
 
