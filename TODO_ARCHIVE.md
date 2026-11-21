@@ -1,3 +1,9 @@
+# ❌ [CANCELED] F39: agents_bundle include silently ignores glob patterns — *Tracked in agents_bundle:F29 (glob include implementation) and agents-rules:F20 (.agents_bundle migration to include agents/**/AGENTS.md)*
+
+- Observed in session s228 with `agents_bundle` 0.15.0: `include rules/**/AGENTS.md`, `include rules/*/AGENTS.md`, and `include rules/**/*.md` exit with rc=0 and emit no fragments and no warning, while `include rules/core/AGENTS.md` emits the file as expected.
+- Context: `F32` needs every scoped category `AGENTS.md` preloaded, so `.agents_bundle` currently lists `rules/core/AGENTS.md` and `rules/role/AGENTS.md` explicitly; a new category `AGENTS.md` is silently missing from every session until someone adds a line by hand.
+- Impact: context that the author believes is preloaded is absent without any signal, and the failure is invisible in the bundle output.
+
 # ✅ [DONE] F5: Wrap prose at ~80 columns across all remaining rule files — *2026-11-21*
 
 - Depends on: F31, F32, F34
