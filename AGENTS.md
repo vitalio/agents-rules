@@ -6,12 +6,25 @@ and SemVer rules are loaded via `.agents_bundle`.
 
 ## Taxonomic Design Principles
 
+- Canonical package root: `agents/` is the canonical package directory for
+  all exported atomic rules (`.md`) and composite bundles (`.bundle`),
+  organized by logical domain subtrees (replacing the legacy top-level
+  `rules/` and `rulesets/` split tracked in `F20`).
 - Abstraction promotion (least-specific ancestor): Place each rule at the
   highest level of the tree where it holds unconditionally: universal
-  domain-agnostic axioms in `rules/core/`, session-level operating postures in
-  `rules/role/`, communication boundaries in `rules/collab/`, and
-  environment/stack specifics in `rules/os/`, `rules/vcs/`, `rules/stack/`, or
-  `rules/release/`.
+  domain-agnostic axioms in `core/`, session-level operating postures in
+  `role/`, domain-specific invariants and role overlays in domain subtrees
+  (such as `coding/`), communication boundaries in `collab/`, and
+  environment, stack, or release specifics in `os/`, `vcs/`, `stack/`, or
+  `release/`.
+- Composable role postures and domain overlays: Keep base roles in `role/`
+  strictly domain-agnostic (cognitive stance, artifact permissions, context
+  handoff contracts, and backlog lifecycle without software-engineering
+  assumptions). Express domain-specific role constraints as additive overlay
+  rules (`<domain>/<role>.md`) activated automatically via
+  `[if role!=] rule <domain>/{role:}` inside `<domain>/<domain>.bundle` so
+  base roles compose cleanly with one or more domain bundles without
+  duplicating role protocols.
 - Orthogonal facets (single axis of activation): Each leaf rule file (`.md`)
   must depend on a single activation condition. Never cross-multiply
   independent axes into hybrid filenames (such as `<language>-<interface>.md`);

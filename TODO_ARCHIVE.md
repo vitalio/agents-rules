@@ -1,3 +1,12 @@
+# ✅ [DONE] D1: Design composable role extensions and domain overlays — *2026-11-21, Designed composable role overlays (agents/coding/*) and orthogonal agents/stack/python/* subtree*
+
+- Depends on: F16, F9
+- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
+- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
+- Apply orthogonal facet decomposition (`AGENTS.md`): separate cross-language interface contracts (`cli.md`) from language subtrees (`python/syntax.md`, `python/unittest.md`, `python/stdlib.md`, `python/annotations.md`, plus a default `python.bundle` preset) so projects never rely on hybrid filenames like `python-cli.md`.
+
+- Promote universal modular code and test architecture rules (module cohesion, ~300-800 line module budget, layered separation between parsing/domain/rendering/CLI, single canonical domain algorithms, and mirrored `tests/test_<module>.py` organization) to `core/composability.md` (or the `coding/` domain overlay), keeping `python/unittest.md` focused strictly on Python `unittest` mechanics (`unittest discover -s tests`, `tests/helpers.py`, `ast.parse()`).
+
 # ❌ [CANCELED] F36: Clarify worker task-closing step and out-of-scope backlog recording in rules/role/work.md — *Consolidated into F32*
 
 - In `rules/role/work.md`, clarify the task completion and out-of-scope backlog recording protocol for `role=work`:

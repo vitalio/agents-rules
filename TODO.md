@@ -1,12 +1,3 @@
-# 🎯 [NEXT] D1: Design composable role extensions and domain overlays
-
-- Depends on: F16, F9
-- Explore separating universal domain-agnostic role postures in `agents/role/` (cognitive stance, artifact permissions, and handoff contracts) from domain-specific role overlays (such as `agents/coding/design.md`, `agents/coding/plan.md`, `agents/coding/work.md`, and `agents/coding/review.md`) activated automatically via `[if role=...]` inside domain bundles.
-- Define how projects compose base roles with one or more domain overlays without duplicating rules or leaking software-engineering assumptions into universal roles, feeding into `F20`.
-- Apply orthogonal facet decomposition (`AGENTS.md`): separate cross-language interface contracts (`cli.md`) from language subtrees (`python/syntax.md`, `python/unittest.md`, `python/stdlib.md`, `python/annotations.md`, plus a default `python.bundle` preset) so projects never rely on hybrid filenames like `python-cli.md`.
-
-- Promote universal modular code and test architecture rules (module cohesion, ~300-800 line module budget, layered separation between parsing/domain/rendering/CLI, single canonical domain algorithms, and mirrored `tests/test_<module>.py` organization) to `core/composability.md` (or the `coding/` domain overlay), keeping `python/unittest.md` focused strictly on Python `unittest` mechanics (`unittest discover -s tests`, `tests/helpers.py`, `ast.parse()`).
-
 # 🎯 [NEXT] F32: Add session isolation rule, forbid AI trailers, refine plan/work role protocols, and preload AGENTS.md via include globs
 
 - Add `rules/core/isolation.md` (`# Description: Host-chat session isolation and external platform tool boundary`) and include `rule core/isolation` as the first entry in `rulesets/core.ruleset` (before `rule core/start`) so every bundle begins by scoping the active session to the bundle rules and workspace `AGENTS.md` files and instructing the agent not to apply any host-chat persona/domain context or invoke built-in host platform tools (such as external knowledge-base or web search) unless explicitly requested by the user.
@@ -32,11 +23,19 @@
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
 - Depends on: D1
-- Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`, after `agents_bundle` supports the `agents/` layout).
-- Decompose `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, and `rules/stack/python-annotations.md` into a nested `agents/stack/python/` (or `agents/python/`) subtree (`syntax.md`, `unittest.md`, `stdlib.md`, `annotations.md`, and `python.bundle`) orthogonal to `cli.md`.
-- Update `.agents_bundle` (`include agents/**/AGENTS.md`), `AGENTS.md`, and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
-
-- Ensure universal modular code and test architecture rules live in `agents/core/composability.md` (or `agents/coding/`) while `agents/stack/python/unittest.md` (or `agents/python/unittest.md`) retains only Python `unittest`-specific mechanics.
+- Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset` -> `agents/core.bundle`, `rulesets/default.ruleset` -> `agents/default.bundle`, `rulesets/orchestrator.ruleset` -> `agents/orchestrator.bundle`, and `rules/*` into `agents/*` (after `agents_bundle` supports the `agents/` layout and unified `.bundle` resolution).
+- Extract software-engineering specifics out of universal `agents/role/{design,plan,work,review}.md` and `agents/core/composability.md` into the `agents/coding/` domain subtree (`agents/coding/AGENTS.md`, `agents/coding/coding.bundle`, `agents/coding/architecture.md`, `agents/coding/testing.md`, and additive role overlays `agents/coding/{design,plan,work,review}.md` activated via `[if role!=] rule coding/{role:}` in `agents/coding/coding.bundle`):
+  - Keep base `agents/role/{design,plan,work,review}.md` strictly domain-agnostic (cognitive stance, artifact modification boundaries, target-file closure and `path:start-end` slice handoffs, two-stage review gate, and backlog lifecycle).
+  - Place modular code structure rules (~300-800 line module budget under `src/`, splitting modules >1000 lines or mixing layers, layered separation between parsing/domain/rendering/CLI, single-abstraction-level functions, and a single canonical algorithm per domain invariant) in `agents/coding/architecture.md`.
+  - Place language-agnostic test architecture rules (modular `tests/test_<module>.*` mirroring source modules, domain-behavior test naming without task-ID prefixes, offline/stubbed network isolation, temporary-directory filesystem isolation, and in-step test runs with live `.` progress indicators) in `agents/coding/testing.md`.
+  - Place software-engineering role constraints (`src/` and `tests/` modification prohibition in `design`/`plan`/`review`, `docs/adr/NNNN-<slug>.md` and greenfield repo bootstrap in `design`, full code/CLI/doc/test target-file closure in `plan`, in-step and guarded-commit linter/test verification in `work`, and Stage 1 test/linter/doc compliance plus Stage 2 architecture/security/performance review in `review`) in `agents/coding/{design,plan,work,review}.md`.
+- Decompose `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, and `rules/stack/python-annotations.md` into an orthogonal `agents/stack/python/` subtree separate from `agents/stack/cli.md`:
+  - `agents/stack/python/syntax.md` (`ast.parse` syntax verification).
+  - `agents/stack/python/unittest.md` (strictly Python `unittest` mechanics: `python3 -m unittest discover -s tests` at default verbosity `1` without `-q`/`-v`/`-b`, shared base classes and fixtures in `tests/helpers.py` without `test_` prefix, `contextlib.redirect_stdout`/`redirect_stderr` output capture and `with` resource hygiene, `msg=proc.stderr` and `self.subTest(...)` failure diagnostics, `tempfile.TemporaryDirectory`, and programmatic test splitting via `ast.parse()` `node.lineno`..`node.end_lineno`).
+  - `agents/stack/python/stdlib.md` (opt-in Python 3 standard-library-only invariant).
+  - `agents/stack/python/annotations.md` (opt-in `from __future__ import annotations` for `{py_min:3.9}` and `src/header.py`).
+  - `agents/stack/python/python.bundle` (default Python preset loading `rule stack/python/syntax` and `rule stack/python/unittest`).
+- Update `.agents_bundle` (`include AGENTS.md` and `include agents/**/AGENTS.md`), `AGENTS.md`, and `README.md` to reflect the unified `agents/` rule/bundle layout, wrap all modified files at ~80 columns, and bump `VERSION` for a MINOR release.
 
 # ⚪ [NEW] F25: Rename project and package references from agents-rules to ctx-taxonomy
 
