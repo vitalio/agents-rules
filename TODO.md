@@ -1,3 +1,8 @@
+# 🎯 [NEXT] F35: Preload root AGENTS.md and scoped rules/**/AGENTS.md via include in .agents_bundle
+
+- In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
+- Wrap long prose lines in `rules/core/AGENTS.md` at ~80 columns to match `AGENTS.md` and `rules/role/AGENTS.md`.
+
 # 🎯 [NEXT] F33: Specify planner line-range preloading (path:start-end) for large inspected files when promoting a task to NEXT in rules/role/plan.md
 
 - In `rules/role/plan.md`, update the target-file closure bullet so that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT` or take it into `role=work` next, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so the initial `role=work` bundle preloads those slices directly.
@@ -17,7 +22,7 @@
 
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
-- Depends on: F31, F32, F33, F34
+- Depends on: F31, F32, F33, F34, F35
 - Wrap long lines (>80 chars) across all remaining rule files in `rules/` (`rules/collab/*.md`, `rules/core/*.md`, `rules/os/*.md`, `rules/release/*.md`, `rules/role/*.md`, `rules/stack/*.md`, `rules/vcs/*.md`) to ~80 characters per line and bump `VERSION` for a PATCH release.
 
 # ⚪ [NEW] D1: Design composable role extensions and domain overlays
@@ -32,14 +37,10 @@
 - Depends on: D1
 - Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset`, `rulesets/default.ruleset`, and `rules/` into a logical domain-based layout under `agents/` (incorporating composable domain role overlays designed in `D1`, after `agents_bundle` supports the `agents/` layout).
 - Decompose `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md`, and `rules/stack/python-annotations.md` into a nested `agents/stack/python/` (or `agents/python/`) subtree (`syntax.md`, `unittest.md`, `stdlib.md`, `annotations.md`, and `python.bundle`) orthogonal to `cli.md`.
-- Update `AGENTS.md` and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
+- Update `.agents_bundle` (`include agents/**/AGENTS.md`), `AGENTS.md`, and `README.md` to reflect the unified `agents/` rule/bundle layout, and release a new MINOR version.
 
 # ⚪ [NEW] F25: Rename project and package references from agents-rules to ctx-taxonomy
 
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
-
-# ⚪ [NEW] F35: Preload scoped rules/**/AGENTS.md files in .agents_bundle
-
-- Include scoped category `AGENTS.md` files (`rules/**/AGENTS.md`) in `.agents_bundle` alongside root `AGENTS.md` so category invariants (such as VCS/tool independence in `rules/core/AGENTS.md` and `rules/role/AGENTS.md`) are always preloaded in session context.
