@@ -1,10 +1,3 @@
-# 🎯 [NEXT] F34: Enforce brief between-step worker prose, in-step test runs, and domain-named test methods
-
-- In `rules/role/work.md` (`Role (Worker)`), require chat prose before each execution block across multi-step reads or staged edits to stay within 1-2 short sentences without dumping multi-point code analysis, intermediate breakdowns, or implementation plans in visible chat.
-- In `rules/core/edit.md` (`Edit & pre-commit verification`) and `rules/core/diff-review.md` (`Self-reviewed diff before commit`), forbid dedicating a standalone execution step solely to running tests after an edit: run syntax checks and unit tests inside the same step immediately after any self-consistent edit, and when a large change is split across sequential steps solely to stay within output token limits (leaving code and tests temporarily out of sync, such as updating source modules in one step and test files in the next), run only syntax/build checks in intermediate steps and run the full test suite at the end of the final edit step together with `git status --porcelain` and `git diff HEAD`.
-- In `rules/stack/python-cli.md` and `rules/collab/no-task-ids.md`, require unit test methods and classes in `tests/test_*.py` to be named and grouped strictly by domain behavior and component invariants (such as `test_bundle_table_hierarchy`, `test_fullscreen_info_part_cursor`, `test_clipboard_prompt_action`) without backlog task-ID prefixes (`test_f47_...`, `test_b11_...`), updating the component's domain test when a contract evolves rather than accumulating ticket-numbered test methods.
-- Wrap rule prose in `rules/role/work.md`, `rules/core/edit.md`, `rules/core/diff-review.md`, `rules/stack/python-cli.md`, and `rules/collab/no-task-ids.md` at ~80 columns and bump `VERSION` for a PATCH release.
-
 # 🎯 [NEXT] F33: Specify planner line-range preloading (path:start-end) for large inspected files when promoting a task to NEXT in rules/role/plan.md
 
 - In `rules/role/plan.md`, update the target-file closure bullet so that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT` or take it into `role=work` next, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so the initial `role=work` bundle preloads those slices directly.
@@ -46,3 +39,7 @@
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
+
+# ⚪ [NEW] F35: Preload scoped rules/**/AGENTS.md files in .agents_bundle
+
+- Include scoped category `AGENTS.md` files (`rules/**/AGENTS.md`) in `.agents_bundle` alongside root `AGENTS.md` so category invariants (such as VCS/tool independence in `rules/core/AGENTS.md` and `rules/role/AGENTS.md`) are always preloaded in session context.

@@ -1,3 +1,10 @@
+# ✅ [DONE] F34: Enforce brief between-step worker prose, in-step test runs, and domain-named test methods — *2026-11-21*
+
+- In `rules/role/work.md` (`Role (Worker)`), require chat prose before each execution block across multi-step reads or staged edits to stay within 1-2 short sentences without dumping multi-point code analysis, intermediate breakdowns, or implementation plans in visible chat.
+- In `rules/core/edit.md` (`Edit & pre-commit verification`) and `rules/core/diff-review.md` (`Self-reviewed diff before commit`), forbid dedicating a standalone execution step solely to running tests after an edit: run syntax checks and unit tests inside the same step immediately after any self-consistent edit, and when a large change is split across sequential steps solely to stay within output token limits (leaving code and tests temporarily out of sync, such as updating source modules in one step and test files in the next), run only syntax/build checks in intermediate steps and run the full test suite at the end of the final edit step together with `git status --porcelain` and `git diff HEAD`.
+- In `rules/stack/python-cli.md` and `rules/collab/no-task-ids.md`, require unit test methods and classes in `tests/test_*.py` to be named and grouped strictly by domain behavior and component invariants (such as `test_bundle_table_hierarchy`, `test_fullscreen_info_part_cursor`, `test_clipboard_prompt_action`) without backlog task-ID prefixes (`test_f47_...`, `test_b11_...`), updating the component's domain test when a contract evolves rather than accumulating ticket-numbered test methods.
+- Wrap rule prose in `rules/role/work.md`, `rules/core/edit.md`, `rules/core/diff-review.md`, `rules/stack/python-cli.md`, and `rules/collab/no-task-ids.md` at ~80 columns and bump `VERSION` for a PATCH release.
+
 # ✅ [DONE] F13: Define role handoff contracts, target-file closure, and preloaded-context execution in rules/role/ — *2026-11-20, Defined role handoff contracts, target-file closure, and preloaded-context execution across rules/role/*
 
 - Depends on: F9, F16

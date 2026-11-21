@@ -8,12 +8,18 @@
   `tests/test_<project>.py`), and place shared base `unittest.TestCase`
   classes, in-process CLI runners, and fixtures in `tests/helpers.py` (without
   a `test_` prefix so `unittest discover -s tests` loads the target script
-  once and does not execute the base class standalone). When splitting an
-  existing large test file into modular `tests/test_*.py` files, slice test
-  methods programmatically on disk using `ast.parse()`
-  (`node.lineno`..`node.end_lineno`) rather than re-emitting test bodies in
-  chat output, and update CI workflows (`.github/workflows/`) and active
-  backlog task references to the old file in the same change.
+  once and does not execute the base class standalone). Name and group unit
+  test methods and classes in `tests/test_*.py` strictly by domain behavior and
+  component invariants (such as `test_bundle_table_hierarchy`,
+  `test_fullscreen_info_part_cursor`, `test_clipboard_prompt_action`) without
+  backlog task-ID prefixes (`test_f47_...`, `test_b11_...`), updating the
+  component's domain test when a contract evolves rather than accumulating
+  ticket-numbered test methods. When splitting an existing large test file into
+  modular `tests/test_*.py` files, slice test methods programmatically on disk
+  using `ast.parse()` (`node.lineno`..`node.end_lineno`) rather than
+  re-emitting test bodies in chat output, and update CI workflows
+  (`.github/workflows/`) and active backlog task references to the old file in
+  the same change.
 - Offline tests: Tests never touch the network; third-party clients (such as
   `boto3`) are replaced by stubs in tests (`unittest.mock.patch.dict` on
   `sys.modules`).
