@@ -1,3 +1,8 @@
+# ✅ [DONE] F5: Wrap prose at ~80 columns across all remaining rule files — *2026-11-21*
+
+- Depends on: F31, F32, F34
+- Wrap long lines (>80 chars) across all remaining rule files in `rules/` (`rules/collab/*.md`, `rules/core/*.md`, `rules/os/*.md`, `rules/release/*.md`, `rules/role/*.md`, `rules/stack/*.md`, `rules/vcs/*.md`) to ~80 characters per line and bump `VERSION` for a PATCH release.
+
 # ✅ [DONE] F32: Add session isolation rule, forbid AI trailers, refine plan/work role protocols, and preload AGENTS.md via include globs — *2026-11-21, Added session isolation and AI attribution rules, refined plan/work/design/review roles, expanded code structure axioms, and preloaded scoped AGENTS.md files*
 
 - Add `rules/core/isolation.md` (`# Description: Host-chat session isolation and external platform tool boundary`) and include `rule core/isolation` as the first entry in `rulesets/core.ruleset` (before `rule core/start`) so every bundle begins by scoping the active session to the bundle rules and workspace `AGENTS.md` files and instructing the agent not to apply any host-chat persona/domain context or invoke built-in host platform tools (such as external knowledge-base or web search) unless explicitly requested by the user.

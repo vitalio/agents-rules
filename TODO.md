@@ -1,8 +1,3 @@
-# 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
-
-- Depends on: F31, F32, F34
-- Wrap long lines (>80 chars) across all remaining rule files in `rules/` (`rules/collab/*.md`, `rules/core/*.md`, `rules/os/*.md`, `rules/release/*.md`, `rules/role/*.md`, `rules/stack/*.md`, `rules/vcs/*.md`) to ~80 characters per line and bump `VERSION` for a PATCH release.
-
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
 - Depends on: D1

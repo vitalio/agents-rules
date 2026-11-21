@@ -1,2 +1,6 @@
 # Description: Single Source of Truth (SSOT) and DRY (never duplicate or hardcode versions, constants, or schemas)
-- Single source of truth & DRY: Define every version number, constant, default, schema, or rule in one canonical place and derive or inject it elsewhere — never hardcode or duplicate values across source files, templates, tests, or documentation. Extract shared logic into reusable helpers rather than copy-pasting across branches or modules.
+- Single source of truth & DRY: Define every version number, constant, default,
+  schema, or rule in one canonical place and derive or inject it elsewhere —
+  never hardcode or duplicate values across source files, templates, tests, or
+  documentation. Extract shared logic into reusable helpers rather than
+  copy-pasting across branches or modules.
