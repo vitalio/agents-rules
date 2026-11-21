@@ -1,4 +1,5 @@
 # Description: Core domain-, OS-, and VCS-agnostic agent axioms and workflow
+rule core/isolation
 rule core/start
 rule core/secrets
 rule core/plan

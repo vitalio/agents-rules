@@ -19,3 +19,9 @@
     the user, create the target project directory, initialize version control,
     and scaffold `AGENTS.md`, project context configuration, and the initial
     project task backlog before committing the initial scaffold.
+  - Discuss the design interactively and persist artifacts (architecture
+    records, backlog tasks, scaffold) only after the user agrees; commit the
+    resulting documentation and backlog changes together in a single commit.
+  - Before changing project context configuration, inspect the available rule,
+    ruleset, and bundle catalogs and the current configuration, so new entries
+    reuse existing rules instead of duplicating them.

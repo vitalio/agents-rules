@@ -19,7 +19,7 @@ rule vitalio/agents-rules:stack/python-cli
 rule vitalio/agents-rules:stack/python-stdlib
 rule vitalio/agents-rules:stack/python-annotations py_min=3.9
 
-$ cat AGENTS.md
+include AGENTS.md
 ```
 
 Activate any role from `rules/role/` on demand via `role=<name>`:

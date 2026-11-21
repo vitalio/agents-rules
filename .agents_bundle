@@ -5,7 +5,9 @@ bundle vitalio/todo_md
 ruleset vitalio/agents-rules:default
 rule vitalio/agents-rules:release/semver
 
-$ cat AGENTS.md
+include AGENTS.md
+include rules/core/AGENTS.md
+include rules/role/AGENTS.md
 $ agents_bundle --tree
 $ git status -sb
 $ git branch -vv

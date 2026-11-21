@@ -1,22 +1,3 @@
-# 🎯 [NEXT] F32: Add session isolation rule, forbid AI trailers, refine plan/work role protocols, and preload AGENTS.md via include globs
-
-- Add `rules/core/isolation.md` (`# Description: Host-chat session isolation and external platform tool boundary`) and include `rule core/isolation` as the first entry in `rulesets/core.ruleset` (before `rule core/start`) so every bundle begins by scoping the active session to the bundle rules and workspace `AGENTS.md` files and instructing the agent not to apply any host-chat persona/domain context or invoke built-in host platform tools (such as external knowledge-base or web search) unless explicitly requested by the user.
-- Update `rules/collab/external.md` (`Clean external text & two-step external changes`) to forbid adding AI co-author trailers (such as `Co-Authored-By:`), agent attribution lines (such as `Generated with...`), or tool signatures to commit messages, MR/PR descriptions, comments, or files.
-- Update `rules/role/plan.md` (`Role (Planner)`):
-  - Require bidirectional dependency-chain integration whenever adding or refining tasks (wiring both upstream prerequisites on the new task and downstream dependents/closing roots or milestone waves that touch the same target files or build on the capability, so tasks are not left as unintended standalone items).
-  - Specify that while long-term `NEW` backlog tasks reference file paths and key symbol names in backticks (avoiding brittle line numbers across unrelated commits), once the user agrees to promote a task to `NEXT`, the planner records exact `path:start-end` line ranges in backticks for any inspected files that exceed single-file bundle size budgets so a subsequent `role=work` session bundle preloads those slices directly.
-  - Scope each `role=plan` session to an atomic planning goal: once the agreed task updates, dependency edges, and priorities are persisted, committed, and pushed in `TODO*.md`, end the planning session immediately without asking which task to work on next or spawning another task session.
-- Update `rules/role/work.md` (`Role (Worker)`):
-  - Clarify that the active backlog task is closed only inside the final commit step (after the edit-and-diff step has completed and the printed diff has been verified clean), never inside the edit-and-diff step before diff verification.
-  - When recording an out-of-scope finding as a new backlog item, describe the observed problem, context, and impact without prescribing a design/solution, assigning chain dependencies, or asking the user about chain placement or priority (which belong to `role=plan`).
-  - Stage backlog additions recorded before the final code commit into that commit; if an out-of-scope item is recorded after the final code commit is already created/pushed (or in a session where no code commit follows), commit and push the backlog file update immediately so it is not left uncommitted in the working tree.
-- In `.agents_bundle`, replace `$ cat AGENTS.md` with declarative `include AGENTS.md` and `include rules/**/AGENTS.md` directives so root `AGENTS.md` and all scoped category `AGENTS.md` files (`rules/core/AGENTS.md`, `rules/role/AGENTS.md`, and any future category `AGENTS.md` files) are preloaded as discrete `include` bundle fragments in every session.
-- Wrap prose in `rules/core/isolation.md`, `rules/collab/external.md`, `rules/role/plan.md`, `rules/role/work.md`, and `rules/core/AGENTS.md` at ~80 columns without decorative bold/italic markup, and bump `VERSION` for a PATCH release.
-
-- Expand `rules/core/composability.md` with universal software engineering code structure principles: modular cohesion and file-size discipline (keeping source modules under `src/` focused on a single responsibility at roughly 300-800 lines and splitting modules that exceed ~1000 lines or mix architectural layers), layered separation of concerns (separating pure data/parsing and domain/graph algorithms from TTY/ANSI rendering and CLI/I/O dispatch), focused functions at a single level of abstraction, and a single canonical algorithm per domain invariant rather than parallel implementations.
-
-- Align `rules/role/{design,plan,work,review}.md` with `todo_flow:D6` (`docs/adr/0002-context-bundle-protocol-and-self-contained-producers.md`) so role definitions in `agents-rules` are completely self-sufficient once `todo_md.bundle` and its role-specific `prompt Mode: ...` lines are removed.
-
 # 🎯 [NEXT] F5: Wrap prose at ~80 columns across all remaining rule files
 
 - Depends on: F31, F32, F34
@@ -44,3 +25,9 @@
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
 - Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
+
+# ⚪ [NEW] F39: agents_bundle include silently ignores glob patterns
+
+- Observed in session s228 with `agents_bundle` 0.15.0: `include rules/**/AGENTS.md`, `include rules/*/AGENTS.md`, and `include rules/**/*.md` exit with rc=0 and emit no fragments and no warning, while `include rules/core/AGENTS.md` emits the file as expected.
+- Context: `F32` needs every scoped category `AGENTS.md` preloaded, so `.agents_bundle` currently lists `rules/core/AGENTS.md` and `rules/role/AGENTS.md` explicitly; a new category `AGENTS.md` is silently missing from every session until someone adds a line by hand.
+- Impact: context that the author believes is preloaded is absent without any signal, and the failure is invisible in the bundle output.
