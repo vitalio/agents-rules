@@ -3,20 +3,6 @@
 - In `rules/stack/cli.md` (under `Help column alignment and width`), note that the 100-column limit applies to rendered display columns / Unicode characters (verified via display-width helpers or unit tests) rather than `awk 'length($0)'`, because `mawk` measures `length($0)` in UTF-8 bytes and reports false positives on lines with multi-byte Unicode symbols or emoji.
 - Target files: `rules/stack/cli.md`.
 
-# 🎯 [NEXT] F42: Add opt-in collab/commits rule and remove other-task TODO.md cleanup from role=work diff review
-
-- Remove `rules/collab/no-task-ids.md` and create `rules/collab/commits.md` (`# Description: Opt-in commit message convention with imperative subjects, trailing task IDs, and no redundant release versions`):
-  - Commit subject line: write a concise single-line summary in the imperative mood without a trailing period, describing what changed and why.
-  - Trailing task ID suffix: when a commit implements, plans, or closes one or more repository backlog tasks, append the task ID(s) in parentheses at the end of the subject line (`<Summary> (<ID>)` or `<Summary> (<ID1>, <ID2>)`); omit the suffix for commits not tied to a backlog task.
-  - No release version in commit subject: do not include `Release vX.Y.Z:` or `(vX.Y.Z)` in the commit subject when the version is already recorded in `VERSION` and the annotated git tag `vX.Y.Z`.
-  - Optional commit body: separate the body from the subject with a blank line, wrap at roughly 72-80 columns, and explain non-obvious context or rationale without restating the diff line by line.
-- Resolve the rule conflict between self-reviewed diff cleanup and `role=work` scope boundaries:
-  - In `rules/core/diff-review.md` and `rules/stack/python-cli.md`, remove `and active backlog tasks in TODO.md` / `and active backlog task references to the old file in TODO.md` from pre-commit stale-reference cleanup so `role=work` cleans up stale references only in code, tests, CI workflows (`.github/workflows/`), `README.md`, and `AGENTS.md`.
-  - In `rules/role/work.md`, explicitly state that stale references inside other backlog tasks (`- Target files:`, symbols, line numbers) are neither inspected nor edited in `role=work` (that belongs to `role=plan`): a single repository `grep` check and a single new backlog item describing the stale reference problem without a solution are sufficient.
-- Enable `rule vitalio/agents-rules:collab/commits` in `.agents_bundle` and update the usage example in `README.md` (replacing `rule vitalio/agents-rules:collab/no-task-ids` with `rule vitalio/agents-rules:collab/commits`).
-- Wrap prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
-- Target files: `rules/collab/commits.md`, `rules/collab/no-task-ids.md`, `rules/core/diff-review.md`, `rules/stack/python-cli.md`, `rules/role/work.md`, `.agents_bundle`, `README.md`, `VERSION`.
-
 # 🎯 [NEXT] F40: Add release/github-ci rule, interactive CI/Release questionnaire, and tag-triggered GitHub Release workflow
 
 - Create `rules/release/github-ci.md` defining the GitHub Actions CI & Release workflow standard (`.github/workflows/ci.yml`):

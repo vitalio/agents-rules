@@ -30,5 +30,10 @@
     item is recorded after the final code commit was created and pushed (or in
     a session where no code commit follows), commit and push the backlog file
     update immediately so it is not left uncommitted in the working tree.
+  - Backlog tasks other than the active one are out of scope: neither
+    inspect nor edit stale references inside them (`- Target files:`,
+    symbols, line numbers); that belongs to `role=plan`. A single
+    repository `grep` check and a single new backlog item describing the
+    stale reference problem without a solution are sufficient.
   Deliver verified code, tests, synced documentation, and clean commits
   without expanding the current diff beyond the agreed task.

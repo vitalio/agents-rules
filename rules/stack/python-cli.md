@@ -18,8 +18,7 @@
   modular `tests/test_*.py` files, slice test methods programmatically on disk
   using `ast.parse()` (`node.lineno`..`node.end_lineno`) rather than
   re-emitting test bodies in chat output, and update CI workflows
-  (`.github/workflows/`) and active backlog task references to the old file in
-  the same change.
+  (`.github/workflows/`) in the same change.
 - Offline tests: Tests never touch the network; third-party clients (such as
   `boto3`) are replaced by stubs in tests (`unittest.mock.patch.dict` on
   `sys.modules`).
