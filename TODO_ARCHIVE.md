@@ -1,3 +1,8 @@
+# ✅ [DONE] F41: Require explicit '- Target files:' bullet and drift-proof symbol slices in role/plan.md — *2026-11-22*
+
+- Update `rules/role/plan.md` so the target-file closure bullet explicitly requires recording target repository files and slices on a dedicated `- Target files:` line (because `todo_md files` parses only `- Target files:` lines), prefers drift-proof symbol slices (`path:symbol` or `path:start_symbol..end_symbol`) alongside `path:start-end` for large files (`> 400` lines) so slices survive out-of-order task edits, and instructs planners not to include `TODO.md`, `TODO_ARCHIVE.md`, or `AGENTS.md` (unless `AGENTS.md` itself is being edited) in `- Target files:`.
+- Target files: `rules/role/plan.md`.
+
 # ❌ [CANCELED] F39: agents_bundle include silently ignores glob patterns — *Tracked in agents_bundle:F29 (glob include implementation) and agents-rules:F20 (.agents_bundle migration to include agents/**/AGENTS.md)*
 
 - Observed in session s228 with `agents_bundle` 0.15.0: `include rules/**/AGENTS.md`, `include rules/*/AGENTS.md`, and `include rules/**/*.md` exit with rc=0 and emit no fragments and no warning, while `include rules/core/AGENTS.md` emits the file as expected.
