@@ -1,3 +1,14 @@
+# 🎯 [NEXT] F42: Replace collab/no-task-ids with opt-in collab/commits rule and enable it in .agents_bundle
+
+- Remove `rules/collab/no-task-ids.md` and create `rules/collab/commits.md` (`# Description: Opt-in commit message convention with imperative subjects, trailing task IDs, and no redundant release versions`):
+  - Commit subject line: write a concise single-line summary in the imperative mood without a trailing period, describing what changed and why.
+  - Trailing task ID suffix: when a commit implements, plans, or closes one or more repository backlog tasks, append the task ID(s) in parentheses at the end of the subject line (`<Summary> (<ID>)` or `<Summary> (<ID1>, <ID2>)`); omit the suffix for commits not tied to a backlog task.
+  - No release version in commit subject: do not include `Release vX.Y.Z:` or `(vX.Y.Z)` in the commit subject when the version is already recorded in `VERSION` and the annotated git tag `vX.Y.Z`.
+  - Optional commit body: separate the body from the subject with a blank line, wrap at roughly 72-80 columns, and explain non-obvious context or rationale without restating the diff line by line.
+- Enable `rule vitalio/agents-rules:collab/commits` in `.agents_bundle` and update the usage example in `README.md` (replacing `rule vitalio/agents-rules:collab/no-task-ids` with `rule vitalio/agents-rules:collab/commits`).
+- Wrap prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
+- Target files: `rules/collab/commits.md`, `rules/collab/no-task-ids.md`, `.agents_bundle`, `README.md`, `VERSION`.
+
 # 🎯 [NEXT] F41: Require explicit '- Target files:' bullet and drift-proof symbol slices in role/plan.md
 
 - Update `rules/role/plan.md` so the target-file closure bullet explicitly requires recording target repository files and slices on a dedicated `- Target files:` line (because `todo_md files` parses only `- Target files:` lines), prefers drift-proof symbol slices (`path:symbol` or `path:start_symbol..end_symbol`) alongside `path:start-end` for large files (`> 400` lines) so slices survive out-of-order task edits, and instructs planners not to include `TODO.md`, `TODO_ARCHIVE.md`, or `AGENTS.md` (unless `AGENTS.md` itself is being edited) in `- Target files:`.
@@ -22,7 +33,7 @@
 
 # ⚪ [NEW] F20: Replace rulesets with bundles and organize rules logically by domain
 
-- Depends on: D1, F40
+- Depends on: D1, F40, F42
 - Standardize `agents/` as the single package root directory for all rules (`.md`) and bundles (`.bundle`), migrating `rulesets/core.ruleset` -> `agents/core.bundle`, `rulesets/default.ruleset` -> `agents/default.bundle`, `rulesets/orchestrator.ruleset` -> `agents/orchestrator.bundle`, and `rules/*` (including `rules/release/github-ci.md`) into `agents/*` (after `agents_bundle` supports the `agents/` layout and unified `.bundle` resolution).
 - Extract software-engineering specifics out of universal `agents/role/{design,plan,work,review}.md` and `agents/core/composability.md` into the `agents/coding/` domain subtree (`agents/coding/AGENTS.md`, `agents/coding/coding.bundle`, `agents/coding/architecture.md`, `agents/coding/testing.md`, and additive role overlays `agents/coding/{design,plan,work,review}.md` activated via `[if role!=] rule coding/{role:}` in `agents/coding/coding.bundle`):
   - Keep base `agents/role/{design,plan,work,review}.md` strictly domain-agnostic (cognitive stance, artifact modification boundaries, target-file closure and `path:start-end` slice handoffs, two-stage review gate, and backlog lifecycle).
