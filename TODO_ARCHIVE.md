@@ -1,3 +1,9 @@
+# ❌ [CANCELED] F25: Rename project and package references from agents-rules to ctx-taxonomy — *vitalio/agents-rules keeps its repository and package name per todo_flow:D1/D8 (docs/adr/0003-task-targeted-bundle-architecture-and-atomic-rule-taxonomy.md)*
+
+- Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
+- Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
+- Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
+
 # ✅ [DONE] F42: Add opt-in collab/commits rule and remove other-task TODO.md cleanup from role=work diff review — *2026-11-22*
 
 - Remove `rules/collab/no-task-ids.md` and create `rules/collab/commits.md` (`# Description: Opt-in commit message convention with imperative subjects, trailing task IDs, and no redundant release versions`):

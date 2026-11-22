@@ -22,24 +22,17 @@
 - Wrap modified prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
 - Target files: `rules/release/github-ci.md`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`, `VERSION`.
 
-# ⚪ [NEW] F20: Audit and slim all rules, replace rulesets with task-targeted bundles, and migrate to agents/
+# ⚪ [NEW] F20: Audit and slim all rules, add role=law and adapters/todo_md, drop Windows support, and migrate to agents/
 
 - Depends on: D1, F40, F42, F43, F44
-- Standardize `agents/` as the single package root directory for all atomic rules (`.md`) and composite bundles (`.bundle`), removing `rulesets/` and migrating `rules/*` into logical domain subtrees under `agents/*` per the `todo_flow:D1` architecture.
-- Audit and slim every rule file for brevity, single responsibility, and zero cross-file duplication:
-  - Eliminate repeated test-runner dot-progress and pre-commit prose across `core/edit.md`, `core/diff-review.md`, and `stack/python/*`.
-  - Keep `agents/core.bundle` strictly minimal and universal (`isolation`, `start`, `secrets`, `plan`, `ssot`, `lang`, `end`).
-  - Load mutation, diff-review, commit, and testing rules conditionally by role (`if role=work` / `if role=review`) inside `agents/default.bundle`, `agents/coding/coding.bundle`, and `agents/stack/python/python.bundle` so `role=design` and `role=plan` sessions stay free of code-editing and test-runner overhead.
-- Extract software-engineering specifics out of universal `agents/role/{design,plan,work,review}.md` and `agents/core/composability.md` into `agents/coding/` (`AGENTS.md`, `coding.bundle`, `architecture.md`, `testing.md`, and role overlays `coding/{design,plan,work,review}.md` activated via `if role!= rule coding/{role:}`).
-- Decompose `rules/stack/python-*.md` into `agents/stack/python/` (`syntax.md`, `unittest.md`, `stdlib.md`, `annotations.md`, and `python.bundle`) orthogonal to `agents/stack/cli.md`.
-- Provide on-demand task-targeted bundles instead of overloading default rules:
-  - `agents/bootstrap/bootstrap.bundle` (and `bootstrap/*.md`): greenfield repository initialization, `.agents_bundle` setup, and the interactive 4-point CI/Release & stack questionnaire (invoked on demand by `lets init` or `agents_bundle bundle vitalio/agents-rules:bootstrap`, removed from `role/design.md`).
-  - `agents/release/release.bundle` (`release/semver.md`, `release/github-ci.md`, `release/single-file-build.md`): loaded when cutting releases or configuring release pipelines.
-  - `agents/orchestrator.bundle` (`collab/multi-repo.md`): multi-repository orchestration preset.
-- Update `.github/workflows/ci.yml`, `.agents_bundle`, `AGENTS.md`, and `README.md` to reflect the unified `agents/` layout, wrap modified files at ~80 columns, and bump `VERSION` (`MINOR`).
-
-# ⚪ [NEW] F25: Rename project and package references from agents-rules to ctx-taxonomy
-
-- Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
-- Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
-- Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
+- Implement the full rule audit, deduplication, role gating, and `agents/` package migration per `todo_flow` `docs/adr/0003-task-targeted-bundle-architecture-and-atomic-rule-taxonomy.md`:
+  - Standardize `agents/` as the single package root directory for all atomic rules (`.md`) and composite bundles (`.bundle`), removing `rulesets/` and `rules/` and using the unified 4-space indented `.bundle` syntax (`bundle`, `rule`, `file`, `cmd`, `prompt`, `let`, `export`, `if` / `else if` / `else`).
+  - Drop Windows support: delete `os/windows.md`, remove `if os=windows` from `agents/default.bundle`, and remove `install.ps1` from `agents/release/single-file-build.md`.
+  - Keep all `.bundle` files in `agents-rules` as flat bricks of `rule` directives (no nested `bundle` inside `.bundle`): `agents/core.bundle` (with `default.bundle` as legacy alias) contains universal axioms (`isolation`, `start`, `secrets`, `plan`, `ssot`, `composability`, `lang lang=English`, `end`, `collab/external`), POSIX `os/{linux,macos}`, `vcs/{git,cvs}`, `if role!= -> rule role/{role:} + export role`, and role-gated `core/edit`, `core/diff-review`, and `core/docs`.
+  - Add `agents/role/law.md` (`role=law`, Legislative Counsel for `L*` rule, bundle, and `AGENTS.md` tasks: precedence/conflict audit, least-specific ancestor placement, orthogonal single-axis facets, imperative testable bullets, `# Description:` header, no decorative bold/italic, ~80-col wrapping, and `{var:default}` parameterization).
+  - Gate mutation, diff-review, docs, and testing rules by role inside `agents/default.bundle` (`if role!= -> rule role/{role:} + export role`, `if role=work,law -> rule core/edit + rule core/diff-review`, `if role=work,design,review,law -> rule core/docs`), removing duplicated test-runner dot-progress paragraphs from `core/edit.md` and `core/diff-review.md`.
+  - Extract software-engineering specifics into `agents/coding/` (`AGENTS.md`, `coding.bundle`, `architecture.md` gated on `if role=work,design,review`, `testing.md` gated on `if role=work,review` as the single canonical rule for `tests/test_<module>.py` and dot-progress runner execution, and role overlays `coding/{design,plan,work,review}.md`).
+  - Decompose `rules/stack/python-*.md` into `agents/stack/python/` (`AGENTS.md`, `syntax.md`, `unittest.md`, `stdlib.md`, `annotations.md`, and `python.bundle` gated on `if role=work,review`) orthogonal to `agents/stack/cli.md`.
+  - Add `agents/adapters/todo_md.bundle` and `agents/adapters/todo_md/{work,backlog}.md` mapping `todo_md.role`, `todo_md.prefix` (`D -> design`, `L -> law`), and `todo_md.status` (`WIP,NEXT -> work`, `NEW,QUESTION,HOLD -> plan`) to `role` and exporting `role`, `task`, and `title`.
+  - Add on-demand scenario bundles: `agents/bootstrap/bootstrap.bundle` (`bootstrap/scaffold.md`, `bootstrap/questionnaire.md`), `agents/release/release.bundle` (`release/semver.md`, `release/github-ci.md`, conditional `release/single-file-build.md`), and `agents/orchestrator.bundle` (`collab/multi-repo.md`).
+- Update `.github/workflows/ci.yml`, `.ctx.bundle` / `.agents_bundle`, `AGENTS.md`, and `README.md`, wrap modified files at ~80 columns, and bump `VERSION` (`MINOR`).
