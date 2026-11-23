@@ -1,3 +1,15 @@
+# ❌ [CANCELED] F40: Add concise release/github-ci rule and tag-triggered GitHub Release workflow — *Consolidated into L1*
+
+- Create a concise atomic `rules/release/github-ci.md` rule (later migrated to `agents/release/github-ci.md` in `L1`) defining the GitHub Actions CI & Release workflow invariants (`.github/workflows/ci.yml`):
+  - Keep the rule short and focused on verification and release invariants (`permissions: contents: write`, `test` gate verifying syntax/linters/tests and on `refs/tags/v*` checking `GITHUB_REF_NAME == "v$(tr -d '[:space:]' < VERSION)"`, and `release` job gated on `needs: test` and `if: startsWith(github.ref, 'refs/tags/v')` using `softprops/action-gh-release@v2` with `generate_release_notes: true`).
+  - Do not bloat `rules/role/design.md` or always-on session rules with greenfield CI/Release questionnaires; interactive project/CI bootstrap belongs to the on-demand `bootstrap.bundle` (`L1`).
+- Create `.github/workflows/ci.yml` in `agents-rules` following `rules/release/github-ci.md`:
+  - Trigger on `push` (`branches: [main]`, `tags: ['v*']`) and `pull_request` (`branches: [main]`) on `ubuntu-latest` with `permissions: contents: write`.
+  - In `test`, validate that every rule (`.md`) and ruleset/bundle (`.ruleset` / `.bundle`) starts with `# Description: `, check that rule files and `AGENTS.md` contain no decorative bold (`**...**`) outside fenced/inline code, verify that every `rule` / `ruleset` / `bundle` reference resolves to an existing file, and on `refs/tags/v*` verify that the tag matches `v$(tr -d '[:space:]' < VERSION)`.
+  - In `release` (`needs: test`, `if: startsWith(github.ref, 'refs/tags/v')`), publish the GitHub Release via `softprops/action-gh-release@v2` with `generate_release_notes: true` and `files: LICENSE`.
+- Wrap modified prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
+- Target files: `rules/release/github-ci.md`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`, `VERSION`.
+
 # ❌ [CANCELED] F20: Audit and slim all rules, add role=law and adapters/todo_md, drop Windows support, and migrate to agents/ — *Consolidated into L1 per ADR 0003*
 
 - Depends on: D1, F40, F42, F43, F44
