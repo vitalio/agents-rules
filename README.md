@@ -8,7 +8,7 @@ Open encyclopedia and taxonomic catalog of composable AI agent axioms
 ## Usage in `.context.bundle`
 
 ```text
-bundle vitalio/agents-rules:adapters/todo_md
+bundle vitalio/agents-rules:adapters/todo-md
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:coding
 bundle vitalio/agents-rules:stack/python py_min=3.9
@@ -20,10 +20,11 @@ file AGENTS.md
 ```
 
 Activate any operating role (`design`, `plan`, `work`, `review`, `law`) on
-demand via `role=<name>` or automatically through `adapters/todo_md`:
+demand via `role=<name>` or automatically through `adapters/todo-md`:
 
 ```bash
-context role=law
+todo <ID> | context | run
+context role=law | run
 context --list
 ```
 
@@ -41,7 +42,7 @@ context --list
 - `agents/stack/` — cross-language CLI interface rules (`stack/cli/cli.bundle`)
   and language subtrees (`stack/python/python.bundle`).
 - `agents/adapters/` — tool-to-role adapter bundles and lifecycle rules
-  (`adapters/todo_md.bundle`).
+  (`adapters/todo-md.bundle`).
 - `agents/collab/`, `agents/os/`, `agents/vcs/`, `agents/release/`,
   `agents/bootstrap/` — collaboration, POSIX platform, version control, release
   (`release.bundle`), greenfield bootstrap (`bootstrap.bundle`), and multi-repo

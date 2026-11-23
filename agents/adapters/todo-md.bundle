@@ -1,4 +1,4 @@
-# Description: Adapter binding todo_md upstream variables (todo_md.*) to session roles and backlog workflow (place before core in .context.bundle)
+# Description: Adapter binding vitalio/todo-md upstream variables (todo_md.*) to session roles and backlog workflow (place before core in .context.bundle)
 if todo_md.role!=
     let role={todo_md.role:}
 else if todo_md.prefix=D
@@ -19,6 +19,6 @@ if todo_md.title!=
     export title
 
 if role=work
-    rule adapters/todo_md/work
+    rule adapters/todo-md/work
 if role=plan,design,review,law
-    rule adapters/todo_md/backlog
+    rule adapters/todo-md/backlog

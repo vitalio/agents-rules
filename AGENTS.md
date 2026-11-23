@@ -17,7 +17,7 @@ are loaded via `.context.bundle`.
   (no nested `bundle` inside `.bundle`) so projects compose orthogonal bundles
   at depth 1 from their root `.context.bundle`. Because `.context.bundle`
   evaluates top-down, place upstream adapter bundles that compute and `export`
-  session variables (`adapters/todo_md` exporting `role` and `task`) first,
+  session variables (`adapters/todo-md` exporting `role` and `task`) first,
   before `core` and domain/stack bundles that gate rules on `if role=...`.
 - Abstraction promotion & category boundaries (least-specific ancestor): Place
   each rule at the highest level of the tree where it holds unconditionally:
