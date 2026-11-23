@@ -1,11 +1,13 @@
 # Description: Core agent axioms, OS/VCS environment, base role posture, and role-gated editing/docs rules
+let lang=English
+
 rule core/isolation
 rule core/start
 rule core/secrets
 rule core/plan
 rule core/ssot
 rule core/composability
-rule core/lang lang=English
+rule core/lang lang={lang:English}
 rule core/end
 rule collab/external
 

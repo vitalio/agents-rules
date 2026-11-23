@@ -1,4 +1,6 @@
 # Description: Release management bundle (SemVer versioning, GitHub Actions CI/Release invariants, and optional single-file build)
+let single_file_build=0
+
 rule release/semver
 rule release/github-ci
 

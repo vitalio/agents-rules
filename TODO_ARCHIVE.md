@@ -1,3 +1,10 @@
+# ✅ [DONE] L3: Define README.md progressive-disclosure and CLI reference formatting rules — *2026-11-23, split stack/cli into cli.bundle/help.md/docs.md, added README progressive-disclosure and cross-section help alignment rules, declared explicit bundle let defaults, and expanded role=law*
+
+- Decide taxonomic placement in role=law per AGENTS.md abstraction-promotion rules: universal progressive-disclosure README conventions (one-line tagline, concise overview without low-level protocol dumps in the intro, scenario-grouped Quick Start instead of monolithic command dumps) in agents/core/docs.md vs CLI-specific reference layout (Quick Installation, scenario-based Quick Start, and structured Commands / Options / Environment reference tables synced with -h/--help) in agents/stack/cli.md (or a dedicated rule file).
+- Decide activation and role-gating so detailed README formatting rules (and stack/cli) do not bloat every session's token budget when README.md or CLI help is not being authored or modified (evaluate role gating such as role=work,review vs on-demand/file-targeted inclusion vs keeping always-on core/docs minimal).
+- Keep all rule files under agents/ starting with '# Description:', plain '- Topic: instruction.' bullets, and ~80-column prose wrapping.
+- Run context --update-cache after pushing so downstream repositories pick up the updated rules.
+
 # ✅ [DONE] L1: Audit and slim all rules, add role=law and adapters/todo_md, drop Windows support, and migrate to agents/ — *2026-11-23, Migrated taxonomy to agents/, added role=law, coding/, stack/python/, adapters/todo_md, release/github-ci, bootstrap, and ci.yml*
 
 - Depends on: D1, F42

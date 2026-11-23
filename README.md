@@ -13,8 +13,8 @@ bundle vitalio/agents-rules:adapters/todo_md
 bundle vitalio/agents-rules:coding
 bundle vitalio/agents-rules:stack/python py_min=3.9
 bundle vitalio/agents-rules:release single_file_build=1
+bundle vitalio/agents-rules:stack/cli
 rule vitalio/agents-rules:collab/commits
-rule vitalio/agents-rules:stack/cli
 
 file AGENTS.md
 ```
@@ -23,8 +23,8 @@ Activate any operating role (`design`, `plan`, `work`, `review`, `law`) on
 demand via `role=<name>` or automatically through `adapters/todo_md`:
 
 ```bash
-agents_bundle role=law
-agents_bundle --list
+context role=law
+context --list
 ```
 
 ## Taxonomic Structure
@@ -38,8 +38,8 @@ agents_bundle --list
   `review`, `law`) activated via `role=<name>`.
 - `agents/coding/` — software-engineering architecture, test-suite invariants,
   and additive role overlays (`coding.bundle`).
-- `agents/stack/` — cross-language interface rules (`cli.md`) and language
-  subtrees (`stack/python/python.bundle`).
+- `agents/stack/` — cross-language CLI interface rules (`stack/cli/cli.bundle`)
+  and language subtrees (`stack/python/python.bundle`).
 - `agents/adapters/` — tool-to-role adapter bundles and lifecycle rules
   (`adapters/todo_md.bundle`).
 - `agents/collab/`, `agents/os/`, `agents/vcs/`, `agents/release/`,
