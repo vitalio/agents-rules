@@ -5,7 +5,7 @@ Open encyclopedia and taxonomic catalog of composable AI agent axioms
 (`agents/coding/`), technical stack rules (`agents/stack/`), tool adapters
 (`agents/adapters/`), and composite bundles (`agents/**/*.bundle`).
 
-## Usage in `.ctx.bundle` / `.agents_bundle`
+## Usage in `.context.bundle` / `.agents_bundle`
 
 ```text
 bundle vitalio/agents-rules:core

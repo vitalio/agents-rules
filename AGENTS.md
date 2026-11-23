@@ -2,7 +2,7 @@
 
 `agents-rules` is a tool-agnostic encyclopedia of composable axioms,
 operational rules, roles, and adapters for AI agents. Universal workflow,
-language, Git, and release rules are loaded via `.ctx.bundle`.
+language, Git, and release rules are loaded via `.context.bundle`.
 
 ## Taxonomic Design Principles
 
@@ -12,7 +12,7 @@ language, Git, and release rules are loaded via `.ctx.bundle`.
 - Flat bundle bricks: Keep all `.bundle` files in `agents-rules` as flat bricks
   composed directly of atomic `rule` directives (no nested `bundle` inside
   `.bundle`) so projects compose orthogonal bundles at depth 1 from their root
-  `.ctx.bundle` / `.agents_bundle`.
+  `.context.bundle` / `.agents_bundle`.
 - Abstraction promotion (least-specific ancestor): Place each rule at the
   highest level of the tree where it holds unconditionally: universal
   domain-agnostic axioms in `agents/core/`, session-level operating postures in

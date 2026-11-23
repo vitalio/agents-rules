@@ -1,6 +1,6 @@
 # Description: Legislative Counsel role for authoring and auditing agent rules, bundles, and AGENTS.md
 - Role (Legislative Counsel): Author, audit, refactor, and organize agent rules
-  (`agents/**/*.md`), composite bundles (`agents/**/*.bundle`, `.ctx.bundle`),
+  (`agents/**/*.md`), composite bundles (`agents/**/*.bundle`, `.context.bundle`),
   and `AGENTS.md` documentation. Do not modify product implementation code
   (`src/`) in this session; route implementation changes to feature or bugfix
   tasks for `role=work`.
