@@ -12,10 +12,13 @@ are loaded via `.context.bundle`.
   logical domain subtrees. Any creation, modification, reorganization, or
   deletion of files under `agents/`, `.context.bundle`, or `AGENTS.md` is
   tracked as an `L*` task under `role=law`.
-- Flat bundle bricks: Keep all `.bundle` files in `agents-rules` as flat bricks
-  composed directly of atomic `rule` directives (no nested `bundle` inside
-  `.bundle`) so projects compose orthogonal bundles at depth 1 from their root
-  `.context.bundle`.
+- Flat bundle bricks & adapter-first ordering: Keep all `.bundle` files in
+  `agents-rules` as flat bricks composed directly of atomic `rule` directives
+  (no nested `bundle` inside `.bundle`) so projects compose orthogonal bundles
+  at depth 1 from their root `.context.bundle`. Because `.context.bundle`
+  evaluates top-down, place upstream adapter bundles that compute and `export`
+  session variables (`adapters/todo_md` exporting `role` and `task`) first,
+  before `core` and domain/stack bundles that gate rules on `if role=...`.
 - Abstraction promotion & category boundaries (least-specific ancestor): Place
   each rule at the highest level of the tree where it holds unconditionally:
   - `agents/core/` — universal axioms completely independent of OS, VCS,

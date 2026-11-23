@@ -1,4 +1,4 @@
-# Description: Adapter binding todo_md upstream variables (todo_md.*) to session roles and backlog workflow
+# Description: Adapter binding todo_md upstream variables (todo_md.*) to session roles and backlog workflow (place before core in .context.bundle)
 if todo_md.role!=
     let role={todo_md.role:}
 else if todo_md.prefix=D

@@ -8,8 +8,8 @@ Open encyclopedia and taxonomic catalog of composable AI agent axioms
 ## Usage in `.context.bundle`
 
 ```text
-bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:adapters/todo_md
+bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:coding
 bundle vitalio/agents-rules:stack/python py_min=3.9
 bundle vitalio/agents-rules:release single_file_build=1

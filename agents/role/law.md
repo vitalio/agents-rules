@@ -23,7 +23,9 @@
   domain file paths, CLI names, or tracker prefixes into `core/` or `role/`
   (cleaning up any existing boundary leaks in the edited file). When tailoring
   a project's rules, inspect the available catalog first to wire existing
-  bundles and input parameters into the project's root bundle, keep the base
+  bundles and input parameters into the project's root bundle (placing upstream
+  variable-exporting adapters before `core` and domain bundles that branch on
+  `role`), keep the base
   bundle as a stable project baseline (with `role` and parameters acting as
   focused additive refinements), place project-specific role-gated rules in
   local rule files, and promote reusable norms to the shared catalog.
