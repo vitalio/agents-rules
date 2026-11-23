@@ -1,3 +1,8 @@
+# ✅ [DONE] L5: Document operating roles and bundle parameters in README.md — *2026-11-24, Documented operating roles and bundle configuration parameters in README.md.*
+
+- Depends on: L7
+- Add a concise reference of the 5 operating roles (`design`, `plan`, `work`, `review`, `law`) and key bundle configuration parameters (`os`, `vcs`, `py_min`, `single_file_build`) in `README.md` while preserving the dynamic discovery invariant (no static file inventories).
+
 # ✅ [DONE] L7: Make role inheritance explicit in coding/ and remove Python/Git/CLI leaks from core/ and coding/ — *2026-11-24, Explicit role inheritance in coding/ and language/VCS/CLI-agnostic core/ and coding/ rules*
 
 - In `agents/coding/coding.bundle`, make role inheritance explicit by loading `rule role/{role:}` immediately before `rule coding/{role:}` under `if role=design,plan,work,review` (relying on `context-bundle` first-occurrence ID deduplication when `core.bundle` is also loaded).
