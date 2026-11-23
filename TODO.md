@@ -1,3 +1,16 @@
+# 🎯 [NEXT] L7: Make role inheritance explicit in coding/ and remove Python/Git/CLI leaks from core/ and coding/
+
+- In `agents/coding/coding.bundle`, make role inheritance explicit by loading `rule role/{role:}` immediately before `rule coding/{role:}` under `if role=design,plan,work,review` (relying on `context-bundle` first-occurrence ID deduplication when `core.bundle` is also loaded).
+- Specialize the four language-agnostic software engineering role overlays in `agents/coding/` as explicit heirs of `agents/role/`:
+  - `agents/coding/design.md`: `Role specialization (Software Architect, extends Designer)` — module boundaries, data structures, state flows, public interface contracts, algorithmic complexity/failure trade-offs, and cross-file invariants in `AGENTS.md` / `docs/adr/`.
+  - `agents/coding/plan.md`: `Role specialization (Technical Lead, extends Planner)` — sequencing work along architectural seams so each task leaves the build and test suite green, keeping source module changes, modular unit tests, user-facing help/interface contracts, documentation (`README.md`, `AGENTS.md`), and any embedded capability rules together in one implementation task (without hardcoding Python `tests/test_<module>.py` or CLI `-h`/`--help`).
+  - `agents/coding/work.md`: `Role specialization (Senior Software Engineer, extends Worker)` — Senior Software Engineer execution quality inside the agreed task scope (resolving root causes rather than patching symptoms, preserving module layering and data/type invariants, writing idiomatic code, paired offline unit tests, and synced interface/help and docs) plus VCS/language-agnostic `Pre-commit senior self-audit` (replacing `git diff HEAD`, `None`, and `-h`/`--help` with working-tree diff, null/empty inputs, and user-facing help/interface specs so `vcs=cvs` and non-Python stacks compose cleanly).
+  - `agents/coding/review.md`: `Role specialization (Principal Code Reviewer, extends Reviewer)` — Principal-bar code and test audit covering module layering, algorithmic/state/cache invariants, edge cases, resource hygiene, domain-named offline unit tests, and stale-reference cleanup across code, tests, build/CI configs, and docs.
+- Move Python-specific `tests/test_<module>.py` mirroring `src/` wording from `agents/coding/testing.md` into `agents/stack/python/unittest.md`, keeping `agents/coding/testing.md` strictly language-agnostic (modular test files mirroring source modules and domain-behavior test names without task-ID prefixes).
+- Clean remaining stack/VCS leaks in `agents/core/diff-review.md` and `agents/core/docs.md` (replace Python `None` with `null/empty inputs`, `.github/workflows/` with `CI/build configurations`, and `-h`/`--help` with `user-facing help or interface specifications`).
+- Keep all modified files under `agents/` starting with `# Description:`, without decorative bold/italic markup, wrapped at ~80 columns, and bump `VERSION` (`PATCH`).
+
 # ⚪ [NEW] L5: Document operating roles and bundle parameters in README.md
 
+- Depends on: L7
 - Add a concise reference of the 5 operating roles (`design`, `plan`, `work`, `review`, `law`) and key bundle configuration parameters (`os`, `vcs`, `py_min`, `single_file_build`) in `README.md` while preserving the dynamic discovery invariant (no static file inventories).
