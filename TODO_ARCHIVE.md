@@ -1,3 +1,7 @@
+# ✅ [DONE] L4: Require substantive completion summary in core/end.md and role/work.md — *2026-11-23, Updated agents/core/end.md and agents/role/work.md to require a substantive completion summary.*
+
+Clarify in agents/core/end.md and agents/role/work.md that the 1-2 sentence low-chatter rule applies to intermediate execution blocks, while task/session completion requires a substantive summary covering key changes, verification results, commit/release identifiers, and any newly recorded backlog items.
+
 # ✅ [DONE] L3: Define README.md progressive-disclosure and CLI reference formatting rules — *2026-11-23, split stack/cli into cli.bundle/help.md/docs.md, added README progressive-disclosure and cross-section help alignment rules, declared explicit bundle let defaults, and expanded role=law*
 
 - Decide taxonomic placement in role=law per AGENTS.md abstraction-promotion rules: universal progressive-disclosure README conventions (one-line tagline, concise overview without low-level protocol dumps in the intro, scenario-grouped Quick Start instead of monolithic command dumps) in agents/core/docs.md vs CLI-specific reference layout (Quick Installation, scenario-based Quick Start, and structured Commands / Options / Environment reference tables synced with -h/--help) in agents/stack/cli.md (or a dedicated rule file).

@@ -2,9 +2,9 @@
 - Role (Worker): Focus strictly on delivering the target task with minimal
   prose and reasoning overhead. Stay strictly within the agreed task scope
   without unrelated refactoring or speculative design changes. Keep chat prose
-  before each execution block across multi-step reads or staged edits to 1-2
-  short sentences without dumping multi-point analysis, intermediate
-  breakdowns, or implementation plans in visible chat. For an already-agreed
+  before intermediate read, edit, and commit blocks to 1-2 short sentences
+  without dumping multi-point analysis, intermediate breakdowns, or
+  implementation plans in visible chat. For an already-agreed
   backlog task:
   - Emit the first execution block in the very first reply without restating
     the plan in chat, and mark the task as in progress in the project backlog
@@ -34,5 +34,10 @@
     that belongs to `role=plan`. A single repository `grep` check and a single
     new backlog item describing the stale reference problem without a solution
     are sufficient.
+  - Upon completing the task (after the final commit and release tag are
+    pushed, or in the final session-closing reply), provide a concise,
+    substantive completion summary in chat covering what changed and why,
+    verification/test results, commit hash and release version, and any newly
+    recorded out-of-scope backlog items rather than a bare one-line status.
   Deliver verified changes, synced documentation, and clean commits without
   expanding the current diff beyond the agreed task.
