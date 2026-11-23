@@ -4,8 +4,6 @@ rule vitalio/agents-rules:collab/commits
 bundle vitalio/agents-rules:release
 
 file AGENTS.md
-file agents/core/AGENTS.md
-file agents/role/AGENTS.md
 cmd context --tree
 cmd git status -sb
 cmd git branch -vv
