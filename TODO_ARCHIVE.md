@@ -26,7 +26,6 @@
   - In `test`, validate that every rule (`.md`) and ruleset/bundle (`.ruleset` / `.bundle`) starts with `# Description: `, check that rule files and `AGENTS.md` contain no decorative bold (`**...**`) outside fenced/inline code, verify that every `rule` / `ruleset` / `bundle` reference resolves to an existing file, and on `refs/tags/v*` verify that the tag matches `v$(tr -d '[:space:]' < VERSION)`.
   - In `release` (`needs: test`, `if: startsWith(github.ref, 'refs/tags/v')`), publish the GitHub Release via `softprops/action-gh-release@v2` with `generate_release_notes: true` and `files: LICENSE`.
 - Wrap modified prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
-- Target files: `rules/release/github-ci.md`, `.github/workflows/ci.yml`, `AGENTS.md`, `README.md`, `VERSION`.
 
 # ❌ [CANCELED] F20: Audit and slim all rules, add role=law and adapters/todo_md, drop Windows support, and migrate to agents/ — *Consolidated into L1 per ADR 0003*
 
@@ -47,17 +46,14 @@
 
 - In `rules/role/plan.md`, update the `- Target files:` bullet so the Planner records target file paths (in backticks, excluding `TODO.md`, `TODO_ARCHIVE.md`, and `AGENTS.md`) only when those files are already known from the planning discussion, without spending dedicated steps searching for target files, checking the 400-line threshold, or computing internal symbol/line slices.
 - Wrap modified prose at ~80 columns and bump `VERSION` (`PATCH`).
-- Target files: `rules/role/plan.md`, `VERSION`.
 
 # ❌ [CANCELED] F43: Clarify in rules/stack/cli.md that --help 100-column width is measured in display columns rather than mawk UTF-8 bytes — *Consolidated into L1 per ADR 0003*
 
 - In `rules/stack/cli.md` (under `Help column alignment and width`), note that the 100-column limit applies to rendered display columns / Unicode characters (verified via display-width helpers or unit tests) rather than `awk 'length($0)'`, because `mawk` measures `length($0)` in UTF-8 bytes and reports false positives on lines with multi-byte Unicode symbols or emoji.
-- Target files: `rules/stack/cli.md`.
 
 # ❌ [CANCELED] F25: Rename project and package references from agents-rules to ctx-taxonomy — *vitalio/agents-rules keeps its repository and package name per todo_flow:D1/D8 (docs/adr/0003-task-targeted-bundle-architecture-and-atomic-rule-taxonomy.md)*
 
 - Rename package identity, documentation, and internal references from `agents-rules` (`vitalio/agents-rules`) to `ctx-taxonomy` (`vitalio/ctx-taxonomy`), aligned with the ecosystem rename design.
-- Target files: `AGENTS.md`, `README.md`, `.agents_bundle`, `VERSION`, and exported rule/bundle files (`rules/`, `rulesets/`, or `agents/` after `F20`).
 - Acceptance criteria: all docs, examples, and package references use `ctx-taxonomy` (alongside sibling names `ctx-bundle`/`cxb`, `todo-markdown`/`tmd`, `run-block`/`rxb`), `VERSION` is bumped appropriately, and repository checks pass.
 
 # ✅ [DONE] F42: Add opt-in collab/commits rule and remove other-task TODO.md cleanup from role=work diff review — *2026-11-22*
@@ -72,12 +68,10 @@
   - In `rules/role/work.md`, explicitly state that stale references inside other backlog tasks (`- Target files:`, symbols, line numbers) are neither inspected nor edited in `role=work` (that belongs to `role=plan`): a single repository `grep` check and a single new backlog item describing the stale reference problem without a solution are sufficient.
 - Enable `rule vitalio/agents-rules:collab/commits` in `.agents_bundle` and update the usage example in `README.md` (replacing `rule vitalio/agents-rules:collab/no-task-ids` with `rule vitalio/agents-rules:collab/commits`).
 - Wrap prose at ~80 columns and bump `VERSION` (`MINOR`) with an annotated release tag.
-- Target files: `rules/collab/commits.md`, `rules/collab/no-task-ids.md`, `rules/core/diff-review.md`, `rules/stack/python-cli.md`, `rules/role/work.md`, `.agents_bundle`, `README.md`, `VERSION`.
 
 # ✅ [DONE] F41: Require explicit '- Target files:' bullet and drift-proof symbol slices in role/plan.md — *2026-11-22*
 
 - Update `rules/role/plan.md` so the target-file closure bullet explicitly requires recording target repository files and slices on a dedicated `- Target files:` line (because `todo_md files` parses only `- Target files:` lines), prefers drift-proof symbol slices (`path:symbol` or `path:start_symbol..end_symbol`) alongside `path:start-end` for large files (`> 400` lines) so slices survive out-of-order task edits, and instructs planners not to include `TODO.md`, `TODO_ARCHIVE.md`, or `AGENTS.md` (unless `AGENTS.md` itself is being edited) in `- Target files:`.
-- Target files: `rules/role/plan.md`.
 
 # ❌ [CANCELED] F39: agents_bundle include silently ignores glob patterns — *Tracked in agents_bundle:F29 (glob include implementation) and agents-rules:F20 (.agents_bundle migration to include agents/**/AGENTS.md)*
 
@@ -183,21 +177,18 @@
 
 # ✅ [DONE] F30: Require modular test files in tests/ and shared fixtures in tests/helpers.py — *2026-11-20*
 
-- Role: work
 - In `rules/stack/python-cli.md`, add a modular test organization requirement: split unit tests across domain- or module-focused `tests/test_<module>.py` files mirroring `src/` modules (rather than accumulating all tests into a single monolithic `tests/test_<project>.py`), and place shared base `unittest.TestCase` classes, in-process CLI runners, and fixtures in `tests/helpers.py` (without a `test_` prefix so `unittest discover -s tests` loads the target script once and does not execute the base class standalone).
 - Note in `rules/stack/python-cli.md` that when splitting an existing large test file into modular `tests/test_*.py` files, agents should slice test methods programmatically on disk using `ast.parse()` (`node.lineno`..`node.end_lineno`) rather than re-emitting test bodies in chat output.
 - Verify prose wrapping (~80 columns) and bump `VERSION` for a PATCH release.
 
 # ✅ [DONE] F29: Sync with origin before starting work and push release tags atomically — *2026-11-20, Updated rules/vcs/git.md and rules/release/semver.md to require upstream git sync before work/backlog mutations and atomic release tag pushes*
 
-- Role: work
 - Update `rules/vcs/git.md` to require syncing with the upstream remote (`git pull --ff-only`, or `git fetch` + `git status -sb` when local edits exist) before starting a task or modifying the backlog, pausing on branch divergence before making commits or bumping `VERSION`, and wrap prose at ~80 characters per line.
 - Update `rules/vcs/git.md` and `rules/release/semver.md` to push release branches and tags atomically (`git push --atomic origin {main_branch:main} "v$ver"`) so a rejected branch push never leaves an orphaned release tag on the remote.
 - Release a PATCH version in `VERSION`.
 
 # ✅ [DONE] F28: Preserve live dot-progress test output and forbid piping test runners through tail/head/grep — *2026-11-19, Updated rules/core/edit.md, rules/core/diff-review.md, and rules/stack/python-cli.md to preserve live dot-progress test output and forbid piping test runners through tail, head, or grep*
 
-- Role: work
 - Update `rules/core/edit.md` and `rules/core/diff-review.md` to replace "emit a single concise summary line" with requiring compact live progress indicators (such as per-test `.` dots followed by the summary line) and explicitly forbid piping test runner output through `tail`, `head`, or `grep` (or suppressing it via redirection), which buffers live progress and truncates failure tracebacks.
 - Update `rules/stack/python-cli.md` (`Concise unittest execution`) to require running `python3 -m unittest discover -s tests` directly without piping to `tail`/`head`/`grep` or wrapping in custom `verbosity=0` runners so `.` progress indicators stream live as tests execute.
 - Keep prose wrapped at ~80 characters per line and release a PATCH version in `VERSION`.
@@ -262,8 +253,6 @@
 # ✅ [DONE] F22: Split python-cli into a base rule and opt-in Python extension rules — *2026-11-16*
 
 Found while evaluating `stack/python-cli` for canary; it cannot be connected as is. Keep only the universal base in `stack/python-cli` and move specifics into opt-in extension rules.
-
-Target files: `rules/stack/python-cli.md`, `rules/stack/python-stdlib.md` (new), `rules/stack/python-annotations.md` (new), `README.md`, `VERSION`.
 
 - Base `rules/stack/python-cli.md`: keep `ast.parse` syntax verification, offline unit tests for every CLI flag and behavior in `tests/test_*.py`, `python3 -m unittest discover -s tests` without `-q`, `-v`, `-b`, and the unit test hygiene, diagnostics, and filesystem isolation bullets. Add that code under test writing to stderr must be captured with `contextlib.redirect_stderr` so the progress line stays clean. Drop the standard-library-only invariant, the `from __future__ import annotations` requirement, and the `py_min` parameter; update `# Description:` so it no longer claims zero dependencies. Third-party clients (such as boto3) are replaced by stubs in tests.
 - New `rules/stack/python-stdlib.md`: opt-in invariant to use only the Python 3 standard library, for dependency-free tools.

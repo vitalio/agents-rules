@@ -2,7 +2,7 @@
 
 `agents-rules` is a tool-agnostic encyclopedia of composable axioms,
 operational rules, roles, and adapters for AI agents. Universal workflow,
-language, Git, and release rules are loaded via `.agents_bundle`.
+language, Git, and release rules are loaded via `.ctx.bundle`.
 
 ## Taxonomic Design Principles
 

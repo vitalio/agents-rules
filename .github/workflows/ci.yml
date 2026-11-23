@@ -90,8 +90,6 @@ jobs:
                   line = raw.strip()
                   if not line or line.startswith("#"):
                       continue
-                  if line.startswith("[if ") and "]" in line:
-                      line = line.split("]", 1)[1].strip()
                   tokens = line.split()
                   if not tokens:
                       continue
@@ -101,7 +99,7 @@ jobs:
                           if "=" in tok:
                               break
                           resolve_rule(tok)
-                  elif kw in ("bundle", "ruleset"):
+                  elif kw == "bundle":
                       resolve_bundle(tokens[1])
 
           ref = os.environ.get("GITHUB_REF", "")

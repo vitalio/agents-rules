@@ -8,9 +8,6 @@ Open encyclopedia and taxonomic catalog of composable AI agent axioms
 ## Usage in `.ctx.bundle` / `.agents_bundle`
 
 ```text
-bundle vitalio/agents_bundle
-bundle vitalio/todo_md
-
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:adapters/todo_md
 bundle vitalio/agents-rules:coding
@@ -20,8 +17,6 @@ rule vitalio/agents-rules:collab/commits
 rule vitalio/agents-rules:stack/cli
 
 file AGENTS.md
-if role=work
-    file {todo_md.files:}
 ```
 
 Activate any operating role (`design`, `plan`, `work`, `review`, `law`) on

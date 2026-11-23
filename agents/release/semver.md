@@ -3,7 +3,7 @@
   - `PATCH` (`X.Y.Z+1`) — bugfixes, UI/wording tweaks, rule refinements, and
     `--help`/docs updates.
   - `MINOR` (`X.Y+1.0`) — new CLI commands/flags, config options, or new
-    rules/rulesets/bundles.
+    rules/bundles.
   - `MAJOR` (`X+1.0.0`) — breaking changes or only when explicitly requested.
   - `PRE-RELEASE` (`X.Y.Z-alpha.N`, `X.Y.Z-beta.N`, `X.Y.Z-rc.N`, starting at
     `N=1`) — optional identifier for experimental or staged builds when
