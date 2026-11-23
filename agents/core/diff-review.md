@@ -9,8 +9,15 @@
     token limits) and run full verification at the end of the final edit stage
     together with the working status and full diff for self-review.
   - When the user provides the output, the model itself must audit the full
-    diff against all project rules (no dead code or leftover names, clean
-    boundaries, updated documentation and help text). When a change removes,
+    diff against all project rules and reviewer-grade logic and quality
+    invariants before committing: verify edge cases and error/failure paths
+    (empty inputs, `None`, invalid arguments, operator precedence), state/cache
+    invariants and algorithmic complexity (no redundant filesystem/network
+    scans in loops or shared-state corruption), resource hygiene (no leaked
+    file descriptors, subprocesses, or temp files), negative/regression unit
+    test coverage rather than happy-path-only assertions, clean boundaries
+    without dead code or leftover names, and updated documentation and help
+    text. When a change removes,
     renames, or splits files or symbols, search the entire repository for stale
     references in code, tests, CI workflows (`.github/workflows/`),
     `README.md`, and `AGENTS.md`, and clean up any orphaned artifacts before

@@ -7,7 +7,12 @@
   small-to-medium files in full in one step, and for large files locate and
   slice only the relevant functions or sections in one script rather than
   dumping the entire file into context (use a follow-up read step only when the
-  next file path is genuinely unknown until the first output is seen). Scope file reads and searches to the current working repository (or
+  next file path is genuinely unknown until the first output is seen: when a
+  target or child repository's file tree is not yet present in session context,
+  never guess internal module or rule file paths — inspect its directory tree
+  and `AGENTS.md` in the first batched discovery step before reading specific
+  internal files in the follow-up step). Scope file reads and searches to the
+  current working repository (or
   specific target project or cache paths) — never run recursive searches
   (`grep -r`, `find`, etc.) across `$HOME`, parent directories, or `/`. When
   task scope is not yet agreed, state a high-level plan in chat (target
