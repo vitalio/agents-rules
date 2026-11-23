@@ -1,6 +1,7 @@
 # 🎯 [NEXT] L3: Define README.md progressive-disclosure and CLI reference formatting rules
 
 - Decide taxonomic placement in role=law per AGENTS.md abstraction-promotion rules: universal progressive-disclosure README conventions (one-line tagline, concise overview without low-level protocol dumps in the intro, scenario-grouped Quick Start instead of monolithic command dumps) in agents/core/docs.md vs CLI-specific reference layout (Quick Installation, scenario-based Quick Start, and structured Commands / Options / Environment reference tables synced with -h/--help) in agents/stack/cli.md (or a dedicated rule file).
+- Decide activation and role-gating so detailed README formatting rules (and stack/cli) do not bloat every session's token budget when README.md or CLI help is not being authored or modified (evaluate role gating such as role=work,review vs on-demand/file-targeted inclusion vs keeping always-on core/docs minimal).
 - Keep all rule files under agents/ starting with '# Description:', plain '- Topic: instruction.' bullets, and ~80-column prose wrapping.
 - Run context --update-cache after pushing so downstream repositories pick up the updated rules.
 
