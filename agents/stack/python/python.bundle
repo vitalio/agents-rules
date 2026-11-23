@@ -1,0 +1,6 @@
+# Description: Python stack rules (ast.parse syntax check, unittest mechanics, stdlib-only invariant, and annotations)
+if role=work,review
+    rule stack/python/syntax
+    rule stack/python/unittest
+    rule stack/python/stdlib
+    rule stack/python/annotations py_min={py_min:3.9}

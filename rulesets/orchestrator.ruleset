@@ -1,2 +1,0 @@
-# Description: Multi-repository orchestrator preset (cross-repository task decomposition and dependency boundaries)
-rule collab/multi-repo

@@ -1,7 +1,0 @@
-# Description: Windows & PowerShell 7+ (pwsh) conventions ($ErrorActionPreference, AST parser check, UTF-8)
-- Windows & PowerShell rules: Enable `$ErrorActionPreference = 'Stop'` in
-  guarded PowerShell scripts and never enable `Set-PSDebug -Trace` around
-  credentials. Validate `.ps1` syntax via
-  `[System.Management.Automation.Language.Parser]::ParseFile(...)`. Use
-  cross-platform path APIs (`pathlib.Path` / `Join-Path`) and explicit UTF-8
-  encoding (`encoding="utf-8"`).

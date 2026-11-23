@@ -1,13 +1,14 @@
-# .agents_bundle — root context ruleset and command bundle (run: agents_bundle | run_block)
+# Description: Root context bundle for agents-rules (run: agents_bundle | run_block)
 
-ruleset vitalio/agents-rules:default
+bundle vitalio/agents-rules:core
+bundle vitalio/agents-rules:adapters/todo_md
 rule vitalio/agents-rules:collab/commits
-rule vitalio/agents-rules:release/semver
+bundle vitalio/agents-rules:release
 
-include AGENTS.md
-include rules/core/AGENTS.md
-include rules/role/AGENTS.md
-$ agents_bundle --tree
-$ git status -sb
-$ git branch -vv
-$ git log --oneline -10
+file AGENTS.md
+file agents/core/AGENTS.md
+file agents/role/AGENTS.md
+cmd agents_bundle --tree
+cmd git status -sb
+cmd git branch -vv
+cmd git log --oneline -10

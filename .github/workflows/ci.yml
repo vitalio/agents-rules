@@ -1,0 +1,129 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate rules, bundles, formatting, and version tag
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: |
+          python3 -c '
+          import os, re, sys
+          from pathlib import Path
+
+          root = Path(".")
+          agents_dir = root / "agents"
+          if not agents_dir.is_dir():
+              sys.exit("error: agents/ directory not found")
+
+          rule_files = sorted(
+              p for p in agents_dir.rglob("*.md")
+              if p.name not in ("AGENTS.md", "README.md")
+          )
+          bundle_files = sorted(agents_dir.rglob("*.bundle"))
+          agents_md_files = sorted(root.rglob("AGENTS.md"))
+
+          if not rule_files or not bundle_files:
+              sys.exit("error: expected both .md rules and .bundle files under agents/")
+
+          for p in rule_files + bundle_files:
+              lines = p.read_text(encoding="utf-8").splitlines()
+              if not lines or not lines[0].startswith("# Description: ") or not lines[0][15:].strip():
+                  sys.exit(f"error: {p}: missing # Description: <summary> on line 1")
+
+          fence = chr(96) * 3
+          for p in rule_files + agents_md_files:
+              in_fence = False
+              for lineno, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+                  if line.lstrip().startswith(fence):
+                      in_fence = not in_fence
+                      continue
+                  if in_fence:
+                      continue
+                  without_code = re.sub(r"``[^`]*``|`[^`]*`", "", line)
+                  if "**" in without_code:
+                      sys.exit(f"error: {p}:{lineno}: decorative bold ** found outside code")
+
+          def resolve_rule(target: str) -> Path:
+              prefix_part = target.split("{", 1)[0]
+              name = target.split(":", 1)[-1] if ":" in prefix_part else target
+              if "{" in name:
+                  prefix = name.split("{", 1)[0]
+                  matches = list((agents_dir / prefix).glob("*.md"))
+                  if not matches:
+                      sys.exit(f"error: parameterized rule {target} matched no files under agents/{prefix}")
+                  return matches[0]
+              candidate = agents_dir / f"{name}.md"
+              if not candidate.is_file():
+                  sys.exit(f"error: rule {target} does not resolve to {candidate}")
+              return candidate
+
+          def resolve_bundle(target: str) -> Path:
+              name = target.split(":", 1)[-1]
+              leaf = name.rsplit("/", 1)[-1]
+              candidates = [
+                  agents_dir / f"{name}.bundle",
+                  agents_dir / name / f"{leaf}.bundle",
+                  agents_dir / name / "default.bundle",
+              ]
+              for c in candidates:
+                  if c.is_file():
+                      return c
+              sys.exit(f"error: bundle {target} did not resolve under agents/")
+
+          for b in bundle_files:
+              for lineno, raw in enumerate(b.read_text(encoding="utf-8").splitlines(), 1):
+                  line = raw.strip()
+                  if not line or line.startswith("#"):
+                      continue
+                  if line.startswith("[if ") and "]" in line:
+                      line = line.split("]", 1)[1].strip()
+                  tokens = line.split()
+                  if not tokens:
+                      continue
+                  kw = tokens[0]
+                  if kw == "rule":
+                      for tok in tokens[1:]:
+                          if "=" in tok:
+                              break
+                          resolve_rule(tok)
+                  elif kw in ("bundle", "ruleset"):
+                      resolve_bundle(tokens[1])
+
+          ref = os.environ.get("GITHUB_REF", "")
+          ref_name = os.environ.get("GITHUB_REF_NAME", "")
+          version = (root / "VERSION").read_text(encoding="utf-8").strip()
+          if ref.startswith("refs/tags/v"):
+              expected = f"v{version}"
+              if ref_name != expected:
+                  sys.exit(f"error: tag {ref_name} does not match VERSION {expected}")
+
+          print(f"Verified {len(rule_files)} rules, {len(bundle_files)} bundles, and {len(agents_md_files)} AGENTS.md files.")
+          '
+
+  release:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: LICENSE

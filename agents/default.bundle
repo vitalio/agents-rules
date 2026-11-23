@@ -1,0 +1,31 @@
+# Description: Default project rules alias (core axioms, OS/VCS environment, base role posture, and role-gated editing/docs rules)
+rule core/isolation
+rule core/start
+rule core/secrets
+rule core/plan
+rule core/ssot
+rule core/composability
+rule core/lang lang=English
+rule core/end
+rule collab/external
+
+if os=linux
+    rule os/linux
+if os=macos
+    rule os/macos
+
+if vcs=git
+    rule vcs/git
+if vcs=cvs
+    rule vcs/cvs
+
+if role!=
+    rule role/{role:}
+    export role
+
+if role=work,law
+    rule core/edit
+    rule core/diff-review
+
+if role=work,design,review,law
+    rule core/docs

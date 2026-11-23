@@ -1,0 +1,3 @@
+# Description: On-demand greenfield project and CI/Release bootstrap bundle
+rule bootstrap/scaffold
+rule bootstrap/questionnaire

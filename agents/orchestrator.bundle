@@ -1,0 +1,2 @@
+# Description: Multi-repository orchestrator bundle (cross-repository task decomposition and dependency boundaries)
+rule collab/multi-repo

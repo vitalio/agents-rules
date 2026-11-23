@@ -1,0 +1,24 @@
+# Description: Adapter binding todo_md upstream variables (todo_md.*) to session roles and backlog workflow
+if todo_md.role!=
+    let role={todo_md.role:}
+else if todo_md.prefix=D
+    let role=design
+else if todo_md.prefix=L
+    let role=law
+else if todo_md.status=WIP,NEXT
+    let role=work
+else if todo_md.status=NEW,QUESTION,HOLD
+    let role=plan
+export role
+
+if todo_md.task!=
+    let task={todo_md.task:}
+    export task
+if todo_md.title!=
+    let title={todo_md.title:}
+    export title
+
+if role=work
+    rule adapters/todo_md/work
+if role=plan,design,review,law
+    rule adapters/todo_md/backlog
