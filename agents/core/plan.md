@@ -2,9 +2,12 @@
 - Investigate & Plan (batch reads in one step): Inspect existing state rather
   than guessing, and say "not known" rather than filling a gap. Always read all
   relevant files and run all related checks in a single batched step rather
-  than reading one file per turn across multiple steps (use a follow-up read
-  step only when the next file path is genuinely unknown until the first output
-  is seen). Scope file reads and searches to the current working repository (or
+  than reading one file per turn or blind-paginating a file with sequential
+  line-range slices (`1..120`, `121..240`, ...) across multiple turns: read
+  small-to-medium files in full in one step, and for large files locate and
+  slice only the relevant functions or sections in one script rather than
+  dumping the entire file into context (use a follow-up read step only when the
+  next file path is genuinely unknown until the first output is seen). Scope file reads and searches to the current working repository (or
   specific target project or cache paths) — never run recursive searches
   (`grep -r`, `find`, etc.) across `$HOME`, parent directories, or `/`. When
   task scope is not yet agreed, state a high-level plan in chat (target

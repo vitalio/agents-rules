@@ -15,7 +15,9 @@
   `agents/adapters/`, `AGENTS.md`, and `agents/core/`; and (3) prompt bloat from
   full `--help` option dumps, human-only interactive flags (such as `-y`/`--yes`
   or `--uninstall`), or low-level wire-protocol/TUI internals that the agent
-  does not need at runtime.
+  does not need at runtime. Whenever the user points out an agent mistake or
+  workflow friction, immediately identify the root cause in the active rules
+  and refine the rule so that class of error cannot recur.
 - Project rule tailoring & catalog lookup: When asked to add or refine a rule in
   a project, first inspect the shared catalog (`context --list`) to see whether
   an existing bundle, atomic rule, or `let <var>=<default>` parameter covers
@@ -34,7 +36,8 @@
   activation condition per `.md` file (branching into a subdirectory when a
   concept accumulates distinct facets), keep `.bundle` files as flat bricks of
   `rule` directives, and gate tactical rules by `role`. Start every `.md` rule
-  and `.bundle` file with `# Description: <one-line summary>`, declare bundle
+  and `.bundle` file under `agents/` with `# Description: <one-line summary>`
+  (root `.context.bundle` files need no header comment), declare bundle
   input parameters at the top of `.bundle` files via `let <var>=<default>`
   (using `export <var>` only for session-level output headers), and write 1-4
   imperative `- Topic: instruction.` bullets without decorative bold or italic
