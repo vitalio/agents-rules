@@ -1,4 +1,4 @@
-# Description: Root context bundle for agents-rules (run: agents_bundle | run_block)
+# Description: Root context bundle for agents-rules (run: context | run_block)
 
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:adapters/todo_md
@@ -8,7 +8,7 @@ bundle vitalio/agents-rules:release
 file AGENTS.md
 file agents/core/AGENTS.md
 file agents/role/AGENTS.md
-cmd agents_bundle --tree
+cmd context --tree
 cmd git status -sb
 cmd git branch -vv
 cmd git log --oneline -10
