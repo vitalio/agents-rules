@@ -11,17 +11,17 @@
   - When the user provides the output, the model itself must audit the full
     diff against all project rules and reviewer-grade logic and quality
     invariants before committing: verify edge cases and error/failure paths
-    (empty inputs, `None`, invalid arguments, operator precedence), state/cache
+    (null/empty inputs, invalid arguments, operator precedence), state/cache
     invariants and algorithmic complexity (no redundant filesystem/network
     scans in loops or shared-state corruption), resource hygiene (no leaked
     file descriptors, subprocesses, or temp files), negative/regression unit
     test coverage rather than happy-path-only assertions, clean boundaries
-    without dead code or leftover names, and updated documentation and help
-    text. When a change removes,
+    without dead code or leftover names, and updated documentation and
+    user-facing help or interface specifications. When a change removes,
     renames, or splits files or symbols, search the entire repository for stale
-    references in code, tests, CI workflows (`.github/workflows/`),
-    `README.md`, and `AGENTS.md`, and clean up any orphaned artifacts before
-    committing. If any issue is found in the diff, fix it in the next step and
+    references in code, tests, CI/build configurations, `README.md`, and
+    `AGENTS.md`, and clean up any orphaned artifacts before committing. If any
+    issue is found in the diff, fix it in the next step and
     re-verify the diff until completely clean.
   - Once the model verifies that the printed diff is clean and checks pass,
     immediately provide the commit step in the same reply without asking the

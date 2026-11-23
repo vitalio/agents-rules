@@ -1,5 +1,7 @@
-# Description: Software engineering Designer overlay (module boundaries, data structures, and cross-file coupling in AGENTS.md)
-- Software design invariants: Define explicit module boundaries, data flow,
-  public CLI/API contracts, and cross-file coupling invariants in `AGENTS.md`
-  so downstream planning and implementation sessions maintain clean layering
-  between parsing, domain logic, rendering, and I/O.
+# Description: Software Architect role specialization (extends Designer with module boundaries, data structures, interface contracts, and complexity trade-offs)
+- Role specialization (Software Architect, extends Designer): Define explicit
+  module boundaries, data structures, state flows, public interface contracts,
+  algorithmic complexity and failure trade-offs, and cross-file coupling
+  invariants in `AGENTS.md` and `docs/adr/` so downstream planning and
+  implementation sessions maintain clean layering between parsing, domain
+  logic, rendering, and I/O.

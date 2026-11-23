@@ -19,5 +19,6 @@
   `AGENTS.md`. Keep `AGENTS.md` concise and actionable, and reference relevant
   `docs/adr/*.md` paths in task descriptions when context or trade-offs matter.
 - Documentation sync: Keep project documentation (`README.md`, subdirectory
-  `README.md` indexes, `AGENTS.md`), user-facing `-h`/`--help`, and agent rules
-  in sync within the same commit when modifying behavior, options, or rules.
+  `README.md` indexes, `AGENTS.md`), user-facing help or interface
+  specifications, and agent rules in sync within the same commit when modifying
+  behavior, options, or rules.
