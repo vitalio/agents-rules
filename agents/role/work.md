@@ -34,10 +34,13 @@
     that belongs to `role=plan`. A single repository `grep` check and a single
     new backlog item describing the stale reference problem without a solution
     are sufficient.
-  - Upon completing the task (after the final commit and release tag are
-    pushed, or in the final session-closing reply), provide a concise,
-    substantive completion summary in chat covering what changed and why,
-    verification/test results, commit hash and release version, and any newly
-    recorded out-of-scope backlog items rather than a bare one-line status.
+  - Upon completing the task (only after the final commit, release tag push,
+    and any final verification or pipeline checks have succeeded in preceding
+    steps), provide a concise, substantive completion summary in chat covering
+    what changed and why, verification/test results, commit hash and release
+    version, and any newly recorded out-of-scope backlog items, and place the
+    session-closing command in a dedicated final block at the end of that
+    summary reply (never combine session closure with checks or commits in an
+    earlier step).
   Deliver verified changes, synced documentation, and clean commits without
   expanding the current diff beyond the agreed task.
