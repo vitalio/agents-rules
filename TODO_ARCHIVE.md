@@ -1,3 +1,10 @@
+# ✅ [DONE] L8: Declare chat_lang and chat_date_fmt bundle parameters and enforce let coverage in CI — *2026-11-24*
+
+- Declare chat_lang and chat_date_fmt via let at the top of agents/core.bundle, and drop redundant inline key={key:default} arguments on rule directives where let already binds the default.
+- Deduplicate agents/default.bundle into a two-line package entry-point alias (bundle core) and clarify the alias exception in AGENTS.md.
+- Make agents/release/semver.md strictly VCS-agnostic by moving git tag -a and git push --atomic mechanics into agents/vcs/git.md and removing unused {main_branch:main} placeholders.
+- Document chat_lang and chat_date_fmt in README.md under Bundle Parameters and enforce rule template placeholder let-declaration coverage in .github/workflows/ci.yml (PATCH).
+
 # ✅ [DONE] L5: Document operating roles and bundle parameters in README.md — *2026-11-24, Documented operating roles and bundle configuration parameters in README.md.*
 
 - Depends on: L7
