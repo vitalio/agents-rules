@@ -1,3 +1,8 @@
+# ✅ [DONE] L12: Decouple universal role/law.md from agents-rules catalog taxonomy — *2026-11-24*
+
+- Keep agents/role/law.md focused on universal Legislative Counsel responsibilities applicable to any repository (role boundaries, proactive boundary/antinomy/bloat audit, project context bundle tailoring, and concise rule/bundle formatting).
+- Move agents-rules encyclopedia taxonomy details (subtree layering, flat brick rule, and catalog authoring format) into root AGENTS.md to eliminate duplication and repository-specific leakage in role/law.md (PATCH).
+
 # ✅ [DONE] L11: Remove context configuration tailoring overlap from role/design.md — *2026-11-24*
 
 - Remove context bundle configuration tailoring and catalog inspection bullets from agents/role/design.md so rule and bundle tailoring belongs exclusively to role=law while role=design focuses on architecture, AGENTS.md architectural boundaries, docs/adr/ records, and backlog task creation (PATCH).

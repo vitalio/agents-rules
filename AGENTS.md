@@ -51,6 +51,12 @@ are loaded via `.context.bundle`.
   rather than flat hyphen-prefixed sibling files (avoid naming leaf rule files
   `README.md` or `readme.md`, which the bundler reserves for directory
   documentation).
+- Legislative file format & parameter declarations: Start every `.md` rule and
+  `.bundle` file under `agents/` with `# Description: <one-line summary>`,
+  declare every `{var:default}` template placeholder used by a bundle's rules
+  via `let <var>=<default>` at the top of the `.bundle` file (enforced in CI),
+  and write 1-4 imperative `- Topic: instruction.` bullets per rule without
+  decorative bold (`**`) or italic emphasis, wrapped at ~80 columns.
 - Dynamic discovery: Never list directory contents or specific file inventories
   inside `AGENTS.md` or `README.md` (directory trees and rule catalogs are
   inspected dynamically via filesystem and bundler tools).
