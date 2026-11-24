@@ -1,10 +1,10 @@
 # Description: Python unittest mirrored tests/test_<module>.py layout, shared tests/helpers.py fixtures, output capture, and subTest diagnostics
-- Mirrored `tests/test_<module>.py` layout, shared `tests/helpers.py` & runner
-  invocation: Split unit tests across module-focused `tests/test_<module>.py`
-  files mirroring `src/` modules, and place shared base `unittest.TestCase`
-  classes, in-process CLI runners, and fixtures in `tests/helpers.py` (without
-  a `test_` prefix so `unittest discover -s tests` loads the target script once
-  and does not execute the base class standalone). Run
+- Python `unittest` file naming, shared `tests/helpers.py` & runner invocation:
+  Name module test files `tests/test_<module>.py` mirroring `src/<module>.py`,
+  and place shared base `unittest.TestCase` classes, in-process CLI runners,
+  and fixtures in `tests/helpers.py` (without a `test_` prefix so
+  `unittest discover -s tests` loads the target script once and does not
+  execute the base class standalone). Run
   `python3 -m unittest discover -s tests` directly (default verbosity `1`,
   without `-q`, `-v`, or `-b`/`--buffer` so unexpected test stdout is never
   hidden, and without wrapping in custom `verbosity=0` runners).

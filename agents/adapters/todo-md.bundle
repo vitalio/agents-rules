@@ -9,6 +9,8 @@ else if todo_md.status=WIP,NEXT
     let role=work
 else if todo_md.status=NEW,QUESTION,HOLD
     let role=plan
+else if piped=1
+    let role=plan
 export role
 
 if todo_md.task!=

@@ -4,14 +4,12 @@ let chat_lang=the language the user writes in
 let chat_date_fmt=DD/MM/YYYY
 
 rule core/isolation
-rule core/start
 rule core/secrets
+rule core/lang
+rule core/start
 rule core/plan
 rule core/ssot
 rule core/composability
-rule core/lang
-rule core/end
-rule collab/external
 
 if os=linux
     rule os/linux
@@ -22,6 +20,9 @@ if vcs=git
     rule vcs/git
 if vcs=cvs
     rule vcs/cvs
+
+rule collab/external
+rule core/end
 
 if role!=
     rule role/{role:}

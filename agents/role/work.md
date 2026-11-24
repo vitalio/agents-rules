@@ -4,7 +4,7 @@
   without unrelated refactoring or speculative design changes. Keep chat prose
   before intermediate read, edit, and commit blocks to 1-2 short sentences
   without dumping multi-point analysis, intermediate breakdowns, or
-  implementation plans in visible chat. For an already-agreed
+  execution plans in visible chat. For an already-agreed
   backlog task:
   - Emit the first execution block in the very first reply without restating
     the plan in chat, and mark the task as in progress in the project backlog
@@ -16,7 +16,7 @@
   - Run an initial batched read step only for required target files not yet
     present in session context (using targeted line-range reads or searches for
     large files), then proceed directly to the edit, verification, and diff
-    step without outputting a redundant implementation plan in chat prose.
+    step without outputting a redundant execution plan in chat prose.
   - Close the active backlog task only inside the final guarded commit step,
     after the edit-and-diff step has completed and the printed diff has been
     verified clean, so the backlog update is committed atomically with the

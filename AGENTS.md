@@ -15,7 +15,9 @@ are loaded via `.context.bundle`.
 - Flat bundle bricks & adapter-first ordering: Keep domain `.bundle` files in
   `agents-rules` as flat bricks composed directly of atomic `rule` directives
   (no nested `bundle` inside `.bundle`, except `agents/default.bundle` as a
-  thin package-shorthand alias for `core`) so projects compose orthogonal
+  thin package-shorthand alias for `core` and `agents/bootstrap/bootstrap.bundle`
+  as a standalone greenfield entrypoint before `.context.bundle` exists) so
+  projects compose orthogonal
   bundles at depth 1 from their root `.context.bundle`. Because `.context.bundle`
   evaluates top-down, place upstream adapter bundles that compute and `export`
   session variables (`adapters/todo-md` exporting `role` and `task`) first,
@@ -57,6 +59,19 @@ are loaded via `.context.bundle`.
   via `let <var>=<default>` at the top of the `.bundle` file (enforced in CI),
   and write 1-4 imperative `- Topic: instruction.` bullets per rule without
   decorative bold (`**`) or italic emphasis, wrapped at ~80 columns.
-- Dynamic discovery: Never list directory contents or specific file inventories
-  inside `AGENTS.md` or `README.md` (directory trees and rule catalogs are
-  inspected dynamically via filesystem and bundler tools).
+- Dynamic discovery & scoped cross-layer catalog audit: Never list directory
+  contents or static file inventories inside `AGENTS.md` or `README.md`
+  (inspect the rule catalog dynamically via `context --list` and
+  `context --tree`). Before proposing or editing any rule or bundle in
+  `agents/`, apply a strict taxonomic self-check: (1) verify that `core/` and
+  `role/` remain strictly domain-agnostic (software-engineering, code, and test
+  specifics belong in `coding/` and `stack/*`, while norms specific to the
+  `agents-rules` catalog itself belong here in `AGENTS.md`); (2) use
+  `context --list` to scan rule descriptions and batch-read related rules along
+  the affected vertical hierarchy (`core/` <-> `role/` <-> `<domain>/` <->
+  target `stack/*` or `adapters/*` subtree) to eliminate cross-layer
+  contradictions or duplication without dumping unrelated subtrees into
+  context; (3) keep role-invariant rules contiguous ahead of `if role=...`
+  blocks in `.bundle` files for prompt-cache prefix invariance; and (4) repeat
+  full audit passes across modified and neighboring rules/bundles until a pass
+  converges with zero remaining leaks, overlaps, or domain-boundary violations.

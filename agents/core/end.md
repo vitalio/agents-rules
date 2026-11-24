@@ -5,7 +5,7 @@
   traceback from any command inside a step, even if a later command in the same
   step exited with status 0). Then in the final reply: (1) give a concise,
   substantive summary in chat covering the key changes made (files, behavior,
-  or rules updated), verification/test results, commit hash and release tag (if
+  or rules updated), verification results, commit hash and release tag (if
   any), and any remaining work or newly recorded backlog items; (2) report any
   uncommitted or unpushed changes; (3) record durable architectural or
   operational decisions in project documentation; and (4) emit the

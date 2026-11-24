@@ -1,3 +1,6 @@
-# Description: On-demand greenfield project and CI/Release bootstrap bundle
-rule bootstrap/scaffold
+# Description: On-demand greenfield project and CI/Release bootstrap entrypoint bundle (defaults to role=design with core)
+let role=design
+
+bundle core
 rule bootstrap/questionnaire
+rule bootstrap/scaffold

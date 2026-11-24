@@ -3,16 +3,16 @@
   backlog tasks by prefix (`F` for features, `B` for bugfixes, `D` for design
   explorations under `role=design`, and `L` for standalone rule,
   `.context.bundle`, or agent policy changes under `role=law` that do not
-  modify product logic; keep routine `AGENTS.md` and embedded
-  `agents/<tool>.md` sync inside the `F*`/`B*` implementation task). Never ask
-  the user to choose between `NEW` and `NEXT`: `NEW` (default on `todo add`) is
-  for unscoped ideas, draft items, or future milestone roots that still require
-  planning (`role=plan`), whereas `NEXT` (`todo add --next`, `todo next <ID>`,
-  or `todo edit <ID> --next`) is for fully scoped, user-agreed tasks with
-  concrete acceptance criteria and dependencies ready for execution
-  (`role=work`). When a planning, design, or review session finalizes and
-  agrees on a task's scope, set or promote it directly to `NEXT` (or keep it
-  `NEW` when recording an unscoped placeholder).
+  modify project deliverables; keep routine `AGENTS.md` and local agent-rule
+  sync inside the `F*`/`B*` deliverable task). Never ask the user to choose
+  between `NEW` and `NEXT`: `NEW` (default on `todo add`) is for unscoped
+  ideas, draft items, or future milestone roots that still require planning
+  (`role=plan`), whereas `NEXT` (`todo add --next`, `todo next <ID>`, or
+  `todo edit <ID> --next`) is for fully scoped, user-agreed tasks with concrete
+  acceptance criteria and dependencies ready for execution (`role=work`). When
+  a planning, design, or review session finalizes and agrees on a task's scope,
+  set or promote it directly to `NEXT` (or keep it `NEW` when recording an
+  unscoped placeholder).
 - Post-add ID wiring & dependency precedence: Create tasks via `todo add` first
   and wire `--depends` in both directions using the actual assigned IDs
   returned by `todo add` (using `todo add -q` when capturing the raw `<ID>`

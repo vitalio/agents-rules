@@ -6,5 +6,4 @@ if role=work,review
     rule coding/testing
 
 if role=design,plan,work,review
-    rule role/{role:}
     rule coding/{role:}

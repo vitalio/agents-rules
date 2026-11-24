@@ -36,19 +36,20 @@ documentation rules across `core` and domain bundles (`coding`, `stack/*`,
 `adapters/todo-md` derive it from task prefix and status:
 
 - `design` (Designer) — concept exploration, architecture, interface design,
-  and ADR persistence (`docs/adr/`) without modifying product implementation or
-  tests (auto-selected for `D*` tasks).
-- `plan` (Planner) — workspace analysis, task decomposition and consolidation,
-  role routing, and dependency-chain wiring without modifying product
-  deliverables (auto-selected for `NEW`, `QUESTION`, and `HOLD` tasks).
-- `work` (Worker) — focused, low-chatter implementation, testing, and
-  verification strictly within agreed task scope (auto-selected for `WIP` and
-  `NEXT` implementation tasks).
-- `review` (Reviewer) — two-stage objective compliance gate and architectural
-  quality evaluation without modifying implementation or tests.
+  and ADR persistence (`docs/adr/`) without modifying project deliverables
+  (auto-selected for `D*` tasks and `bootstrap`).
+- `plan` (Planner) — workspace analysis, backlog triage, task decomposition and
+  consolidation, role routing, and dependency-chain wiring without modifying
+  project deliverables (auto-selected for `NEW`, `QUESTION`, and `HOLD` tasks,
+  and for piped backlog views such as `todo | context | run`).
+- `work` (Worker) — focused, low-chatter task delivery and verification
+  strictly within agreed task scope (auto-selected for `WIP` and `NEXT`
+  deliverable tasks).
+- `review` (Reviewer) — two-stage objective compliance gate and qualitative
+  evaluation without modifying project deliverables.
 - `law` (Legislative Counsel) — authoring, auditing, refactoring, and
   tailoring agent rules, bundles, and `AGENTS.md` instructions without
-  modifying product domain logic (auto-selected for `L*` tasks).
+  modifying project deliverables (auto-selected for `L*` tasks).
 
 ## Bundle Parameters
 
