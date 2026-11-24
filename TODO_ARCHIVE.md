@@ -1,3 +1,7 @@
+# ✅ [DONE] L10: Require explicit file paths on git add/commit and forbid whole-tree staging flags — *2026-11-24*
+
+- Update agents/vcs/git.md to require explicit file paths on git add and git commit (git add <file>... / git commit <file>...) and forbid git add -A, git add ., git add -u, and git commit -a so concurrent or unrelated work-tree edits are never swept into a commit (PATCH).
+
 # ✅ [DONE] L8: Declare chat_lang and chat_date_fmt bundle parameters and enforce let coverage in CI — *2026-11-24*
 
 - Declare chat_lang and chat_date_fmt via let at the top of agents/core.bundle, and drop redundant inline key={key:default} arguments on rule directives where let already binds the default.
