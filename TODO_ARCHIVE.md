@@ -1,3 +1,7 @@
+# ✅ [DONE] L11: Remove context configuration tailoring overlap from role/design.md — *2026-11-24*
+
+- Remove context bundle configuration tailoring and catalog inspection bullets from agents/role/design.md so rule and bundle tailoring belongs exclusively to role=law while role=design focuses on architecture, AGENTS.md architectural boundaries, docs/adr/ records, and backlog task creation (PATCH).
+
 # ✅ [DONE] L10: Require explicit file paths on git add/commit and forbid whole-tree staging flags — *2026-11-24*
 
 - Update agents/vcs/git.md to require explicit file paths on git add and git commit (git add <file>... / git commit <file>...) and forbid git add -A, git add ., git add -u, and git commit -a so concurrent or unrelated work-tree edits are never swept into a commit (PATCH).
