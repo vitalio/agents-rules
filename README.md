@@ -61,7 +61,11 @@ defaults dynamically):
 - `vcs` (`core`, `default`) — version control workflow rules (`git`, `cvs`);
   auto-detected by `context` when omitted.
 - `lang` (`core`, `default`, default `English`) — target language for code,
-  documentation, files, and commit messages.
+  execution blocks, documentation, files, and commit messages.
+- `chat_lang` (`core`, `default`, default `the language the user writes in`) —
+  target language for chat prose outside execution blocks.
+- `chat_date_fmt` (`core`, `default`, default `DD/MM/YYYY`) — date format used
+  when formatting dates to the user in chat.
 - `py_min` (`stack/python`, default `3.9`) — minimum target Python version
   injected into type-annotation and syntax rules.
 - `single_file_build` (`release`, default `0`) — set `single_file_build=1` to

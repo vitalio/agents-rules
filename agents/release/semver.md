@@ -16,8 +16,7 @@
     or `MAJOR`) rather than a concrete target version, and compute the next
     version dynamically from `VERSION` at release time.
   - Bump `VERSION` dynamically and stage any task-backlog updates inside the
-    guarded commit step immediately before final build, tests, commit, and
-    tag (this dynamic `VERSION` bump does not require an extra diff-review
-    round-trip) so the annotated release tag points to `HEAD`:
-    `ver=$(tr -d '[:space:]' < VERSION)`, `git tag -a "v$ver" -m "Release v$ver"`,
-    and `git push --atomic origin {main_branch:main} "v$ver"`.
+    guarded commit step immediately before the final build, tests, commit,
+    and `vX.Y.Z` release tag (this dynamic `VERSION` bump does not require an
+    extra diff-review round-trip) so the release tag points to the release
+    commit.

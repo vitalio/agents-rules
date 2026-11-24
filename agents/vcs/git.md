@@ -9,7 +9,8 @@
   printing `git status --porcelain` and `git diff HEAD` in the diff-review
   step. Without explicit user approval each time: no `git push --force`, no
   `git reset --hard`, no deleting a branch or tag, no rewriting a pushed
-  commit. Push commits at the end of a task/session (to
-  `origin {main_branch:main}` unless on a feature branch, using
-  `git push --atomic` when pushing a branch together with a release tag), and
-  report unpushed commits or unmerged branches at session end.
+  commit. Push commits at the end of a task/session (to `origin main` unless
+  on a feature branch; when tagging a release, create an annotated tag
+  `git tag -a "v$ver" -m "Release v$ver"` and push branch and tag together via
+  `git push --atomic origin main "v$ver"`), and report unpushed commits or
+  unmerged branches at session end.

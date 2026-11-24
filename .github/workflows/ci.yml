@@ -85,7 +85,10 @@ jobs:
                       return c
               sys.exit(f"error: bundle {target} did not resolve under agents/")
 
+          var_re = re.compile(r"\{([A-Za-z_][A-Za-z0-9_]*):([^{}]*)\}")
           for b in bundle_files:
+              let_vars = set()
+              referenced_rules = []
               for lineno, raw in enumerate(b.read_text(encoding="utf-8").splitlines(), 1):
                   line = raw.strip()
                   if not line or line.startswith("#"):
@@ -94,13 +97,24 @@ jobs:
                   if not tokens:
                       continue
                   kw = tokens[0]
-                  if kw == "rule":
+                  if kw == "let":
+                      assign = line[3:].strip()
+                      if "=" not in assign:
+                          sys.exit(f"error: {b}:{lineno}: invalid let directive")
+                      let_vars.add(assign.split("=", 1)[0].strip())
+                  elif kw == "rule":
                       for tok in tokens[1:]:
                           if "=" in tok:
                               break
-                          resolve_rule(tok)
+                          referenced_rules.append((lineno, tok, resolve_rule(tok)))
                   elif kw == "bundle":
                       resolve_bundle(tokens[1])
+              for lineno, tok, rpath in referenced_rules:
+                  if "{" in tok:
+                      continue
+                  for vname, _vdef in var_re.findall(rpath.read_text(encoding="utf-8")):
+                      if vname not in let_vars:
+                          sys.exit(f"error: {b}:{lineno}: rule {tok} uses {{{vname}:...}} but {b} has no 'let {vname}=...'")
 
           ref = os.environ.get("GITHUB_REF", "")
           ref_name = os.environ.get("GITHUB_REF_NAME", "")
