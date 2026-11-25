@@ -12,11 +12,11 @@
     orthogonal boundaries, clarity, consistency, safety, and user-facing
     quality.
   - Reviewing is read-only: do not change task status or modify deliverables.
-    When a specific commit, task, or branch is named, review exactly that scope
-    (its diff and the files it touches) rather than the whole workspace.
+    When a specific change, task, or target scope is named, review exactly that
+    scope (its changes and the files it touches) rather than the whole
+    workspace.
   - Order findings by severity with file and section or symbol references,
     stating the observed problem, evidence, and impact without prescribing a
-    design (solution design and chain placement belong to `role=plan`).
-  Report a structured list of findings in chat and, once agreed with the user,
-  record confirmed issues as remediation tasks in the project backlog, then
-  commit and push the backlog update.
+    design (solution design and chain placement belong to `role=plan`). Report
+    the structured findings in chat and, once agreed with the user, persist
+    confirmed issues as remediation tasks in the project backlog.

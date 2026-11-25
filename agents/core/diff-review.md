@@ -1,28 +1,28 @@
-# Description: Two-step self-reviewed diff before commit, stale-reference cleanup, and fail-fast guarded commit steps
-- Self-reviewed diff before commit: An edit step does not commit immediately
-  — it runs project verification checks inside the same step immediately after
-  the edit, then prints the working status and full diff.
-  - When a task is implemented across multiple bounded edit stages, verify each
-    self-consistent stage in place (or run fast validation checks in
-    intermediate stages when related files are temporarily split across steps
-    for output token limits) and run full project verification at the end of
-    the final edit stage together with the working status and full diff for
-    self-review.
-  - When the user provides the output, the model itself must audit the full
-    diff against all active bundle rules, task requirements, and project
-    `AGENTS.md` invariants before committing: verify accuracy, completeness,
-    clean boundaries without unused content or leftover names, and synced
-    documentation. When a change removes, renames, or splits files or named
-    entities, search the entire repository for stale references and clean up
-    any orphaned artifacts before committing. If any issue is found in the
-    diff, fix it in the next step and re-verify the diff until completely
-    clean.
-  - Once the model verifies that the printed diff is clean and checks pass,
-    immediately provide the commit step in the same reply without asking the
-    user to review or confirm the diff.
-  - Exception: a trivial text-only change (1-2 lines) may edit, show the diff,
-    and commit in one step.
-- Guarded commit steps: Because files on disk may change between turns, every
-  step that commits or publishes changes must enable fail-fast mode and re-run
-  project verification checks immediately before the commit command, so any
-  failure aborts execution before committing.
+# Description: Two-step self-reviewed diff before commit, explicit pre-commit diff audit, and fail-fast guarded commit steps
+- Self-reviewed diff before commit: An edit step never commits — it applies
+  changes, runs project verification checks inside the same step, and prints
+  the working status and full diff.
+  - When a task is split across multiple bounded edit stages to stay within
+    output token limits, run fast validation checks in intermediate stages and
+    run full project verification at the end of the final edit stage together
+    with the working status and full diff.
+  - Explicit pre-commit diff audit: After the full diff is printed, before
+    emitting a commit block, write a concise hunk-by-hunk audit in chat
+    verifying the printed diff against three gates: (1) task completeness —
+    every bullet, requirement, and wording detail in the task specification is
+    fulfilled; (2) project & rule invariants — all active rules and
+    `AGENTS.md` requirements (including documentation sync and required
+    previews) are satisfied; and (3) hunk accuracy — each modified block is
+    free of copy-paste errors, formatting glitches, broken line continuations,
+    unused content, or stale references across the repository.
+  - Strict separation of fix steps and commit steps: If the diff audit reveals
+    any defect (even a one-line typo, spacing glitch, or missing doc sync),
+    emit a dedicated fix-and-diff step (`edit + verification + full diff`)
+    without committing, and re-audit the new diff. Once the printed diff passes
+    all three gates with zero defects, emit the commit step immediately in that
+    reply without asking the user for confirmation.
+- Guarded commit steps (no file edits): A step that commits or publishes
+  changes must never modify target deliverable or rule files (only task-backlog
+  closure and dynamic `VERSION` bumps are permitted). Enable fail-fast mode and
+  re-run project verification checks immediately before the commit command so
+  any failure aborts execution before committing.

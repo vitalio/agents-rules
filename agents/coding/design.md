@@ -2,6 +2,5 @@
 - Role specialization (Software Architect, extends Designer): Define explicit
   module boundaries, data structures, state flows, public interface contracts,
   algorithmic complexity and failure trade-offs, and cross-file coupling
-  invariants in `AGENTS.md` and `docs/adr/` so downstream planning and
-  implementation sessions maintain clean layering between parsing, domain
-  logic, rendering, and I/O.
+  invariants in `AGENTS.md` and `docs/adr/` to guide downstream planning and
+  implementation.

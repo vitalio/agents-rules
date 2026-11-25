@@ -10,9 +10,9 @@
   project verification at the end of the final edit step together with the
   working status and full diff.
 - Programmatic patching & prose wrapping: When editing files programmatically,
-  verify that each search anchor occurs uniquely (`count == 1`), prefer
-  targeted `text.replace(old, new, 1)` patches over rewriting entire files as a
-  single literal, validate all search anchors and syntax in memory before
+  verify that each search anchor occurs uniquely, prefer targeted in-memory
+  replacements over rewriting entire files as a single literal, validate all
+  anchors and syntax in memory before
   writing any file to disk (so a failed check leaves the working tree
   untouched), and avoid raw multiline strings that could break chat Markdown
   fences. Aim to wrap prose in text and Markdown files at roughly 80 characters

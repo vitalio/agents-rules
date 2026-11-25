@@ -1,8 +1,8 @@
 # Description: GitHub Actions CI & tag-triggered GitHub Release workflow invariants (.github/workflows/ci.yml)
 - CI verification gate (`.github/workflows/ci.yml`): Trigger on `push` to
   `main` and `v*` tags and `pull_request` to `main` on `ubuntu-latest` with
-  `permissions: contents: write`. In the `test` job, run fast syntax/linter
-  checks and the unit test suite, and on `refs/tags/v*` verify that the pushed
+  `permissions: contents: write`. In the `test` job, run project verification
+  checks and tests, and on `refs/tags/v*` verify that the pushed
   tag matches `VERSION`
   (`GITHUB_REF_NAME == "v$(tr -d '[:space:]' < VERSION)"`).
 - Tag-triggered GitHub Release job: Gate the `release` job on `needs: test` and

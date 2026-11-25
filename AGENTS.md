@@ -53,12 +53,12 @@ are loaded via `.context.bundle`.
   rather than flat hyphen-prefixed sibling files (avoid naming leaf rule files
   `README.md` or `readme.md`, which the bundler reserves for directory
   documentation).
-- Legislative file format & parameter declarations: Start every `.md` rule and
-  `.bundle` file under `agents/` with `# Description: <one-line summary>`,
-  declare every `{var:default}` template placeholder used by a bundle's rules
-  via `let <var>=<default>` at the top of the `.bundle` file (enforced in CI),
-  and write 1-4 imperative `- Topic: instruction.` bullets per rule without
-  decorative bold (`**`) or italic emphasis, wrapped at ~80 columns.
+- CI catalog verification gate (`.github/workflows/ci.yml`): Every change to
+  `agents/` or `AGENTS.md` must pass the CI validation script verifying that
+  all `.md` and `.bundle` files start with `# Description: <summary>`, contain
+  no decorative `**` outside code spans, resolve all referenced `rule` and
+  `bundle` targets under `agents/`, and declare `let <var>=<default>` in every
+  `.bundle` for all `{var:default}` placeholders used by its rules.
 - Dynamic discovery & scoped cross-layer catalog audit: Never list directory
   contents or static file inventories inside `AGENTS.md` or `README.md`
   (inspect the rule catalog dynamically via `context --list` and

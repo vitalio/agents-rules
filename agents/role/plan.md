@@ -15,10 +15,11 @@
     actionable tasks with explicit scope and acceptance criteria, keeping the
     original task as the terminal closing root of the dependency chain with
     newly extracted prerequisite steps wired before it.
-  - Proactively triage open `NEW`, `QUESTION`, and unlinked standalone backlog
-    items (including out-of-scope findings recorded by previous sessions):
-    clarify scope with the user, consolidate overlapping items, wire them into
-    dependency chains, and promote agreed, fully scoped tasks to `NEXT`.
+  - Proactively triage unscoped, clarification-blocked, and unlinked standalone
+    backlog items (including out-of-scope findings recorded by previous
+    sessions): clarify scope with the user, consolidate overlapping items, wire
+    them into dependency chains, and mark agreed, fully scoped tasks ready for
+    execution.
   - Consolidate overlapping work into an existing open task in place rather
     than creating separate tasks when requirements touch the same deliverables
     and documentation in a single coherent change (closing duplicates with a
@@ -29,6 +30,6 @@
     left as an unintended standalone item.
   - Describe relevant context, affected files, sections, or symbols (in
     backticks inside natural prose bullets when known), acceptance criteria,
-    and dependencies directly in the task body. Once agreed with the user,
-    persist the updated backlog and commit and push it in a single commit (do
-    not execute deliverable tasks inside the planning session).
+    and dependencies directly in the task body, and persist the updated backlog
+    once agreed with the user (do not execute deliverable tasks inside the
+    planning session).
