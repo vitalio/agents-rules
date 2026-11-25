@@ -7,6 +7,9 @@
   cohesive helpers across modules just to keep `wc -l` under 1000. Separate
   pure data/parsing and domain/graph algorithms from terminal rendering and CLI
   or I/O dispatch.
-- Focused functions & canonical algorithms: Keep each function at a single
-  level of abstraction, and implement each domain invariant with one canonical
-  algorithm that every caller reuses rather than parallel implementations.
+- Focused functions, canonical algorithms & process boundaries: Keep each
+  function at a single level of abstraction, and implement each domain
+  invariant with one canonical algorithm that every caller reuses rather than
+  parallel implementations. Avoid cascading child-process spawns across thin
+  wrappers that repeatedly re-initialize runtime configuration or re-query
+  identical state within a single logical operation.

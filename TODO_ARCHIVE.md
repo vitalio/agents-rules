@@ -1,3 +1,10 @@
+# ✅ [DONE] L15: Enforce in-process test execution, fixture caching, and subprocess hygiene across coding, python, and posix rules — *2026-11-25, Enforced in-process test execution, fixture cloning, and subprocess hygiene across coding, python, and posix rules*
+
+- Update `agents/coding/testing.md` to require in-process testing for same-runtime code, once-per-suite baseline fixture construction with directory cloning (or lazy creation only for tests that use the fixture), and shared temporary directories across read-only parameterized checks.
+- Update `agents/coding/python/unittest.md` to prioritize in-process entrypoint invocation (`contextlib.redirect_stdout`/`redirect_stderr` and `SystemExit` capture) over `subprocess.run`, `setUpClass()` + `addClassCleanup()` + `shutil.copytree(..., symlinks=True)` for expensive directory fixtures, and shared `tempfile.TemporaryDirectory` instances across read-only `subTest` loops.
+- Update `agents/coding/architecture.md` and `agents/os/posix.md` to forbid redundant child-process cascades and require idempotent environment initialization and built-in parameter expansion in sourced POSIX shell libraries.
+- Update `agents/coding/work.md` and `agents/coding/review.md` audit gates to check for subprocess cascades in loops/tests and repeated expensive fixture setup in `setUp()`.
+
 # ✅ [DONE] L14: Deduplicate POSIX OS rules, decouple tool leaks, and harden CI bundle validation — *2026-11-25, Deduplicated POSIX OS rules, removed tool leaks, and hardened CI bundle validator*
 
 - Bump: `PATCH`

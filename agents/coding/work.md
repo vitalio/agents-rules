@@ -13,7 +13,9 @@
   in `IFS` `read`, missing `\` in multiline shell pipelines, or operator
   precedence); (3) state, cache, or mode guards (such as `CACHED` or dry-run
   flags inadvertently suppressing the target action); (4) algorithmic
-  complexity and resource hygiene (no redundant filesystem/network scans in
-  loops, and no leaked file descriptors, subprocesses, or temp files); and
+  complexity, fixture efficiency, and resource hygiene (no redundant
+  filesystem/network scans or child-process spawns in loops or `subTest`
+  iterations, no expensive directory fixtures rebuilt in every `setUp()`, and
+  no leaked file descriptors, subprocesses, or temp files); and
   (5) negative and regression unit test coverage rather than happy-path-only
   assertions.
