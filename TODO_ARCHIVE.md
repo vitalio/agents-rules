@@ -1,3 +1,10 @@
+# ✅ [DONE] L14: Deduplicate POSIX OS rules, decouple tool leaks, and harden CI bundle validation — *2026-11-25, Deduplicated POSIX OS rules, removed tool leaks, and hardened CI bundle validator*
+
+- Bump: `PATCH`
+- Extract shared POSIX shell and pipeline rules into `agents/os/posix.md` (gated on `if os=linux,macos` in `agents/core.bundle`), keep `agents/os/linux.md` focused on Linux/XDG conventions and `agents/os/macos.md` on macOS BSD userland differences, remove the hardcoded Python 3.9+ leak from `agents/os/macos.md`, and keep `set -x` credential-trace prohibition solely in `agents/core/secrets.md`.
+- Decouple `agents/collab/multi-repo.md`, `agents/bootstrap/scaffold.md`, and `agents/coding/{plan,work}.md` from specific external CLI names (`todo`, `context`, `TODO.md`, `agents/<tool>.md`) and deduplicate base ADR definitions against `agents/core/docs.md`.
+- Harden `.github/workflows/ci.yml` to strip chained `if`/`else` tokens, validate `{var:default}` placeholders across all target `*.md` files of parameterized rules, and validate root `.context.bundle` directives.
+
 # ✅ [DONE] L9: Codify ADR ownership boundary between orchestrator and child repositories in agents/collab/multi-repo.md — *2026-11-24*
 
 - In `agents/collab/multi-repo.md` (under `Owning-repository backlog & mutation boundary` / `Orchestrator parent tracking & one-way dependency boundaries`), explicitly codify the two-tier `docs/adr/` ownership boundary alongside `TODO.md` ownership:

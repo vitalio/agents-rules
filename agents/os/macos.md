@@ -1,8 +1,4 @@
-# Description: macOS & BSD userland compatibility (fail-fast only on mutating/commit steps, shellcheck, BSD vs GNU flags)
-- macOS & BSD userland rules: Enable `set -euo pipefail` in standalone `.sh`
-  script files and in state-mutating/build/commit steps, but do not enable
-  `set -e` or `set -o pipefail` in read-only inspection/search steps. Never
-  enable `set -x` around credentials, and lint shell scripts with `bash -n` and
-  `shellcheck -S warning`. Account for macOS BSD userland differences (avoid
-  GNU-only flags such as `sed -i` without an extension argument, `readlink -f`,
-  or `grep -P`) and ensure compatibility with macOS system Python 3.9+.
+# Description: macOS & BSD userland compatibility (BSD vs GNU flags and filesystem conventions)
+- macOS & BSD userland rules: Account for macOS BSD userland differences in
+  shell commands and scripts (avoid GNU-only flags such as `sed -i` without an
+  extension argument, `readlink -f`, or `grep -P`).

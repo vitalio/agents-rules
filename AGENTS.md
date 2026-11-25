@@ -15,10 +15,10 @@ are loaded via `.context.bundle`.
 - Flat bundle bricks & adapter-first ordering: Keep domain `.bundle` files in
   `agents-rules` as flat bricks composed directly of atomic `rule` directives
   (no nested `bundle` inside `.bundle`, except `agents/default.bundle` as a
-  thin package-shorthand alias for `core` and `agents/bootstrap/bootstrap.bundle`
-  as a standalone greenfield entrypoint before `.context.bundle` exists) so
-  projects compose orthogonal
-  bundles at depth 1 from their root `.context.bundle`. Because `.context.bundle`
+  thin package-shorthand alias for `core` and
+  `agents/bootstrap/bootstrap.bundle` as a standalone greenfield entrypoint
+  before `.context.bundle` exists) so projects compose orthogonal bundles at
+  depth 1 from their root `.context.bundle`. Because `.context.bundle`
   evaluates top-down, place upstream adapter bundles that compute and `export`
   session variables (`adapters/todo-md` exporting `role` and `task`) first,
   before `core` and domain bundles that gate rules on `if role=...`.
@@ -54,11 +54,14 @@ are loaded via `.context.bundle`.
   `README.md` or `readme.md`, which the bundler reserves for directory
   documentation).
 - CI catalog verification gate (`.github/workflows/ci.yml`): Every change to
-  `agents/` or `AGENTS.md` must pass the CI validation script verifying that
-  all `.md` and `.bundle` files start with `# Description: <summary>`, contain
-  no decorative `**` outside code spans, resolve all referenced `rule` and
-  `bundle` targets under `agents/`, and declare `let <var>=<default>` in every
-  `.bundle` for all `{var:default}` placeholders used by its rules.
+  `agents/`, `.context.bundle`, or `AGENTS.md` must pass the CI validation
+  script verifying that all `.md` and `.bundle` files under `agents/` start
+  with `# Description: <summary>`, contain no decorative `**` outside code
+  spans, resolve all referenced `rule`, `bundle`, and `file` targets across
+  `agents/**/*.bundle` and `.context.bundle` (including chained `if`/`else`
+  guards and all target files of parameterized rules), and declare
+  `let <var>=<default>` in every `.bundle` for all `{var:default}` placeholders
+  used by its rules.
 - Dynamic discovery & scoped cross-layer catalog audit: Never list directory
   contents or static file inventories inside `AGENTS.md` or `README.md`
   (inspect the rule catalog dynamically via `context --list` and

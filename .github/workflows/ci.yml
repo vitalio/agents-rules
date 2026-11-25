@@ -78,19 +78,22 @@ jobs:
 
           def resolve_rule(target: str):
               if is_external_pkg(target):
-                  return None
+                  return []
               prefix_part = target.split("{", 1)[0]
               name = target.split(":", 1)[-1] if ":" in prefix_part else target
               if "{" in name:
                   prefix = name.split("{", 1)[0]
-                  matches = list((agents_dir / prefix).glob("*.md"))
+                  matches = sorted(
+                      p for p in (agents_dir / prefix).glob("*.md")
+                      if p.name not in ("AGENTS.md", "README.md")
+                  )
                   if not matches:
                       sys.exit(f"error: parameterized rule {target} matched no files under agents/{prefix}")
-                  return matches[0]
+                  return matches
               candidate = agents_dir / f"{name}.md"
               if not candidate.is_file():
                   sys.exit(f"error: rule {target} does not resolve to {candidate}")
-              return candidate
+              return [candidate]
 
           def resolve_bundle(target: str):
               if is_external_pkg(target):
@@ -108,7 +111,9 @@ jobs:
               sys.exit(f"error: bundle {target} did not resolve under agents/")
 
           var_re = re.compile(r"\{([A-Za-z_][A-Za-z0-9_]*):([^{}]*)\}")
-          for b in bundle_files:
+          root_bundle = root / ".context.bundle"
+          all_bundles = bundle_files + ([root_bundle] if root_bundle.is_file() else [])
+          for b in all_bundles:
               let_vars = set()
               referenced_rules = []
               for lineno, raw in enumerate(b.read_text(encoding="utf-8").splitlines(), 1):
@@ -116,14 +121,13 @@ jobs:
                   if not line or line.startswith("#"):
                       continue
                   tokens = line.split()
-                  if not tokens:
-                      continue
-                  if tokens[0] == "else":
-                      tokens = tokens[1:]
-                  if tokens and tokens[0] == "if":
-                      if len(tokens) < 2:
-                          sys.exit(f"error: {b}:{lineno}: invalid if directive")
-                      tokens = tokens[2:]
+                  while tokens and tokens[0] in ("if", "else"):
+                      if tokens[0] == "else":
+                          tokens = tokens[1:]
+                      else:
+                          if len(tokens) < 2:
+                              sys.exit(f"error: {b}:{lineno}: invalid if directive")
+                          tokens = tokens[2:]
                   if not tokens:
                       continue
                   kw = tokens[0]
@@ -138,13 +142,24 @@ jobs:
                               break
                           referenced_rules.append((lineno, tok, resolve_rule(tok)))
                   elif kw == "bundle":
+                      if len(tokens) < 2:
+                          sys.exit(f"error: {b}:{lineno}: invalid bundle directive")
                       resolve_bundle(tokens[1])
-              for lineno, tok, rpath in referenced_rules:
-                  if rpath is None or "{" in tok:
-                      continue
-                  for vname, _vdef in var_re.findall(rpath.read_text(encoding="utf-8")):
-                      if vname not in let_vars:
-                          sys.exit(f"error: {b}:{lineno}: rule {tok} uses {{{vname}:...}} but {b} has no 'let {vname}=...'")
+                  elif kw == "file":
+                      if len(tokens) < 2:
+                          sys.exit(f"error: {b}:{lineno}: invalid file directive")
+                      for tok in tokens[1:]:
+                          fpart = tok.split(":", 1)[0]
+                          if any(ch in fpart for ch in "*?["):
+                              if not list(root.glob(fpart)):
+                                  sys.exit(f"error: {b}:{lineno}: file glob {tok} matched no files")
+                          elif not (root / fpart).exists():
+                              sys.exit(f"error: {b}:{lineno}: file {tok} does not exist")
+              for lineno, tok, rpaths in referenced_rules:
+                  for rpath in rpaths:
+                      for vname, _vdef in var_re.findall(rpath.read_text(encoding="utf-8")):
+                          if vname not in let_vars:
+                              sys.exit(f"error: {b}:{lineno}: rule {tok} ({rpath}) uses {{{vname}:...}} but {b} has no 'let {vname}=...'")
 
           ref = os.environ.get("GITHUB_REF", "")
           ref_name = os.environ.get("GITHUB_REF_NAME", "")

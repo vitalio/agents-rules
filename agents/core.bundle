@@ -11,6 +11,8 @@ rule core/plan
 rule core/ssot
 rule core/composability
 
+if os=linux,macos
+    rule os/posix
 if os=linux
     rule os/linux
 if os=macos

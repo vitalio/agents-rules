@@ -2,5 +2,5 @@
 - Greenfield repository scaffold: Once the initial project design is agreed
   with the user, create the target project directory, initialize version
   control, and scaffold `AGENTS.md`, `.context.bundle`, `VERSION` (`0.1.0`),
-  the initial task backlog (`TODO.md`), and any agreed CI/release workflow
-  files before creating the initial commit.
+  any configured task backlog, and any agreed CI/release workflow files before
+  creating the initial commit.

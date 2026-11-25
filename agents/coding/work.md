@@ -5,8 +5,8 @@
   data/type invariants, writing idiomatic code, and delivering every feature or
   bugfix together with offline unit tests covering the changed behavior,
   passing syntax and linter checks, and synced user-facing help or interface
-  specifications, `README.md`, `AGENTS.md` module notes, and any synced
-  embedded capability rules (`agents/<tool>.md`) in the same commit.
+  specifications, `README.md`, `AGENTS.md` module notes, and any
+  repository-shipped agent rules in the same commit.
 - Pre-commit senior code audit: During the pre-commit diff audit of every
   modified code hunk, explicitly check for: (1) copy-paste symbol or constant
   mismatches across branches (such as referencing component A's constant, URL,
