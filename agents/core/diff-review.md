@@ -2,10 +2,6 @@
 - Self-reviewed diff before commit: An edit step never commits — it applies
   changes, runs project verification checks inside the same step, and prints
   the working status and full diff.
-  - When a task is split across multiple bounded edit stages to stay within
-    output token limits, run fast validation checks in intermediate stages and
-    run full project verification at the end of the final edit stage together
-    with the working status and full diff.
   - Explicit pre-commit diff audit: After the full diff is printed, before
     emitting a commit block, write a concise hunk-by-hunk audit in chat
     verifying the printed diff against three gates: (1) task completeness —

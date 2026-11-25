@@ -58,7 +58,27 @@ jobs:
                   if "**" in without_code:
                       sys.exit(f"error: {p}:{lineno}: decorative bold ** found outside code")
 
-          def resolve_rule(target: str) -> Path:
+          ext_pkg_re = re.compile(r"^([A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+)(?::(.+))?$")
+
+          def is_external_pkg(target: str) -> bool:
+              prefix_part = target.split("{", 1)[0]
+              if ":" in prefix_part:
+                  pkg = prefix_part.split(":", 1)[0]
+                  return pkg != "vitalio/agents-rules"
+              m = ext_pkg_re.match(target)
+              if not m:
+                  return False
+              pkg = m.group(1)
+              if pkg == "vitalio/agents-rules":
+                  return False
+              local_md = agents_dir / f"{target}.md"
+              local_bundle = agents_dir / f"{target}.bundle"
+              local_dir = agents_dir / target
+              return not (local_md.exists() or local_bundle.exists() or local_dir.exists())
+
+          def resolve_rule(target: str):
+              if is_external_pkg(target):
+                  return None
               prefix_part = target.split("{", 1)[0]
               name = target.split(":", 1)[-1] if ":" in prefix_part else target
               if "{" in name:
@@ -72,7 +92,9 @@ jobs:
                   sys.exit(f"error: rule {target} does not resolve to {candidate}")
               return candidate
 
-          def resolve_bundle(target: str) -> Path:
+          def resolve_bundle(target: str):
+              if is_external_pkg(target):
+                  return None
               name = target.split(":", 1)[-1]
               leaf = name.rsplit("/", 1)[-1]
               candidates = [
@@ -96,9 +118,17 @@ jobs:
                   tokens = line.split()
                   if not tokens:
                       continue
+                  if tokens[0] == "else":
+                      tokens = tokens[1:]
+                  if tokens and tokens[0] == "if":
+                      if len(tokens) < 2:
+                          sys.exit(f"error: {b}:{lineno}: invalid if directive")
+                      tokens = tokens[2:]
+                  if not tokens:
+                      continue
                   kw = tokens[0]
                   if kw == "let":
-                      assign = line[3:].strip()
+                      assign = " ".join(tokens[1:]).strip()
                       if "=" not in assign:
                           sys.exit(f"error: {b}:{lineno}: invalid let directive")
                       let_vars.add(assign.split("=", 1)[0].strip())
@@ -110,7 +140,7 @@ jobs:
                   elif kw == "bundle":
                       resolve_bundle(tokens[1])
               for lineno, tok, rpath in referenced_rules:
-                  if "{" in tok:
+                  if rpath is None or "{" in tok:
                       continue
                   for vname, _vdef in var_re.findall(rpath.read_text(encoding="utf-8")):
                       if vname not in let_vars:
