@@ -1,6 +1,6 @@
-# Description: Interactive project, stack, and CI/Release bootstrap questionnaire for new repositories
+# Description: Interactive project, domain/stack, and CI/Release bootstrap questionnaire for new repositories
 - Greenfield bootstrap alignment: Before scaffolding a new repository, confirm
-  with the user the target runtime and stack bundles (such as `coding`,
-  `stack/cli`, `stack/python`), packaging model (modular package vs
+  with the user the project domain and target bundles (such as `coding`,
+  `coding/cli`, `coding/python`), packaging model (modular package vs
   `single_file_build=1`), license, and release artifacts to attach in
   `.github/workflows/ci.yml`.

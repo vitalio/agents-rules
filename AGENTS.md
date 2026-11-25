@@ -21,19 +21,19 @@ are loaded via `.context.bundle`.
   bundles at depth 1 from their root `.context.bundle`. Because `.context.bundle`
   evaluates top-down, place upstream adapter bundles that compute and `export`
   session variables (`adapters/todo-md` exporting `role` and `task`) first,
-  before `core` and domain/stack bundles that gate rules on `if role=...`.
+  before `core` and domain bundles that gate rules on `if role=...`.
 - Abstraction promotion & category boundaries (least-specific ancestor): Place
   each rule at the highest level of the tree where it holds unconditionally:
-  - `agents/core/` — universal axioms completely independent of OS, VCS,
-    programming language, and external tools.
-  - `agents/role/` — session-level operating postures (`design`, `plan`,
-    `work`, `review`, `law`) activated via `role=<name>`, free of hardcoded
-    domain file paths, languages, or external CLI tools.
-  - `agents/coding/` — language-agnostic software-engineering architecture,
-    test-suite invariants, and additive role overlays
-    (`coding/{design,plan,work,review}.md`).
-  - `agents/stack/` — cross-language interface contracts (`agents/stack/cli/`)
-    and language/runtime subtrees (`agents/stack/python/`).
+  - `agents/core/` — universal domain-agnostic axioms completely independent of
+    OS, VCS, subject domain, and external tools.
+  - `agents/role/` — universal session-level operating postures (`design`,
+    `plan`, `work`, `review`, `law`) activated via `role=<name>`, free of
+    hardcoded domain assumptions, languages, or external CLI tools.
+  - `agents/coding/` — software-engineering domain root: language-agnostic
+    architecture, test-suite invariants, and additive role overlays
+    (`coding/{design,plan,work,review}.md`), plus technical subtrees for
+    interface contracts (`agents/coding/cli/`) and languages/runtimes
+    (`agents/coding/python/`).
   - `agents/adapters/` — tool-specific variable mappings and lifecycle rules
     (`agents/adapters/<tool>.bundle` and `agents/adapters/<tool>/*.md`),
     keeping general rules and roles decoupled from specific external CLIs.
@@ -65,11 +65,11 @@ are loaded via `.context.bundle`.
   `context --tree`). Before proposing or editing any rule or bundle in
   `agents/`, apply a strict taxonomic self-check: (1) verify that `core/` and
   `role/` remain strictly domain-agnostic (software-engineering, code, and test
-  specifics belong in `coding/` and `stack/*`, while norms specific to the
+  specifics belong under `coding/` and `coding/*`, while norms specific to the
   `agents-rules` catalog itself belong here in `AGENTS.md`); (2) use
   `context --list` to scan rule descriptions and batch-read related rules along
-  the affected vertical hierarchy (`core/` <-> `role/` <-> `<domain>/` <->
-  target `stack/*` or `adapters/*` subtree) to eliminate cross-layer
+  the affected vertical hierarchy (`core/` <-> `role/` <-> `coding/` <->
+  target `coding/*` or `adapters/*` subtree) to eliminate cross-layer
   contradictions or duplication without dumping unrelated subtrees into
   context; (3) keep role-invariant rules contiguous ahead of `if role=...`
   blocks in `.bundle` files for prompt-cache prefix invariance; and (4) repeat

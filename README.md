@@ -2,7 +2,7 @@
 
 Open encyclopedia and taxonomic catalog of composable AI agent axioms
 (`agents/core/`), operating roles (`agents/role/`), domain overlays
-(`agents/coding/`), technical stack rules (`agents/stack/`), tool adapters
+and technical stack subtrees (`agents/coding/`), tool adapters
 (`agents/adapters/`), and composite bundles (`agents/**/*.bundle`).
 
 ## Usage in `.context.bundle`
@@ -11,9 +11,9 @@ Open encyclopedia and taxonomic catalog of composable AI agent axioms
 bundle vitalio/agents-rules:adapters/todo-md
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:coding
-bundle vitalio/agents-rules:stack/python py_min=3.9
+bundle vitalio/agents-rules:coding/python py_min=3.9
 bundle vitalio/agents-rules:release single_file_build=1
-bundle vitalio/agents-rules:stack/cli
+bundle vitalio/agents-rules:coding/cli
 rule vitalio/agents-rules:collab/commits
 
 file AGENTS.md
@@ -31,7 +31,7 @@ context --list
 ## Operating Roles
 
 Roles set the session posture and gate editing, diff-review, testing, and
-documentation rules across `core` and domain bundles (`coding`, `stack/*`,
+documentation rules across `core` and domain bundles (`coding`, `coding/*`,
 `adapters/*`). Set a role explicitly (`context role=<name>`) or let
 `adapters/todo-md` derive it from task prefix and status:
 
@@ -67,11 +67,11 @@ defaults dynamically):
   target language for chat prose outside execution blocks.
 - `chat_date_fmt` (`core`, `default`, default `DD/MM/YYYY`) — date format used
   when formatting dates to the user in chat.
-- `py_min` (`stack/python`, default `3.9`) — minimum target Python version
+- `py_min` (`coding/python`, default `3.9`) — minimum target Python version
   injected into type-annotation and syntax rules.
 - `single_file_build` (`release`, default `0`) — set `single_file_build=1` to
   enable single-file executable build and verification rules.
-- `readme` (`stack/cli`, default `1`) — set `readme=0` to omit the standalone
+- `readme` (`coding/cli`, default `1`) — set `readme=0` to omit the standalone
   CLI `README.md` reference layout requirement.
 
 ## Taxonomic Structure
@@ -84,9 +84,9 @@ defaults dynamically):
 - `agents/role/` — domain-agnostic operating roles (`design`, `plan`, `work`,
   `review`, `law`) activated via `role=<name>`.
 - `agents/coding/` — software-engineering architecture, test-suite invariants,
-  and additive role overlays (`coding.bundle`).
-- `agents/stack/` — cross-language CLI interface rules (`stack/cli/cli.bundle`)
-  and language subtrees (`stack/python/python.bundle`).
+  and additive role overlays (`coding.bundle`), plus CLI interface rules
+  (`coding/cli/cli.bundle`) and language subtrees
+  (`coding/python/python.bundle`).
 - `agents/adapters/` — tool-to-role adapter bundles and lifecycle rules
   (`adapters/todo-md.bundle`).
 - `agents/collab/`, `agents/os/`, `agents/vcs/`, `agents/release/`,

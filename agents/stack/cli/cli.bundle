@@ -1,9 +1,0 @@
-# Description: CLI stack rules (-h/--help layout and unified column alignment, plus optional standalone CLI README reference layout)
-let readme=1
-
-if role=work,review
-    rule stack/cli/help
-
-if role=work,design,review
-    if readme=1
-        rule stack/cli/docs

@@ -1,0 +1,9 @@
+# Description: CLI rules (-h/--help layout and unified column alignment, plus optional standalone CLI README reference layout)
+let readme=1
+
+if role=work,review
+    rule coding/cli/help
+
+if role=work,design,review
+    if readme=1
+        rule coding/cli/docs
