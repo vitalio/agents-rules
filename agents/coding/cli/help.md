@@ -1,9 +1,7 @@
-# Description: CLI -h/--help hygiene (Usage/Commands/Options layout, unified cross-section column alignment, stdout vs stderr, and <=100 display columns)
-- CLI interface & stream separation: Document every CLI command and flag in
+# Description: CLI -h/--help hygiene (Usage/Commands/Options layout, unified cross-section column alignment, and <=100 display columns)
+- CLI `-h`/`--help` contract: Document every CLI command and flag in
   `-h`/`--help`, which prints usage to `stdout` and exits `0` without side
-  effects, and keep it in sync with project documentation in the same commit.
-  Write primary command output to `stdout` and diagnostics, warnings, or errors
-  to `stderr`.
+  effects.
 - Structured `-h`/`--help` sections: Format help output with explicit `Usage:`,
   `Commands:` (when subcommands exist), and `Options:` sections (plus optional
   reference sections such as `Environment:`) rather than burying flags in prose

@@ -4,8 +4,7 @@
   `git config user.email` match the target repository owner. When an upstream
   remote is configured, sync the branch before starting work or modifying the
   task backlog (`git pull --ff-only`, or `git fetch` and `git status -sb` when
-  local changes exist) and resolve any upstream divergence before committing or
-  bumping `VERSION`.
+  local changes exist) and resolve any upstream divergence before committing.
 - Explicit-path staging & diff inspection: Mark new files with `git add -N`
   before printing `git status --porcelain` and `git diff HEAD` in the
   diff-review step. Stage and commit only explicit target file paths

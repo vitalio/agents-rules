@@ -9,9 +9,9 @@ are loaded via `.context.bundle`.
 
 - Canonical package root: `agents/` is the single package directory for all
   exported atomic rules (`.md`) and composite bundles (`.bundle`), organized by
-  logical domain subtrees. Any creation, modification, reorganization, or
-  deletion of files under `agents/`, `.context.bundle`, or `AGENTS.md` is
-  tracked as an `L*` task under `role=law`.
+  logical domain subtrees. When tracked in `TODO.md`, any creation,
+  modification, reorganization, or deletion of files under `agents/`,
+  `.context.bundle`, or `AGENTS.md` uses the `L*` task prefix under `role=law`.
 - Flat bundle bricks & adapter-first ordering: Keep domain `.bundle` files in
   `agents-rules` as flat bricks composed directly of atomic `rule` directives
   (no nested `bundle` inside `.bundle`, except `agents/default.bundle` as a

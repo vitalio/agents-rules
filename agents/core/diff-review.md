@@ -19,6 +19,7 @@
     reply without asking the user for confirmation.
 - Guarded commit steps (no file edits): A step that commits or publishes
   changes must never modify target deliverable or rule files (only task-backlog
-  closure and dynamic `VERSION` bumps are permitted). Enable fail-fast mode and
+  closure and dynamic release-version bumps are permitted). Enable fail-fast
+  mode and
   re-run project verification checks immediately before the commit command so
   any failure aborts execution before committing.

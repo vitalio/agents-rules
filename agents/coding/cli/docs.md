@@ -9,7 +9,7 @@
   one-line scenario heading (from the simplest default invocation to common
   workflows) rather than a single monolithic dump of every CLI subcommand and
   flag.
-- Synced CLI reference tables: Place `Commands`, `Options`, and `Environment`
-  (plus exit codes or I/O protocol specifications when relevant) after
-  `Quick Start`, and keep every command signature, flag, default value, and
-  environment variable in sync with `-h`/`--help` in the same change.
+- CLI reference tables: Place `Commands`, `Options`, and `Environment` (plus
+  exit codes or I/O protocol specifications when relevant) after `Quick Start`,
+  covering every command signature, flag, default value, and environment
+  variable exposed by `-h`/`--help`.

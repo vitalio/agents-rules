@@ -69,6 +69,8 @@ defaults dynamically):
   when formatting dates to the user in chat.
 - `py_min` (`coding/python`, default `3.9`) — minimum target Python version
   injected into type-annotation and syntax rules.
+- `stdlib_only` (`coding/python`, default `1`) — set `stdlib_only=0` to omit
+  the standard-library-only dependency constraint.
 - `single_file_build` (`release`, default `0`) — set `single_file_build=1` to
   enable single-file executable build and verification rules.
 - `readme` (`coding/cli`, default `1`) — set `readme=0` to omit the standalone

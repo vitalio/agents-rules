@@ -1,8 +1,10 @@
 # Description: Python rules (ast.parse syntax check, unittest mechanics, stdlib-only invariant, and annotations)
 let py_min=3.9
+let stdlib_only=1
 
 if role=work,review
     rule coding/python/syntax
     rule coding/python/unittest
-    rule coding/python/stdlib
+    if stdlib_only=1
+        rule coding/python/stdlib
     rule coding/python/annotations
