@@ -1,4 +1,4 @@
-# Description: Mirrored modular test layout, domain-behavior test naming, offline in-process & fixture-cloned execution, and live dot-progress
+# Description: Mirrored modular test layout, domain-behavior test naming, offline in-process & fixture-cloned execution, and bounded failure output
 - Mirrored test layout & domain naming: Split unit tests across modular test
   files mirroring the project's source modules. Name and group test cases and
   suites strictly by domain behavior and component invariants (such as
@@ -13,7 +13,11 @@
   or class and clone them into per-test working directories (or initialize them
   lazily), and share a single temporary directory across read-only
   parameterized checks.
-- Live dot-progress test execution: Run the test suite so it emits compact live
-  `.` progress indicators per test followed by the summary line on pass, and
-  prints full diagnostics and tracebacks on failure. Never pipe test runner
-  output through `tail`, `head`, or `grep` or suppress it via redirection.
+- Live dot-progress & bounded failure diagnostics: Run the test suite so it
+  emits compact live `.` progress indicators per test followed by the summary
+  line on pass, and prints clear diagnostics and tracebacks on failure without
+  piping test runner output through `tail`, `head`, or `grep` or suppressing it
+  via redirection. Never pass an entire multi-kilobyte source file or large
+  output buffer as the container in substring assertions where a failure would
+  dump the whole text to the terminal; assert match counts (`count == 1`) or
+  slice the target function or section before asserting.

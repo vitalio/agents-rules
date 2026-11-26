@@ -1,3 +1,18 @@
+# ✅ [DONE] L19: Bound test failure diagnostics against full-file container dumps in core/testing.md and lang/python/unittest.md — *2026-11-26, Bounded test failure diagnostics in agents/core/testing.md and agents/lang/python/unittest.md*
+
+- Update `agents/core/testing.md` to forbid passing entire multi-kilobyte source files or large buffers as substring-assertion containers so failed assertions never dump whole files to the terminal; assert match counts or slice the target function/section instead.
+- Update `agents/lang/python/unittest.md` to override `unittest.case.safe_repr` with `short=True` by default in `tests/helpers.py` (preventing `assertIn`/`assertNotIn` from printing untruncated `repr()` of large containers) and prefer `self.assertEqual(src.count(needle), 1)` or section slices over `assertIn` on full file text.
+
+# ✅ [DONE] L18: Refine agents/cli/help.md with grouped subcommands, {prog}-free command rows, and left-column width budget — *2026-11-26, Refined CLI -h/--help layout, grouped commands, and left-column width budget in agents/cli/help.md*
+
+- Update `agents/cli/help.md` to tighten the CLI `-h`/`--help` layout and column-balance contract across ecosystem tools:
+  - Separate top-level `Usage:` invocation templates (1-4 syntax lines prefixed with `{prog}`, without a right-hand description column) from tabular command sections.
+  - Omit the repeated `{prog}` prefix on subcommand rows inside `Commands:` or grouped `<Category> Commands:` sections (keeping `{prog}` only on bare default invocation or `<command> | {prog}` pipeline rows) so subcommand names align cleanly at the left edge.
+  - Group subcommands into 2-4 thematic `<Category> Commands:` sections whenever a CLI exposes more than ~10 commands/modes, keeping smaller CLIs in a single `Commands:` section.
+  - Keep left-column command signatures concise (`<command> [args] [opts]`) within a compact left-column budget (targeting description column `col <= 36-40` so the right-hand description column retains `>= 60` columns within the `<= 100` display-column limit), listing command-specific flags in the right-hand description (`Options: ...` or parenthesized) and wrapping/breaking overlong left labels cleanly when a custom `{prog}` or signature exceeds the column budget.
+  - Place `-V, --version` and `-h, --help` at the end of the primary `Options:` / `Global options:` section (never as `{prog} -V` command rows) and name the environment variable section `Environment:` consistently.
+- Run the `agents-rules` catalog verification checks (`.github/workflows/ci.yml` validation script) to confirm header descriptions, formatting, and bundle references pass cleanly.
+
 # ✅ [DONE] L17: Consolidate role rules, fold coding into core, reorganize language/interface bundles, and sync workspace .context.bundle files — *2026-11-26*
 
 - Bump: `MINOR`
