@@ -2,8 +2,10 @@
 - Self-reviewed diff before commit: An edit step never commits — it applies
   changes, runs project verification checks inside the same step, and prints
   the working status and full diff.
-  - Explicit pre-commit diff audit: After the full diff is printed, before
-    emitting a commit block, write a concise hunk-by-hunk audit in chat
+  - Explicit pre-commit diff audit: Perform the three-gate diff audit once on
+    the actual printed diff after the edit-and-verification step executes
+    (never pre-simulate it line by line prior to emitting the edit step).
+    Before emitting a commit block, write a concise hunk-by-hunk audit in chat
     verifying the printed diff against three gates: (1) task completeness —
     every bullet, requirement, and wording detail in the task specification is
     fulfilled; (2) project & rule invariants — all active rules and
@@ -20,6 +22,5 @@
 - Guarded commit steps (no file edits): A step that commits or publishes
   changes must never modify target deliverable or rule files (only task-backlog
   closure and dynamic release-version bumps are permitted). Enable fail-fast
-  mode and
-  re-run project verification checks immediately before the commit command so
-  any failure aborts execution before committing.
+  mode and re-run project verification checks immediately before the commit
+  command so any failure aborts execution before committing.
