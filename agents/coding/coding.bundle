@@ -1,9 +1,0 @@
-# Description: Software engineering architecture, canonical test suite invariants, and role overlays
-if role=work,design,review
-    rule coding/architecture
-
-if role=work,review
-    rule coding/testing
-
-if role=design,plan,work,review
-    rule coding/{role:}

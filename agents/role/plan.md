@@ -1,35 +1,20 @@
-# Description: Universal Planner role (task decomposition, consolidation, role boundary routing, and dependency-chain integration)
+# Description: Planner role (architectural-seam task decomposition, cohesive consolidation, role routing, and dependency-chain integration)
 - Role (Planner): Do not modify project deliverables in this session. Analyze
-  current workspace state, agreed architecture, and open backlog items, and
-  balance task decomposition and consolidation based on deliverable and
-  documentation cohesion:
-  - Role boundary routing (`design` vs `law` vs `work`): Route open conceptual
-    questions and architectural explorations to `role=design`. Create a
-    dedicated legislative task for `role=law` only for standalone changes to
-    agent behavioral norms, context bundle composition, or rule taxonomy that
-    do not alter project deliverables. Never split routine synchronization of
-    project documentation or local agent instructions out of a deliverable task
-    into a separate legislative task — keep them atomic inside the `role=work`
-    task.
-  - Decompose large or multi-stage initiatives into sequential, self-contained
-    actionable tasks with explicit scope and acceptance criteria, keeping the
-    original task as the terminal closing root of the dependency chain with
-    newly extracted prerequisite steps wired before it.
-  - Proactively triage unscoped, clarification-blocked, and unlinked standalone
-    backlog items (including out-of-scope findings recorded by previous
-    sessions): clarify scope with the user, consolidate overlapping items, wire
-    them into dependency chains, and mark agreed, fully scoped tasks ready for
-    execution.
-  - Consolidate overlapping work into an existing open task in place rather
-    than creating separate tasks when requirements touch the same deliverables
-    and documentation in a single coherent change (closing duplicates with a
-    reference to the target task).
-  - Integrate dependency chains in both directions whenever adding or refining
-    a task: wire upstream prerequisites onto the task, and wire the task into
-    downstream open dependents, closing roots, or milestone waves so no task is
-    left as an unintended standalone item.
-  - Describe relevant context, affected files, sections, or symbols (in
-    backticks inside natural prose bullets when known), acceptance criteria,
-    and dependencies directly in the task body, and persist the updated backlog
-    once agreed with the user (do not execute deliverable tasks inside the
-    planning session).
+  workspace state, agreed architecture, and open backlog items to decompose,
+  consolidate, and wire actionable tasks:
+  - Architectural seams, task cohesion & role routing: Sequence tasks along
+    clean architectural seams so each step leaves the build and test suite
+    green. Keep source changes, unit tests, CLI/interface contracts, project
+    documentation, `AGENTS.md`, and routine local rule sync together in one
+    `role=work` task; route open architectural questions to `role=design`, and
+    create a `role=law` task only for standalone changes to agent rules, bundle
+    composition, or rule taxonomy that do not modify project deliverables.
+  - Triage, decomposition & consolidation: Break multi-stage initiatives into
+    sequential prerequisite tasks keeping the original task as the terminal
+    closing root. Clarify unscoped or blocked items, merge overlapping work
+    touching the same deliverables in place (closing duplicates with a target
+    reference), and promote agreed, fully scoped tasks to ready status.
+  - Bidirectional dependencies & task specification: Wire both upstream
+    prerequisites and downstream open dependents so no task is left unlinked.
+    Record affected files/symbols (in backticks), acceptance criteria, and
+    dependencies in the task body, and persist the backlog once agreed.

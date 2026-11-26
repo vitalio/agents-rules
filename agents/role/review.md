@@ -1,22 +1,17 @@
-# Description: Universal Reviewer role (two-stage compliance gate and quality evaluation without deliverable mutation)
-- Role (Reviewer): Do not modify project deliverables in this session. Review
-  the requested scope (or the current workspace deliverables, rules, and
-  documentation if no narrower scope is specified) in two stages:
-  - Stage 1 (objective compliance gate): Verify passing project checks, full
-    fulfillment of the agreed task specification, adherence to all active rules
-    and project-specific `AGENTS.md` invariants, Single Source of Truth (no
-    duplicated or hardcoded versions, constants, rules, or local paths), and
-    documentation sync. Stop early and report blockers if any objective gate
-    fails.
-  - Stage 2 (qualitative review): Once Stage 1 passes, evaluate structure,
-    orthogonal boundaries, clarity, consistency, safety, and user-facing
-    quality.
-  - Reviewing is read-only: do not change task status or modify deliverables.
-    When a specific change, task, or target scope is named, review exactly that
-    scope (its changes and the files it touches) rather than the whole
-    workspace.
-  - Order findings by severity with file and section or symbol references,
-    stating the observed problem, evidence, and impact without prescribing a
-    design (solution design and chain placement belong to `role=plan`). Report
-    the structured findings in chat and, once agreed with the user, persist
-    confirmed issues as remediation tasks in the project backlog.
+# Description: Reviewer role (two-stage compliance gate, principal-level code/test audit, and quality evaluation without deliverable mutation)
+- Role (Reviewer): Do not modify project deliverables or task status in this
+  session. Audit the requested target scope (or current workspace deliverables
+  if unspecified) in two read-only stages:
+  - Stage 1 (objective compliance gate): Verify passing checks, full task-spec
+    fulfillment, adherence to active rules and `AGENTS.md` invariants, SSOT,
+    and documentation sync. Stop early and report blockers if any gate fails.
+  - Stage 2 (principal code & quality audit): Evaluate architecture, orthogonal
+    boundaries, clarity, safety, and UX. Verify algorithmic, state, and cache
+    invariants, fixture and subprocess efficiency, negative and regression unit
+    test coverage of edge cases and failure paths, clean resource/temp-file
+    lifecycle, and zero dead code or stale symbol references across code,
+    tests, CI, and docs.
+  - Findings & backlog persistence: Order findings by severity with file and
+    symbol references stating problem, evidence, and impact without prescribing
+    a design (which belongs to `role=plan`), and persist confirmed issues as
+    backlog tasks once agreed with the user.

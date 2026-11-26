@@ -1,3 +1,11 @@
+# ✅ [DONE] L17: Consolidate role rules, fold coding into core, reorganize language/interface bundles, and sync workspace .context.bundle files — *2026-11-26*
+
+- Bump: `MINOR`
+- Merge the split base roles (`agents/role/{design,plan,work,review}.md`) and their software-engineering overlays (`agents/coding/{design,plan,work,review}.md`) into a single cohesive rule file per role under `agents/role/{design,plan,work,review}.md`, eliminating the two-tier `Role specialization (..., extends ...)` split and deduplicating overlapping instructions.
+- In `agents/role/work.md`, explicitly forbid emitting fenced code blocks or drafting code, scripts, or file literals inside internal thinking/reasoning blocks before the execution step (preventing CoT code drafts and streaming parser leaks), and integrate the 5-point pre-commit senior code audit directly into the unified Worker role.
+- Eliminate the standalone `vitalio/agents-rules:coding` wrapper bundle (`agents/coding/coding.bundle`) by folding `architecture.md` and `testing.md` into `core` (`agents/core/` and `agents/core.bundle` with their role conditions), and reorganize stack/interface sub-bundles (`python`, `cli`, and future language bundles such as `js` under a dedicated language directory taxonomy determined in `role=law`).
+- Update `README.md`, `AGENTS.md`, and CI validation in `agents-rules`, release the updated catalog, and synchronize `.context.bundle` files across the workspace repositories (`run-block`, `todo-md`, `context-bundle`, `todo-flow`, `chrome/canary`).
+
 # ✅ [DONE] L16: Bound worker pre-step prose and internal reasoning against self-priming analysis dumps and mental simulation — *2026-11-26, Decouple software-engineering terms from role/work.md and deduplicate pre-commit diff-audit timing across layers.*
 
 Update `agents/role/work.md` (and align `agents/core/edit.md` / `agents/core/diff-review.md` if needed) under `role=law` so worker sessions never spiral into multi-thousand-token requirement/test analysis dumps in chat prose or internal thinking blocks before emitting an execution step:

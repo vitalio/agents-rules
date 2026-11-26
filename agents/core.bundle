@@ -1,11 +1,11 @@
-# Description: Core agent axioms, OS/VCS environment, base role posture, and role-gated editing/docs rules
+# Description: Core agent axioms, OS/VCS environment, operating role posture, architecture/testing invariants, and role-gated editing rules
 let lang=English
 let chat_lang=the language the user writes in
 let chat_date_fmt=DD/MM/YYYY
 
 rule core/isolation
 rule core/secrets
-rule core/lang
+rule core/locale
 rule core/start
 rule core/plan
 rule core/ssot
@@ -30,9 +30,12 @@ if role!=
     rule role/{role:}
     export role
 
+if role=work,design,review
+    rule core/architecture
+
+if role=work,review
+    rule core/testing
+
 if role=work,law
     rule core/edit
     rule core/diff-review
-
-if role=work,design,review,law
-    rule core/docs

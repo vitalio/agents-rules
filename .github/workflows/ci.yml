@@ -113,6 +113,11 @@ jobs:
           var_re = re.compile(r"\{([A-Za-z_][A-Za-z0-9_]*):([^{}]*)\}")
           root_bundle = root / ".context.bundle"
           all_bundles = bundle_files + ([root_bundle] if root_bundle.is_file() else [])
+          allowed_nested_bundles = {
+              agents_dir / "default.bundle",
+              agents_dir / "bootstrap" / "bootstrap.bundle",
+          }
+          seen_rule_files = set()
           for b in all_bundles:
               let_vars = set()
               referenced_rules = []
@@ -151,6 +156,8 @@ jobs:
                   elif kw == "bundle":
                       if len(tokens) < 2:
                           sys.exit(f"error: {b}:{lineno}: invalid bundle directive")
+                      if b in bundle_files and b not in allowed_nested_bundles:
+                          sys.exit(f"error: {b}:{lineno}: nested bundle directive forbidden in flat domain bundle")
                       resolve_bundle(tokens[1])
                   elif kw == "file":
                       if len(tokens) < 2:
@@ -164,9 +171,14 @@ jobs:
                               sys.exit(f"error: {b}:{lineno}: file {tok} does not exist")
               for lineno, tok, rpaths in referenced_rules:
                   for rpath in rpaths:
+                      seen_rule_files.add(rpath)
                       for vname, _vdef in var_re.findall(rpath.read_text(encoding="utf-8")):
                           if vname not in let_vars:
                               sys.exit(f"error: {b}:{lineno}: rule {tok} ({rpath}) uses {{{vname}:...}} but {b} has no let {vname}=...")
+
+          orphaned_rules = sorted(set(rule_files) - seen_rule_files)
+          if orphaned_rules:
+              sys.exit(f"error: unreferenced rule files under agents/: {[str(p) for p in orphaned_rules]}")
 
           ref = os.environ.get("GITHUB_REF", "")
           ref_name = os.environ.get("GITHUB_REF_NAME", "")

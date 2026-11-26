@@ -1,7 +1,8 @@
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:adapters/todo-md
-rule vitalio/agents-rules:collab/commits
 bundle vitalio/agents-rules:release
+rule vitalio/agents-rules:collab/commits
+rule vitalio/agents-rules:collab/docs
 
 file AGENTS.md
 cmd context --tree

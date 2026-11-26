@@ -3,8 +3,8 @@ let py_min=3.9
 let stdlib_only=1
 
 if role=work,review
-    rule coding/python/syntax
-    rule coding/python/unittest
+    rule lang/python/syntax
+    rule lang/python/unittest
     if stdlib_only=1
-        rule coding/python/stdlib
-    rule coding/python/annotations
+        rule lang/python/stdlib
+    rule lang/python/annotations

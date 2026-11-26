@@ -2,8 +2,8 @@
 let readme=1
 
 if role=work,review
-    rule coding/cli/help
+    rule cli/help
 
 if role=work,design,review
     if readme=1
-        rule coding/cli/docs
+        rule cli/docs
