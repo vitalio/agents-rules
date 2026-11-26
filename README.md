@@ -8,12 +8,12 @@ and technical stack subtrees (`agents/coding/`), tool adapters
 ## Usage in `.context.bundle`
 
 ```text
-bundle vitalio/agents-rules:adapters/todo-md
 bundle vitalio/agents-rules:core
 bundle vitalio/agents-rules:coding
 bundle vitalio/agents-rules:coding/python py_min=3.9
-bundle vitalio/agents-rules:release single_file_build=1
 bundle vitalio/agents-rules:coding/cli
+bundle vitalio/agents-rules:adapters/todo-md
+bundle vitalio/agents-rules:release single_file_build=1
 rule vitalio/agents-rules:collab/commits
 
 file AGENTS.md
@@ -62,9 +62,10 @@ defaults dynamically):
 - `vcs` (`core`, `default`) — version control workflow rules (`git`, `cvs`);
   auto-detected by `context` when omitted.
 - `lang` (`core`, `default`, default `English`) — target language for code,
-  execution blocks, documentation, files, and commit messages.
+  commands, comments, output strings, project files, documentation, and commit
+  messages.
 - `chat_lang` (`core`, `default`, default `the language the user writes in`) —
-  target language for chat prose outside execution blocks.
+  target language for chat prose to the user.
 - `chat_date_fmt` (`core`, `default`, default `DD/MM/YYYY`) — date format used
   when formatting dates to the user in chat.
 - `py_min` (`coding/python`, default `3.9`) — minimum target Python version

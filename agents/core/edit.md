@@ -11,9 +11,8 @@
   working status and full diff.
 - Programmatic patching & prose wrapping: When editing files programmatically,
   verify that each search anchor occurs uniquely, prefer targeted in-memory
-  replacements over rewriting entire files as a single literal, validate all
-  anchors and syntax in memory before
-  writing any file to disk (so a failed check leaves the working tree
-  untouched), and avoid raw multiline strings that could break chat Markdown
-  fences. Aim to wrap prose in text and Markdown files at roughly 80 characters
-  per line for readability in terminal editors.
+  replacements over rewriting entire files as a single literal, and validate
+  all anchors and syntax in memory before writing any file to disk (so a failed
+  check leaves the working tree untouched). Aim to wrap prose in text and
+  Markdown files at roughly 80 characters per line for readability in terminal
+  editors.

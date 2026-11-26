@@ -12,16 +12,15 @@ are loaded via `.context.bundle`.
   logical domain subtrees. When tracked in `TODO.md`, any creation,
   modification, reorganization, or deletion of files under `agents/`,
   `.context.bundle`, or `AGENTS.md` uses the `L*` task prefix under `role=law`.
-- Flat bundle bricks & adapter-first ordering: Keep domain `.bundle` files in
+- Flat bundle bricks & core-first ordering: Keep domain `.bundle` files in
   `agents-rules` as flat bricks composed directly of atomic `rule` directives
   (no nested `bundle` inside `.bundle`, except `agents/default.bundle` as a
   thin package-shorthand alias for `core` and
   `agents/bootstrap/bootstrap.bundle` as a standalone greenfield entrypoint
   before `.context.bundle` exists) so projects compose orthogonal bundles at
-  depth 1 from their root `.context.bundle`. Because `.context.bundle`
-  evaluates top-down, place upstream adapter bundles that compute and `export`
-  session variables (`adapters/todo-md` exporting `role` and `task`) first,
-  before `core` and domain bundles that gate rules on `if role=...`.
+  depth 1 from their root `.context.bundle`. Place `bundle vitalio/agents-rules:core`
+  first in `.context.bundle` (before `coding`, `coding/*`, and `adapters/*`
+  bundles).
 - Abstraction promotion & category boundaries (least-specific ancestor): Place
   each rule at the highest level of the tree where it holds unconditionally:
   - `agents/core/` — universal domain-agnostic axioms completely independent of

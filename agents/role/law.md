@@ -30,9 +30,9 @@
 - Project context tailoring & rule format: Before tailoring a project's rules
   or context configuration, inspect the available rule catalog and wire
   existing bundles and input parameters into the project's root bundle (placing
-  upstream variable-exporting adapters before `core` and domain bundles that
-  branch on `role`), keeping the base bundle as a stable project baseline and
-  promoting reusable norms to the shared catalog rather than duplicating them.
+  `core` first, followed by domain and adapter bundles), keeping the base
+  bundle as a stable project baseline and promoting reusable norms to the
+  shared catalog rather than duplicating them.
   Start every `.md` rule and `.bundle` file under `agents/` with
   `# Description: <one-line summary>` (root `.context.bundle` files need no
   header comment), declare bundle input parameters at the top of `.bundle`

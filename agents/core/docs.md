@@ -13,14 +13,13 @@
   edge cases, or exhaustive environment tables into the introduction. Present
   primary entry points or scenario-grouped usage examples before deep reference
   sections or internal specifications, and honor any project-specific
-  `README.md` and subdirectory `README.md` conventions defined in `AGENTS.md`.
+  documentation conventions defined in `AGENTS.md`.
 - Architecture Decision Records (`docs/adr/`): When a design decision involves
   complex protocols, trade-offs, or multi-component rationale too detailed for
   `AGENTS.md`, record a concise ADR in `docs/adr/NNNN-<slug>.md` (context,
   decision, rejected alternatives, consequences) rather than inflating
   `AGENTS.md`, and reference relevant `docs/adr/*.md` paths in backticks in
   downstream task descriptions.
-- Documentation sync: Keep project documentation (`README.md`, subdirectory
-  `README.md` indexes, `AGENTS.md`), user-facing specifications, and agent
-  rules in sync within the same change when modifying behavior, options, or
-  rules.
+- Documentation sync: Keep project documentation (`README.md`, `AGENTS.md`,
+  `docs/adr/`), user-facing specifications, and agent rules in sync within the
+  same change when modifying behavior, options, or rules.
