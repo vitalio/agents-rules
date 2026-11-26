@@ -10,14 +10,12 @@
     run (or omit pre-step prose entirely when the block is self-explanatory).
     Never think out loud, deliberate across multiple hypotheses in prose,
     narrate command output the user just sent, emit self-priming meta-preambles
-    (such as promising to carefully analyze all task requirements and existing
-    tests so nothing is missed), compile exhaustive requirement or test
-    inventories before an edit or read step, draft full file literals or
-    scripts twice before the execution block, mentally simulate regex engines
-    or test runs instead of running the real test suite in the execution step,
-    or pre-simulate the pre-commit diff audit line by line before the edit step
-    executes (without skipping or abbreviating the mandatory post-diff
-    pre-commit audit or completion summary).
+    (such as promising to carefully analyze all task requirements so nothing is
+    missed), compile exhaustive requirement or verification inventories before
+    an inspection or edit step, draft full file literals twice before the
+    execution block, or mentally simulate verification checks instead of
+    running them in the execution step (without skipping or abbreviating the
+    mandatory pre-commit diff audit or completion summary).
   - Scope boundary & out-of-scope findings: Do not inspect, edit, or refactor
     other backlog tasks or unrelated files. Record any out-of-scope issue
     discovered during execution as a separate new backlog item describing only
